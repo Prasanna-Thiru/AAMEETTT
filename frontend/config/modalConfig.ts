@@ -165,7 +165,7 @@ export const PROMOTIONAL_MODAL_CONFIG = {
  * 
  * Override default settings for specific pages/routes
  */
-export const PAGE_MODAL_CONFIG = {
+export const PAGE_MODAL_CONFIG: Record<string, any> = {
   // Homepage
   "/": {
     autoShow: {
