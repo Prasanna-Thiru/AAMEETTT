@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { motion } from "framer-motion";
 import AuthPanel from "./AuthPanel";
 
@@ -32,7 +33,9 @@ export default function LoginForm() {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="w-full max-w-[1180px] overflow-hidden rounded-[34px] border border-white/80 bg-white shadow-[0_40px_140px_rgba(7,24,41,0.18)]"
         >
-          <AuthPanel variant="page" />
+          <Suspense fallback={null}>
+            <AuthPanel variant="page" />
+          </Suspense>
         </motion.div>
       </div>
     </section>
