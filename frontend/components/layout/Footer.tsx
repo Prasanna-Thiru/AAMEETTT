@@ -16,7 +16,14 @@ const QUICK_LINKS = [
 
 export default function Footer() {
   const pathname = usePathname();
-  if (pathname?.startsWith("/admin")) return null;
+  if (
+    pathname?.startsWith("/admin") ||
+    pathname?.startsWith("/student/dashboard") ||
+    pathname?.startsWith("/parent/dashboard") ||
+    pathname?.startsWith("/faculty/dashboard")
+  ) {
+    return null;
+  }
 
   return (
     <footer className="bg-brand-dark text-gray-300">

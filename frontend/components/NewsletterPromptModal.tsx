@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { AnimatePresence, motion } from "framer-motion";
 import { IoClose } from "react-icons/io5";
-import { FaEnvelopeOpenText } from "react-icons/fa";
+import { FaEnvelopeOpenText, FaPaperPlane } from "react-icons/fa";
 
 interface AuthUser {
   email?: string;
@@ -97,63 +97,68 @@ export default function NewsletterPromptModal() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-[#0b1c37]/45 backdrop-blur-[2px]"
+            className="fixed inset-0 z-40 bg-[#06152d]/55 backdrop-blur-sm"
             onClick={handleClose}
           />
 
           <motion.div
-            initial={{ opacity: 0, y: 24, scale: 0.96 }}
+            initial={{ opacity: 0, y: 18, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 24, scale: 0.96 }}
+            exit={{ opacity: 0, y: 18, scale: 0.96 }}
             transition={{ type: "spring", damping: 22, stiffness: 260 }}
-            className="fixed left-1/2 top-1/2 z-50 w-[calc(100vw-2rem)] max-w-sm -translate-x-1/2 -translate-y-1/2"
+            className="fixed left-1/2 top-1/2 z-50 w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2"
           >
-            <div className="overflow-hidden rounded-[30px] bg-white shadow-[0_30px_80px_rgba(11,63,145,0.28)]">
-              <div className="relative bg-[linear-gradient(160deg,#0b3f91_0%,#0f61e5_52%,#69b5ff_100%)] px-6 pb-10 pt-8 text-center text-white">
+            <div className="overflow-hidden rounded-2xl border border-white/70 bg-white shadow-[0_34px_90px_rgba(6,21,45,0.34)]">
+              <div className="relative overflow-hidden bg-[linear-gradient(145deg,#071d41_0%,#0f61e5_62%,#38bdf8_125%)] px-6 pb-11 pt-8 text-center text-white">
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.12)_1px,transparent_1px)] bg-[size:30px_30px] opacity-20" />
+                <div className="absolute -left-10 top-8 h-24 w-24 rotate-12 rounded-xl border border-white/20 bg-white/10" />
+                <div className="absolute -right-8 bottom-5 h-20 w-20 -rotate-12 rounded-xl border border-white/20 bg-white/10" />
                 <button
                   type="button"
                   onClick={handleClose}
-                  className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/18 text-white transition-colors hover:bg-white/28"
+                  className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-lg bg-white/15 text-white transition-colors hover:bg-white/25"
                   aria-label="Close newsletter popup"
                 >
                   <IoClose size={18} />
                 </button>
 
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-[24px] bg-white/18 shadow-[0_12px_30px_rgba(3,27,73,0.22)]">
-                  <FaEnvelopeOpenText className="text-4xl text-white" />
+                <div className="relative z-10 mx-auto flex h-20 w-20 items-center justify-center rounded-2xl bg-white text-blue-700 shadow-[0_18px_36px_rgba(3,27,73,0.28)]">
+                  <FaEnvelopeOpenText className="text-4xl" />
                 </div>
-                <div className="absolute bottom-[-0.65rem] left-1/2 h-5 w-5 -translate-x-1/2 rotate-45 rounded-[4px] bg-white" />
+                <p className="relative z-10 mt-4 text-xs font-black uppercase tracking-[0.24em] text-blue-100">
+                  School updates
+                </p>
               </div>
 
-              <div className="px-6 pb-7 pt-7 text-center">
-                <h3 className="font-serif text-[2rem] font-bold leading-none text-[#0d1b2a]">
-                  Subscribe!
+              <div className="px-6 pb-7 pt-7 text-center sm:px-8">
+                <h3 className="font-serif text-[2rem] font-bold leading-none text-[#0d1b2a] sm:text-[2.25rem]">
+                  Stay connected
                 </h3>
-                <p className="mx-auto mt-3 max-w-xs text-sm leading-6 text-[#5c6d86]">
+                <p className="mx-auto mt-3 max-w-sm text-sm leading-6 text-[#5c6d86]">
                   Stay close to MNRS with school updates, events, notices, and campus highlights in your inbox.
                 </p>
 
-                <form onSubmit={handleSubscribe} className="mt-5 space-y-4">
+                <form onSubmit={handleSubscribe} className="mt-6 space-y-4">
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     placeholder="Enter email address"
-                    className="w-full rounded-2xl border border-[#d8e3f4] bg-[#f7f9fc] px-4 py-3 text-center text-sm text-[#10213a] outline-none transition-colors placeholder:text-[#91a3bc] focus:border-[#0f61e5]"
+                    className="h-12 w-full rounded-lg border border-[#d8e3f4] bg-[#f7f9fc] px-4 text-center text-sm font-semibold text-[#10213a] outline-none transition-colors placeholder:text-[#91a3bc] focus:border-[#0f61e5] focus:bg-white"
                   />
 
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="mx-auto inline-flex min-w-[9rem] items-center justify-center rounded-full bg-[#0f61e5] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_26px_rgba(15,97,229,0.28)] transition-all duration-300 hover:bg-[#084db8] disabled:cursor-not-allowed disabled:opacity-60"
+                    className="mx-auto inline-flex h-12 min-w-[10rem] items-center justify-center gap-2 rounded-lg bg-[#0f61e5] px-6 text-sm font-bold text-white shadow-[0_12px_26px_rgba(15,97,229,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#084db8] disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    {submitting ? "Sending..." : "Send"}
+                    {submitting ? "Sending..." : <><FaPaperPlane className="text-xs" /> Subscribe</>}
                   </button>
                 </form>
 
                 {success ? (
-                  <p className="mt-4 text-sm font-medium text-[#0f61e5]">{success}</p>
+                  <p className="mt-4 rounded-lg bg-blue-50 px-4 py-3 text-sm font-semibold text-[#0f61e5]">{success}</p>
                 ) : null}
               </div>
             </div>

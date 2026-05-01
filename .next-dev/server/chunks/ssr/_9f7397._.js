@@ -197,7 +197,7 @@ const metadata = {
     openGraph: {
         type: "website",
         locale: "en_IN",
-        url: ("TURBOPACK compile-time value", "https://mnrs.edu.in"),
+        url: ("TURBOPACK compile-time value", "http://localhost:3000"),
         siteName: "MNRS – Maharishi Vidya Mandir National Residential School",
         title: "MNRS – Maharishi Vidya Mandir National Residential School",
         description: "Admissions open 2027–2028 for LKG to Grade 7. CBSE curriculum, AI & Robotics Lab, world-class sports, and Consciousness-Based Education."
@@ -584,11 +584,109 @@ const ValueBadge = ({ Icon, accent, background, ring })=>/*#__PURE__*/ (0, __TUR
         lineNumber: 12,
         columnNumber: 3
     }, this);
-const MissionIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(ValueBadge, {
-        Icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$esm$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["FaBullseye"],
-        accent: "text-brand-green",
-        background: "bg-[#eef8f3]",
-        ring: "border-brand-green/15"
+const MissionIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "mx-auto flex h-[132px] w-[132px] items-center justify-center rounded-[28px] border border-brand-green/15 bg-[#eef8f3] shadow-[0_18px_40px_rgba(15,35,52,0.10)] transition-transform duration-300 hover:-translate-y-1 sm:h-[148px] sm:w-[148px]",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "flex h-[92px] w-[92px] items-center justify-center rounded-[24px] border border-white/80 bg-white shadow-[inset_0_1px_0_rgba(255,255,255,0.85),0_12px_28px_rgba(15,35,52,0.10)] sm:h-[102px] sm:w-[102px]",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                viewBox: "0 0 96 96",
+                className: "h-[68px] w-[68px] text-brand-green sm:h-[76px] sm:w-[76px]",
+                fill: "none",
+                "aria-hidden": "true",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M22 65h47c4.4 0 8 3.6 8 8s-3.6 8-8 8H25c-4.4 0-8-3.6-8-8s3.6-8 8-8Z",
+                        className: "fill-current opacity-95"
+                    }, void 0, false, {
+                        fileName: "[project]/frontend/components/ui/ArtIcons.tsx",
+                        lineNumber: 30,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M25 71h45",
+                        stroke: "white",
+                        strokeWidth: "4",
+                        strokeLinecap: "round"
+                    }, void 0, false, {
+                        fileName: "[project]/frontend/components/ui/ArtIcons.tsx",
+                        lineNumber: 34,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M23 49h42c4.4 0 8 3.6 8 8s-3.6 8-8 8H26c-4.4 0-8-3.6-8-8s3.6-8 8-8Z",
+                        className: "fill-current opacity-95"
+                    }, void 0, false, {
+                        fileName: "[project]/frontend/components/ui/ArtIcons.tsx",
+                        lineNumber: 35,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M26 55h38",
+                        stroke: "white",
+                        strokeWidth: "4",
+                        strokeLinecap: "round"
+                    }, void 0, false, {
+                        fileName: "[project]/frontend/components/ui/ArtIcons.tsx",
+                        lineNumber: 39,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M49 49c2.8-18.8 11.5-31.9 27-39.3 2.2 13-1.6 25.4-9.9 34.2-5 5.3-10.9 8.3-17.1 9.1Z",
+                        className: "fill-current"
+                    }, void 0, false, {
+                        fileName: "[project]/frontend/components/ui/ArtIcons.tsx",
+                        lineNumber: 40,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M51 48c6-12.9 13.4-22.3 23-30",
+                        stroke: "white",
+                        strokeWidth: "4",
+                        strokeLinecap: "round"
+                    }, void 0, false, {
+                        fileName: "[project]/frontend/components/ui/ArtIcons.tsx",
+                        lineNumber: 44,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M43 58l6-21",
+                        stroke: "currentColor",
+                        strokeWidth: "5",
+                        strokeLinecap: "round"
+                    }, void 0, false, {
+                        fileName: "[project]/frontend/components/ui/ArtIcons.tsx",
+                        lineNumber: 50,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M39 43h11c2.2 0 4 1.8 4 4v5H35v-5c0-2.2 1.8-4 4-4Z",
+                        className: "fill-current"
+                    }, void 0, false, {
+                        fileName: "[project]/frontend/components/ui/ArtIcons.tsx",
+                        lineNumber: 51,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M39 49h11",
+                        stroke: "white",
+                        strokeWidth: "3",
+                        strokeLinecap: "round"
+                    }, void 0, false, {
+                        fileName: "[project]/frontend/components/ui/ArtIcons.tsx",
+                        lineNumber: 55,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/frontend/components/ui/ArtIcons.tsx",
+                lineNumber: 24,
+                columnNumber: 7
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/frontend/components/ui/ArtIcons.tsx",
+            lineNumber: 23,
+            columnNumber: 5
+        }, this)
     }, void 0, false, {
         fileName: "[project]/frontend/components/ui/ArtIcons.tsx",
         lineNumber: 22,
@@ -601,7 +699,7 @@ const VisionIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$proj
         ring: "border-brand-blue/15"
     }, void 0, false, {
         fileName: "[project]/frontend/components/ui/ArtIcons.tsx",
-        lineNumber: 31,
+        lineNumber: 62,
         columnNumber: 3
     }, this);
 const ValuesIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$future$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(ValueBadge, {
@@ -611,7 +709,7 @@ const ValuesIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$proj
         ring: "border-brand-gold/20"
     }, void 0, false, {
         fileName: "[project]/frontend/components/ui/ArtIcons.tsx",
-        lineNumber: 40,
+        lineNumber: 71,
         columnNumber: 3
     }, this);
 

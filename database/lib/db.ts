@@ -20,11 +20,31 @@ export async function connectDB(): Promise<typeof mongoose> {
   if (cached.conn) return cached.conn;
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI, {
-      bufferCommands: false,
-    });
+    cached.promise = mongoose
+      .connect(MONGODB_URI, {
+        bufferCommands: false,
+        maxPoolSize: 10,
+        serverSelectionTimeoutMS: 5000,
+        socketTimeoutMS: 45000,
+      })
+      .catch((error) => {
+        console.error("❌ MongoDB connection failed:", {
+          message: error.message,
+          code: error.code,
+          name: error.name,
+        });
+        cached.promise = null; // Reset promise to allow retry
+        throw new Error(`Database connection failed: ${error.message}`);
+      });
   }
 
-  cached.conn = await cached.promise;
-  return cached.conn;
+  try {
+    cached.conn = await cached.promise;
+    console.log("✅ Connected to MongoDB");
+    return cached.conn;
+  } catch (error: any) {
+    console.error("❌ Failed to connect to MongoDB:", error.message);
+    cached.promise = null;
+    throw error;
+  }
 }

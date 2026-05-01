@@ -26,9 +26,9 @@ module.exports = {
         },
       },
       fontFamily: {
-        serif:  ["Playfair Display", "Georgia", "serif"],
-        sans:   ["Inter", "system-ui", "sans-serif"],
-        stat:   ["Oswald", "sans-serif"],
+        serif:  ["Literata", "Georgia", "serif"],
+        sans:   ["Plus Jakarta Sans", "Inter", "system-ui", "sans-serif"],
+        stat:   ["Manrope", "Inter", "system-ui", "sans-serif"],
       },
       backgroundImage: {
         "hero-pattern": "linear-gradient(135deg, rgba(7,24,41,0.95) 0%, rgba(13,71,161,0.88) 100%)",

@@ -4,13 +4,14 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { FaOm, FaTachometerAlt, FaUserGraduate, FaChalkboardTeacher, FaImages, FaSignOutAlt, FaBars, FaTimes, FaUsers } from "react-icons/fa";
+import { FaOm, FaTachometerAlt, FaUserGraduate, FaChalkboardTeacher, FaImages, FaSignOutAlt, FaBars, FaTimes, FaUsers, FaCalendarAlt } from "react-icons/fa";
 import { Toaster } from "react-hot-toast";
 import "@/frontend/styles/globals.css";
 
 const ADMIN_NAV = [
   { label: "Dashboard",  href: "/admin/dashboard",   icon: FaTachometerAlt },
   { label: "Manage Users", href: "/admin/users",     icon: FaUsers },
+  { label: "Timetable",    href: "/admin/timetable", icon: FaCalendarAlt },
   { label: "Admissions", href: "/admin/admissions",  icon: FaUserGraduate },
   { label: "Faculty",    href: "/admin/faculty",     icon: FaChalkboardTeacher },
   { label: "Gallery",    href: "/admin/gallery",     icon: FaImages },

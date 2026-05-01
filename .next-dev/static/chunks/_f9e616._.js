@@ -72,6 +72,20 @@ const PREFETCH_ROUTES = [
     ...NAV_LINKS.map((link)=>link.href),
     "/login"
 ];
+const DASHBOARD_BY_ROLE = {
+    student: "/student/dashboard",
+    parent: "/parent/dashboard",
+    faculty: "/faculty/dashboard"
+};
+function getDashboardHref(user) {
+    if (user?.role === "student" || user?.role === "parent" || user?.role === "faculty") {
+        return DASHBOARD_BY_ROLE[user.role];
+    }
+    return "/login";
+}
+function isPortalUser(user) {
+    return user?.role === "student" || user?.role === "parent" || user?.role === "faculty";
+}
 function Navbar() {
     _s();
     const [scrolled, setScrolled] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -79,16 +93,19 @@ function Navbar() {
     const [user, setUser] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const pathname = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"])();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
-    if (pathname?.startsWith("/admin")) return null;
+    const hidePublicChrome = pathname?.startsWith("/admin") || pathname?.startsWith("/student/dashboard") || pathname?.startsWith("/parent/dashboard") || pathname?.startsWith("/faculty/dashboard");
+    const dashboardHref = getDashboardHref(user);
+    const showDashboardLink = isPortalUser(user);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         const checkAuth = async ()=>{
+            setUser(null);
             try {
                 const res = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get("/api/auth/me");
                 if (res.data?.success) {
                     setUser(res.data.data);
                 }
             } catch (err) {
-            // user not logged in
+                setUser(null);
             }
         };
         checkAuth();
@@ -132,6 +149,9 @@ function Navbar() {
     }, [
         menuOpen
     ]);
+    if (hidePublicChrome) {
+        return null;
+    }
     const isActive = (href)=>href === "/" ? pathname === "/" : pathname.startsWith(href);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
@@ -155,7 +175,7 @@ function Navbar() {
                                         className: "h-10 w-10 sm:h-12 sm:w-12 object-contain"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                        lineNumber: 117,
+                                        lineNumber: 151,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -166,7 +186,7 @@ function Navbar() {
                                                 children: "MNRS"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                                lineNumber: 119,
+                                                lineNumber: 153,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -174,24 +194,24 @@ function Navbar() {
                                                 children: "Maharishi Vidya Mandir"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                                lineNumber: 122,
+                                                lineNumber: 156,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                        lineNumber: 118,
+                                        lineNumber: 152,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                lineNumber: 116,
+                                lineNumber: 150,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                            lineNumber: 115,
+                            lineNumber: 149,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -206,13 +226,13 @@ function Navbar() {
                                     children: link.label
                                 }, link.href, false, {
                                     fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                    lineNumber: 134,
+                                    lineNumber: 168,
                                     columnNumber: 17
                                 }, this);
                             })
                         }, void 0, false, {
                             fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                            lineNumber: 129,
+                            lineNumber: 163,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -226,23 +246,23 @@ function Navbar() {
                                             size: 11
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                            lineNumber: 156,
+                                            lineNumber: 190,
                                             columnNumber: 15
                                         }, this),
                                         "Call Us"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                    lineNumber: 152,
+                                    lineNumber: 186,
                                     columnNumber: 13
                                 }, this),
-                                user ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                    href: "/parent/dashboard",
+                                showDashboardLink ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                    href: dashboardHref,
                                     className: "hidden items-center justify-center rounded-xl border border-brand-green/20 bg-white px-5 py-2.5 text-sm font-semibold text-brand-green transition-all duration-300 ease-in-out hover:border-brand-green hover:bg-brand-green hover:text-white lg:inline-flex",
                                     children: "Dashboard"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                    lineNumber: 161,
+                                    lineNumber: 195,
                                     columnNumber: 15
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                     href: "/login",
@@ -250,7 +270,7 @@ function Navbar() {
                                     children: "Login"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                    lineNumber: 168,
+                                    lineNumber: 202,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -259,7 +279,7 @@ function Navbar() {
                                     children: "Enquire Now"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                    lineNumber: 175,
+                                    lineNumber: 209,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -271,35 +291,35 @@ function Navbar() {
                                         size: 22
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                        lineNumber: 192,
+                                        lineNumber: 226,
                                         columnNumber: 27
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$hi$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["HiMenu"], {
                                         size: 22
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                        lineNumber: 192,
+                                        lineNumber: 226,
                                         columnNumber: 47
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                    lineNumber: 182,
+                                    lineNumber: 216,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                            lineNumber: 151,
+                            lineNumber: 185,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                    lineNumber: 114,
+                    lineNumber: 148,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                lineNumber: 108,
+                lineNumber: 142,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -308,7 +328,7 @@ function Navbar() {
                 "aria-hidden": !menuOpen
             }, void 0, false, {
                 fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                lineNumber: 198,
+                lineNumber: 232,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("aside", {
@@ -330,7 +350,7 @@ function Navbar() {
                                                 className: "h-10 w-10 object-contain bg-white rounded-xl p-1"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                                lineNumber: 215,
+                                                lineNumber: 249,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -340,7 +360,7 @@ function Navbar() {
                                                         children: "MNRS"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                                        lineNumber: 217,
+                                                        lineNumber: 251,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -348,19 +368,19 @@ function Navbar() {
                                                         children: "School Portal"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                                        lineNumber: 218,
+                                                        lineNumber: 252,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                                lineNumber: 216,
+                                                lineNumber: 250,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                        lineNumber: 214,
+                                        lineNumber: 248,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -371,18 +391,18 @@ function Navbar() {
                                             size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                            lineNumber: 229,
+                                            lineNumber: 263,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                        lineNumber: 224,
+                                        lineNumber: 258,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                lineNumber: 213,
+                                lineNumber: 247,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -390,13 +410,13 @@ function Navbar() {
                                 children: "Quick access to school pages, admissions, and account actions."
                             }, void 0, false, {
                                 fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                lineNumber: 233,
+                                lineNumber: 267,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "mt-4 grid grid-cols-2 gap-2",
-                                children: user ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                    href: "/parent/dashboard",
+                                children: showDashboardLink ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                    href: dashboardHref,
                                     onClick: ()=>setMenuOpen(false),
                                     className: "col-span-2 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-brand-gold px-3 py-2.5 text-[13px] font-semibold text-brand-dark transition-colors duration-200 hover:bg-brand-gold-light",
                                     children: [
@@ -404,66 +424,45 @@ function Navbar() {
                                             className: "text-xs"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                            lineNumber: 244,
+                                            lineNumber: 278,
                                             columnNumber: 17
                                         }, this),
                                         "Dashboard"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                    lineNumber: 239,
+                                    lineNumber: 273,
                                     columnNumber: 15
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                            href: "/login?mode=login",
-                                            onClick: ()=>setMenuOpen(false),
-                                            className: "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-brand-gold px-3 py-2.5 text-[13px] font-semibold text-brand-dark transition-colors duration-200 hover:bg-brand-gold-light",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa6$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaArrowRightToBracket"], {
-                                                    className: "text-xs"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                                    lineNumber: 254,
-                                                    columnNumber: 19
-                                                }, this),
-                                                "Login"
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                            lineNumber: 249,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                            href: "/login?mode=signup",
-                                            onClick: ()=>setMenuOpen(false),
-                                            className: "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-white/20 bg-white/10 px-3 py-2.5 text-[13px] font-semibold text-white transition-colors duration-200 hover:bg-white/15",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa6$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaUserPlus"], {
-                                                    className: "text-xs"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                                    lineNumber: 262,
-                                                    columnNumber: 19
-                                                }, this),
-                                                "Sign Up"
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                            lineNumber: 257,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true)
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                        href: "/login?mode=login",
+                                        onClick: ()=>setMenuOpen(false),
+                                        className: "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-brand-gold px-3 py-2.5 text-[13px] font-semibold text-brand-dark transition-colors duration-200 hover:bg-brand-gold-light",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa6$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaArrowRightToBracket"], {
+                                                className: "text-xs"
+                                            }, void 0, false, {
+                                                fileName: "[project]/frontend/components/layout/Navbar.tsx",
+                                                lineNumber: 288,
+                                                columnNumber: 19
+                                            }, this),
+                                            "Login"
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/frontend/components/layout/Navbar.tsx",
+                                        lineNumber: 283,
+                                        columnNumber: 17
+                                    }, this)
+                                }, void 0, false)
                             }, void 0, false, {
                                 fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                lineNumber: 237,
+                                lineNumber: 271,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                        lineNumber: 212,
+                        lineNumber: 246,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -474,7 +473,7 @@ function Navbar() {
                                 children: "Navigation"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                lineNumber: 271,
+                                lineNumber: 297,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -495,37 +494,37 @@ function Navbar() {
                                                     className: "text-base"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                                    lineNumber: 299,
+                                                    lineNumber: 325,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                                lineNumber: 292,
+                                                lineNumber: 318,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: link.label
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                                lineNumber: 301,
+                                                lineNumber: 327,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, link.href, true, {
                                         fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                        lineNumber: 280,
+                                        lineNumber: 306,
                                         columnNumber: 17
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                lineNumber: 274,
+                                lineNumber: 300,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                        lineNumber: 270,
+                        lineNumber: 296,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -541,14 +540,14 @@ function Navbar() {
                                             className: "text-xs"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                            lineNumber: 314,
+                                            lineNumber: 340,
                                             columnNumber: 15
                                         }, this),
                                         "Call"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                    lineNumber: 310,
+                                    lineNumber: 336,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -560,31 +559,31 @@ function Navbar() {
                                             className: "text-xs"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                            lineNumber: 322,
+                                            lineNumber: 348,
                                             columnNumber: 15
                                         }, this),
                                         "Enquire"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                                    lineNumber: 317,
+                                    lineNumber: 343,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                            lineNumber: 309,
+                            lineNumber: 335,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                        lineNumber: 308,
+                        lineNumber: 334,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/components/layout/Navbar.tsx",
-                lineNumber: 206,
+                lineNumber: 240,
                 columnNumber: 7
             }, this)
         ]
@@ -655,7 +654,9 @@ const QUICK_LINKS = [
 function Footer() {
     _s();
     const pathname = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"])();
-    if (pathname?.startsWith("/admin")) return null;
+    if (pathname?.startsWith("/admin") || pathname?.startsWith("/student/dashboard") || pathname?.startsWith("/parent/dashboard") || pathname?.startsWith("/faculty/dashboard")) {
+        return null;
+    }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
         className: "bg-brand-dark text-gray-300",
         children: [
@@ -676,7 +677,7 @@ function Footer() {
                                             className: "w-12 h-12 object-contain bg-white rounded-lg p-1"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                            lineNumber: 29,
+                                            lineNumber: 36,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -686,7 +687,7 @@ function Footer() {
                                                     children: "MNRS"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                                    lineNumber: 31,
+                                                    lineNumber: 38,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -694,19 +695,19 @@ function Footer() {
                                                     children: "Maharishi Vidya Mandir"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                                    lineNumber: 32,
+                                                    lineNumber: 39,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                            lineNumber: 30,
+                                            lineNumber: 37,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                    lineNumber: 28,
+                                    lineNumber: 35,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -715,14 +716,14 @@ function Footer() {
                                         '"Educating the Mind.',
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                             fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                            lineNumber: 36,
+                                            lineNumber: 43,
                                             columnNumber: 35
                                         }, this),
                                         'Awakening the Potential."'
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                    lineNumber: 35,
+                                    lineNumber: 42,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -756,23 +757,23 @@ function Footer() {
                                                 size: 14
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                                lineNumber: 51,
+                                                lineNumber: 58,
                                                 columnNumber: 19
                                             }, this)
                                         }, label, false, {
                                             fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                            lineNumber: 45,
+                                            lineNumber: 52,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                    lineNumber: 38,
+                                    lineNumber: 45,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/components/layout/Footer.tsx",
-                            lineNumber: 27,
+                            lineNumber: 34,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -782,7 +783,7 @@ function Footer() {
                                     children: "Quick Links"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                    lineNumber: 59,
+                                    lineNumber: 66,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -796,30 +797,30 @@ function Footer() {
                                                         className: "w-1 h-1 rounded-full bg-brand-gold opacity-0 group-hover:opacity-100 transition-opacity"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                                        lineNumber: 67,
+                                                        lineNumber: 74,
                                                         columnNumber: 21
                                                     }, this),
                                                     link.label
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                                lineNumber: 63,
+                                                lineNumber: 70,
                                                 columnNumber: 19
                                             }, this)
                                         }, link.href, false, {
                                             fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                            lineNumber: 62,
+                                            lineNumber: 69,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                    lineNumber: 60,
+                                    lineNumber: 67,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/components/layout/Footer.tsx",
-                            lineNumber: 58,
+                            lineNumber: 65,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -829,7 +830,7 @@ function Footer() {
                                     children: "Contact Us"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                    lineNumber: 77,
+                                    lineNumber: 84,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -842,7 +843,7 @@ function Footer() {
                                                     className: "text-brand-gold mt-0.5 shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                                    lineNumber: 80,
+                                                    lineNumber: 87,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -850,20 +851,20 @@ function Footer() {
                                                         "AMET Knowledge Park,",
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                             fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                                            lineNumber: 81,
+                                                            lineNumber: 88,
                                                             columnNumber: 43
                                                         }, this),
                                                         "ECR – Thenpattinam"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                                    lineNumber: 81,
+                                                    lineNumber: 88,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                            lineNumber: 79,
+                                            lineNumber: 86,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -873,7 +874,7 @@ function Footer() {
                                                     className: "text-brand-gold mt-0.5 shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                                    lineNumber: 84,
+                                                    lineNumber: 91,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -882,13 +883,13 @@ function Footer() {
                                                     children: "+91 89391 99005"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                                    lineNumber: 85,
+                                                    lineNumber: 92,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                            lineNumber: 83,
+                                            lineNumber: 90,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -898,7 +899,7 @@ function Footer() {
                                                     className: "text-brand-gold mt-0.5 shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                                    lineNumber: 90,
+                                                    lineNumber: 97,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -907,13 +908,13 @@ function Footer() {
                                                     children: "admissions@mnrs.edu.in"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                                    lineNumber: 91,
+                                                    lineNumber: 98,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                            lineNumber: 89,
+                                            lineNumber: 96,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -923,32 +924,32 @@ function Footer() {
                                                     className: "text-brand-gold mt-0.5 shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                                    lineNumber: 96,
+                                                    lineNumber: 103,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     children: "Mon–Sat: 9:00 AM – 5:00 PM"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                                    lineNumber: 97,
+                                                    lineNumber: 104,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                            lineNumber: 95,
+                                            lineNumber: 102,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                    lineNumber: 78,
+                                    lineNumber: 85,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/components/layout/Footer.tsx",
-                            lineNumber: 76,
+                            lineNumber: 83,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -958,7 +959,7 @@ function Footer() {
                                     children: "Admissions 2027–28"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                    lineNumber: 104,
+                                    lineNumber: 111,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -969,7 +970,7 @@ function Footer() {
                                             children: "Classes LKG to Grade 7"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                            lineNumber: 106,
+                                            lineNumber: 113,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -977,7 +978,7 @@ function Footer() {
                                             children: "Limited seats available. Apply early to secure your child's future."
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                            lineNumber: 107,
+                                            lineNumber: 114,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -986,30 +987,30 @@ function Footer() {
                                             children: "Apply Now"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                            lineNumber: 108,
+                                            lineNumber: 115,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                                    lineNumber: 105,
+                                    lineNumber: 112,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/components/layout/Footer.tsx",
-                            lineNumber: 103,
+                            lineNumber: 110,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                    lineNumber: 24,
+                    lineNumber: 31,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend/components/layout/Footer.tsx",
-                lineNumber: 23,
+                lineNumber: 30,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1026,7 +1027,7 @@ function Footer() {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/components/layout/Footer.tsx",
-                            lineNumber: 118,
+                            lineNumber: 125,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1034,24 +1035,24 @@ function Footer() {
                             children: "Part of the Maharishi Vidya Mandir Network"
                         }, void 0, false, {
                             fileName: "[project]/frontend/components/layout/Footer.tsx",
-                            lineNumber: 121,
+                            lineNumber: 128,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/components/layout/Footer.tsx",
-                    lineNumber: 117,
+                    lineNumber: 124,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend/components/layout/Footer.tsx",
-                lineNumber: 116,
+                lineNumber: 123,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/frontend/components/layout/Footer.tsx",
-        lineNumber: 22,
+        lineNumber: 29,
         columnNumber: 5
     }, this);
 }
@@ -1434,7 +1435,7 @@ function LoginPromptModal() {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         className: "mt-1 text-sm font-semibold text-[#0d1b2a]",
-                                        children: "Login or create account"
+                                        children: "Login with school credentials"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/LoginPromptModal.tsx",
                                         lineNumber: 71,
@@ -1481,46 +1482,26 @@ function LoginPromptModal() {
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "mt-3 grid grid-cols-2 gap-2",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                        href: "/login?mode=login",
-                                        className: "inline-flex items-center justify-center gap-2 rounded-xl bg-[#0f61e5] px-3 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#084db8]",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa6$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaArrowRightToBracket"], {
-                                                className: "text-sm"
-                                            }, void 0, false, {
-                                                fileName: "[project]/frontend/components/LoginPromptModal.tsx",
-                                                lineNumber: 96,
-                                                columnNumber: 17
-                                            }, this),
-                                            "Login"
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/frontend/components/LoginPromptModal.tsx",
-                                        lineNumber: 92,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                        href: "/login?mode=signup",
-                                        className: "inline-flex items-center justify-center gap-2 rounded-xl border border-[#cfe0f6] bg-white px-3 py-2.5 text-sm font-semibold text-[#0f61e5] transition-colors hover:border-[#0f61e5] hover:bg-[#f5f9ff]",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa6$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaUserPlus"], {
-                                                className: "text-sm"
-                                            }, void 0, false, {
-                                                fileName: "[project]/frontend/components/LoginPromptModal.tsx",
-                                                lineNumber: 104,
-                                                columnNumber: 17
-                                            }, this),
-                                            "Sign Up"
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/frontend/components/LoginPromptModal.tsx",
-                                        lineNumber: 100,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
+                                className: "mt-3 grid grid-cols-1 gap-2",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                    href: "/login?mode=login",
+                                    className: "inline-flex items-center justify-center gap-2 rounded-xl bg-[#0f61e5] px-3 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#084db8]",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa6$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaArrowRightToBracket"], {
+                                            className: "text-sm"
+                                        }, void 0, false, {
+                                            fileName: "[project]/frontend/components/LoginPromptModal.tsx",
+                                            lineNumber: 96,
+                                            columnNumber: 17
+                                        }, this),
+                                        "Login"
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/frontend/components/LoginPromptModal.tsx",
+                                    lineNumber: 92,
+                                    columnNumber: 15
+                                }, this)
+                            }, void 0, false, {
                                 fileName: "[project]/frontend/components/LoginPromptModal.tsx",
                                 lineNumber: 91,
                                 columnNumber: 13
@@ -1653,7 +1634,7 @@ function NewsletterPromptModal() {
                     exit: {
                         opacity: 0
                     },
-                    className: "fixed inset-0 z-40 bg-[#0b1c37]/45 backdrop-blur-[2px]",
+                    className: "fixed inset-0 z-40 bg-[#06152d]/55 backdrop-blur-sm",
                     onClick: handleClose
                 }, void 0, false, {
                     fileName: "[project]/frontend/components/NewsletterPromptModal.tsx",
@@ -1663,7 +1644,7 @@ function NewsletterPromptModal() {
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$dom$2f$motion$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                     initial: {
                         opacity: 0,
-                        y: 24,
+                        y: 18,
                         scale: 0.96
                     },
                     animate: {
@@ -1673,7 +1654,7 @@ function NewsletterPromptModal() {
                     },
                     exit: {
                         opacity: 0,
-                        y: 24,
+                        y: 18,
                         scale: 0.96
                     },
                     transition: {
@@ -1681,49 +1662,71 @@ function NewsletterPromptModal() {
                         damping: 22,
                         stiffness: 260
                     },
-                    className: "fixed left-1/2 top-1/2 z-50 w-[calc(100vw-2rem)] max-w-sm -translate-x-1/2 -translate-y-1/2",
+                    className: "fixed left-1/2 top-1/2 z-50 w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "overflow-hidden rounded-[30px] bg-white shadow-[0_30px_80px_rgba(11,63,145,0.28)]",
+                        className: "overflow-hidden rounded-2xl border border-white/70 bg-white shadow-[0_34px_90px_rgba(6,21,45,0.34)]",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "relative bg-[linear-gradient(160deg,#0b3f91_0%,#0f61e5_52%,#69b5ff_100%)] px-6 pb-10 pt-8 text-center text-white",
+                                className: "relative overflow-hidden bg-[linear-gradient(145deg,#071d41_0%,#0f61e5_62%,#38bdf8_125%)] px-6 pb-11 pt-8 text-center text-white",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        type: "button",
-                                        onClick: handleClose,
-                                        className: "absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/18 text-white transition-colors hover:bg-white/28",
-                                        "aria-label": "Close newsletter popup",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$io5$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["IoClose"], {
-                                            size: 18
-                                        }, void 0, false, {
-                                            fileName: "[project]/frontend/components/NewsletterPromptModal.tsx",
-                                            lineNumber: 119,
-                                            columnNumber: 19
-                                        }, this)
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.12)_1px,transparent_1px)] bg-[size:30px_30px] opacity-20"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/NewsletterPromptModal.tsx",
                                         lineNumber: 113,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "mx-auto flex h-20 w-20 items-center justify-center rounded-[24px] bg-white/18 shadow-[0_12px_30px_rgba(3,27,73,0.22)]",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaEnvelopeOpenText"], {
-                                            className: "text-4xl text-white"
+                                        className: "absolute -left-10 top-8 h-24 w-24 rotate-12 rounded-xl border border-white/20 bg-white/10"
+                                    }, void 0, false, {
+                                        fileName: "[project]/frontend/components/NewsletterPromptModal.tsx",
+                                        lineNumber: 114,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute -right-8 bottom-5 h-20 w-20 -rotate-12 rounded-xl border border-white/20 bg-white/10"
+                                    }, void 0, false, {
+                                        fileName: "[project]/frontend/components/NewsletterPromptModal.tsx",
+                                        lineNumber: 115,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        type: "button",
+                                        onClick: handleClose,
+                                        className: "absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-lg bg-white/15 text-white transition-colors hover:bg-white/25",
+                                        "aria-label": "Close newsletter popup",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$io5$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["IoClose"], {
+                                            size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/NewsletterPromptModal.tsx",
-                                            lineNumber: 123,
+                                            lineNumber: 122,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/NewsletterPromptModal.tsx",
-                                        lineNumber: 122,
+                                        lineNumber: 116,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "absolute bottom-[-0.65rem] left-1/2 h-5 w-5 -translate-x-1/2 rotate-45 rounded-[4px] bg-white"
+                                        className: "relative z-10 mx-auto flex h-20 w-20 items-center justify-center rounded-2xl bg-white text-blue-700 shadow-[0_18px_36px_rgba(3,27,73,0.28)]",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaEnvelopeOpenText"], {
+                                            className: "text-4xl"
+                                        }, void 0, false, {
+                                            fileName: "[project]/frontend/components/NewsletterPromptModal.tsx",
+                                            lineNumber: 126,
+                                            columnNumber: 19
+                                        }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/NewsletterPromptModal.tsx",
                                         lineNumber: 125,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "relative z-10 mt-4 text-xs font-black uppercase tracking-[0.24em] text-blue-100",
+                                        children: "School updates"
+                                    }, void 0, false, {
+                                        fileName: "[project]/frontend/components/NewsletterPromptModal.tsx",
+                                        lineNumber: 128,
                                         columnNumber: 17
                                     }, this)
                                 ]
@@ -1733,27 +1736,27 @@ function NewsletterPromptModal() {
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "px-6 pb-7 pt-7 text-center",
+                                className: "px-6 pb-7 pt-7 text-center sm:px-8",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                        className: "font-serif text-[2rem] font-bold leading-none text-[#0d1b2a]",
-                                        children: "Subscribe!"
+                                        className: "font-serif text-[2rem] font-bold leading-none text-[#0d1b2a] sm:text-[2.25rem]",
+                                        children: "Stay connected"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/NewsletterPromptModal.tsx",
-                                        lineNumber: 129,
+                                        lineNumber: 134,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "mx-auto mt-3 max-w-xs text-sm leading-6 text-[#5c6d86]",
+                                        className: "mx-auto mt-3 max-w-sm text-sm leading-6 text-[#5c6d86]",
                                         children: "Stay close to MNRS with school updates, events, notices, and campus highlights in your inbox."
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/NewsletterPromptModal.tsx",
-                                        lineNumber: 132,
+                                        lineNumber: 137,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
                                         onSubmit: handleSubscribe,
-                                        className: "mt-5 space-y-4",
+                                        className: "mt-6 space-y-4",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                                 type: "email",
@@ -1761,40 +1764,51 @@ function NewsletterPromptModal() {
                                                 onChange: (e)=>setEmail(e.target.value),
                                                 required: true,
                                                 placeholder: "Enter email address",
-                                                className: "w-full rounded-2xl border border-[#d8e3f4] bg-[#f7f9fc] px-4 py-3 text-center text-sm text-[#10213a] outline-none transition-colors placeholder:text-[#91a3bc] focus:border-[#0f61e5]"
+                                                className: "h-12 w-full rounded-lg border border-[#d8e3f4] bg-[#f7f9fc] px-4 text-center text-sm font-semibold text-[#10213a] outline-none transition-colors placeholder:text-[#91a3bc] focus:border-[#0f61e5] focus:bg-white"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/components/NewsletterPromptModal.tsx",
-                                                lineNumber: 137,
+                                                lineNumber: 142,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                 type: "submit",
                                                 disabled: submitting,
-                                                className: "mx-auto inline-flex min-w-[9rem] items-center justify-center rounded-full bg-[#0f61e5] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_26px_rgba(15,97,229,0.28)] transition-all duration-300 hover:bg-[#084db8] disabled:cursor-not-allowed disabled:opacity-60",
-                                                children: submitting ? "Sending..." : "Send"
+                                                className: "mx-auto inline-flex h-12 min-w-[10rem] items-center justify-center gap-2 rounded-lg bg-[#0f61e5] px-6 text-sm font-bold text-white shadow-[0_12px_26px_rgba(15,97,229,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#084db8] disabled:cursor-not-allowed disabled:opacity-60",
+                                                children: submitting ? "Sending..." : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaPaperPlane"], {
+                                                            className: "text-xs"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend/components/NewsletterPromptModal.tsx",
+                                                            lineNumber: 156,
+                                                            columnNumber: 52
+                                                        }, this),
+                                                        " Subscribe"
+                                                    ]
+                                                }, void 0, true)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/components/NewsletterPromptModal.tsx",
-                                                lineNumber: 146,
+                                                lineNumber: 151,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/components/NewsletterPromptModal.tsx",
-                                        lineNumber: 136,
+                                        lineNumber: 141,
                                         columnNumber: 17
                                     }, this),
                                     success ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "mt-4 text-sm font-medium text-[#0f61e5]",
+                                        className: "mt-4 rounded-lg bg-blue-50 px-4 py-3 text-sm font-semibold text-[#0f61e5]",
                                         children: success
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/NewsletterPromptModal.tsx",
-                                        lineNumber: 156,
+                                        lineNumber: 161,
                                         columnNumber: 19
                                     }, this) : null
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/components/NewsletterPromptModal.tsx",
-                                lineNumber: 128,
+                                lineNumber: 133,
                                 columnNumber: 15
                             }, this)
                         ]

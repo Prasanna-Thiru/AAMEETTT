@@ -25,11 +25,29 @@ async function connectDB() {
     if (cached.conn) return cached.conn;
     if (!cached.promise) {
         cached.promise = __TURBOPACK__commonjs__external__mongoose__["default"].connect(MONGODB_URI, {
-            bufferCommands: false
+            bufferCommands: false,
+            maxPoolSize: 10,
+            serverSelectionTimeoutMS: 5000,
+            socketTimeoutMS: 45000
+        }).catch((error)=>{
+            console.error("❌ MongoDB connection failed:", {
+                message: error.message,
+                code: error.code,
+                name: error.name
+            });
+            cached.promise = null; // Reset promise to allow retry
+            throw new Error(`Database connection failed: ${error.message}`);
         });
     }
-    cached.conn = await cached.promise;
-    return cached.conn;
+    try {
+        cached.conn = await cached.promise;
+        console.log("✅ Connected to MongoDB");
+        return cached.conn;
+    } catch (error) {
+        console.error("❌ Failed to connect to MongoDB:", error.message);
+        cached.promise = null;
+        throw error;
+    }
 }
 
 })()),

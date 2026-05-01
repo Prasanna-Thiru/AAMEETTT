@@ -1,5 +1,13 @@
 import mongoose from "mongoose";
-import AdminUser from "../database/models/AdminUser";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// Get the correct path
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Import the model using the correct relative path
+import AdminUser from "../database/models/AdminUser.js";
 
 
 const seed = async () => {

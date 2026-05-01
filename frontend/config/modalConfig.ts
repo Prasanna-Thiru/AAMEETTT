@@ -30,22 +30,18 @@ export const PROMOTIONAL_MODAL_CONFIG = {
   content: {
     heading: {
       login: "Welcome Back",
-      signup: "Start Your Journey",
     },
     subheading: {
-      login: "Access your academic dashboard and continue learning",
-      signup: "Join thousands of students learning with us today",
+      login: "Access your academic dashboard with school-issued credentials",
     },
     buttons: {
       cta: {
         login: "Sign In to Dashboard",
-        signup: "Create Your Account",
       },
       secondary: "No thanks, browse as guest",
       loadingText: "Processing...",
     },
     toggleText: {
-      toSignup: "Sign Up",
       toLogin: "Sign In",
     },
   },
@@ -107,7 +103,6 @@ export const PROMOTIONAL_MODAL_CONFIG = {
       },
       success: {
         login: "Login successful! Redirecting...",
-        signup: "Signup successful! Redirecting...",
       },
     },
   },
@@ -115,10 +110,9 @@ export const PROMOTIONAL_MODAL_CONFIG = {
   // API endpoints
   api: {
     login: "/api/auth/student/login",
-    signup: "/api/auth/signup",
   },
 
-  // Default role (used for signup)
+  // Default role
   defaultRole: "student",
 
   // Redirect on success

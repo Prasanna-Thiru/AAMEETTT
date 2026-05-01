@@ -4,9 +4,13 @@ import { signToken } from "@/backend/lib/auth";
 import AdminUser from "@/database/models/AdminUser";
 
 export async function POST(req: NextRequest) {
+  let email = "";
+
   try {
     await connectDB();
-    const { email, password } = await req.json();
+    const body = await req.json();
+    email = String(body.email || "").toLowerCase().trim();
+    const password = String(body.password || "");
 
     if (!email || !password) {
       return NextResponse.json({ success: false, error: "Email and password are required." }, { status: 400 });
@@ -34,6 +38,11 @@ export async function POST(req: NextRequest) {
 
     return res;
   } catch (err: any) {
+    console.error("❌ Admin login error:", {
+      message: err.message || err,
+      email,
+      timestamp: new Date().toISOString(),
+    });
     return NextResponse.json({ success: false, error: "Server error." }, { status: 500 });
   }
 }

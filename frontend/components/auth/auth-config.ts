@@ -2,7 +2,7 @@ import { FaChalkboardUser, FaGraduationCap } from "react-icons/fa6";
 import { FaUsers } from "react-icons/fa";
 
 export type UserRole = "student" | "parent" | "faculty";
-export type AuthMode = "login" | "signup" | "forgot" | "reset";
+export type AuthMode = "login" | "forgot" | "reset";
 
 export const AUTH_REDIRECTS: Record<UserRole, string> = {
   student: "/student/dashboard",

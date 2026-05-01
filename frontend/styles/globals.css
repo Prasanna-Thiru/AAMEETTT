@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600;7..72,700&family=Manrope:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,8 +6,17 @@
 
 @layer base {
   html { scroll-behavior: smooth; }
-  body { @apply font-sans text-brand-dark bg-white antialiased; }
-  h1, h2, h3 { @apply font-serif; }
+  body {
+    @apply font-sans text-brand-dark bg-white antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3 {
+    @apply font-serif;
+    letter-spacing: -0.015em;
+  }
+  p, li, input, textarea, select, button {
+    letter-spacing: 0;
+  }
 }
 
 @layer components {
@@ -61,6 +70,11 @@
   .green-text { @apply text-brand-green; }
   .section-pad { @apply py-12 md:py-20 lg:py-24; }
   .container-pad { @apply px-4 sm:px-6 lg:px-8; }
+
+  .font-stat {
+    font-variant-numeric: tabular-nums lining-nums;
+    letter-spacing: -0.01em;
+  }
 
   /* Mobile-first touch targets */
   a, button { @apply touch-manipulation; }

@@ -3,12 +3,15 @@ import { connectDB } from "@/database/lib/db";
 import { signToken } from "@/backend/lib/auth";
 import Student from "@/database/models/Student";
 import { isStudentEmailAllowed } from "@/backend/lib/studentAccess";
+import { AUTH_CONFIG } from "@/backend/lib/auth-config";
 
 export async function POST(req: NextRequest) {
+  let email = "";
+
   try {
     await connectDB();
     const body = await req.json();
-    const email = String(body.email || "").toLowerCase().trim();
+    email = String(body.email || "").toLowerCase().trim();
     const password = String(body.password || "");
 
     if (!email || !password) {
@@ -50,24 +53,16 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    res.cookies.set("auth_token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 7, // 7 days
-      path: "/",
-    });
-
-    res.cookies.set("newsletter_prompt", "1", {
-      httpOnly: false,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      maxAge: 60 * 10,
-      path: "/",
-    });
+    res.cookies.set(AUTH_CONFIG.COOKIES.AUTH_TOKEN.name, token, AUTH_CONFIG.COOKIES.AUTH_TOKEN.config);
+    res.cookies.set(AUTH_CONFIG.COOKIES.NEWSLETTER_PROMPT.name, "1", AUTH_CONFIG.COOKIES.NEWSLETTER_PROMPT.config);
 
     return res;
   } catch (err: any) {
+    console.error("❌ Student login error:", {
+      message: err.message || err,
+      email,
+      timestamp: new Date().toISOString(),
+    });
     return NextResponse.json(
       { success: false, error: "Server error." },
       { status: 500 }

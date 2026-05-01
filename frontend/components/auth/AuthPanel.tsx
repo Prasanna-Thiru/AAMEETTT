@@ -61,21 +61,23 @@ const DEFAULT_SIGNUP_FORM: SignupFormState = {
 };
 
 const MODE_LABELS: Record<AuthMode, string> = {
-  login: "Login",
-  signup: "Sign Up",
-  forgot: "Forgot Password",
-  reset: "Reset Password",
+  login: "Welcome back",
+  forgot: "Recover access",
+  reset: "Reset password",
 };
 
 const QUERY_MESSAGES: Record<string, string> = {
   "google-config": "Google login is not configured yet. Add Google client keys to enable it.",
   "google-invalid-request": "The Google sign-in request was incomplete. Please try again.",
   "google-callback": "Google sign-in could not be completed. Please try again.",
+  "google-state": "Google sign-in expired. Please start again.",
   "google-token": "Google sign-in could not retrieve your access token. Please try again.",
   "google-profile": "We could not read your Google profile. Please try again.",
+  "google-database": "Google sign-in worked, but the portal database could not be reached.",
+  "google-session": "Google sign-in worked, but the portal session could not be created.",
   "google-unavailable": "Google sign-in is temporarily unavailable. Please try again shortly.",
-  "google-no-account": "We found your Google account, but not a matching portal account. Finish signup below.",
-  "google-prefill": "Your Google details are ready. Complete the remaining fields to create your account.",
+  "google-no-account": "We found your Google account, but no portal account exists yet. Please contact the school admin for login access.",
+  "google-prefill": "Please contact the school admin to create your portal login.",
   "student-not-approved": "This student email is not approved for portal access yet. Please contact the school office.",
 };
 
@@ -84,13 +86,13 @@ function isUserRole(value: string | null): value is UserRole {
 }
 
 function isAuthMode(value: string | null): value is AuthMode {
-  return value === "login" || value === "signup" || value === "forgot" || value === "reset";
+  return value === "login" || value === "forgot" || value === "reset";
 }
 
 export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const isPage = variant === "page";
+  const isFloating = variant === "floating";
 
   const [role, setRole] = useState<UserRole>("student");
   const [mode, setMode] = useState<AuthMode>("login");
@@ -126,6 +128,7 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
 
     if (isUserRole(queryRole)) setRole(queryRole);
     if (isAuthMode(queryMode)) setMode(queryMode);
+    if (queryMode === "signup") setMode("login");
 
     if (queryEmail) {
       setLoginEmail(queryEmail);
@@ -148,16 +151,6 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
       setSuccess(QUERY_MESSAGES[queryNotice]);
     }
   }, [searchParams]);
-
-  const shellClassName =
-    variant === "floating"
-      ? "w-full max-w-[24rem] overflow-hidden rounded-[30px] border border-white/60 bg-white shadow-[0_28px_60px_rgba(15,97,229,0.25)]"
-      : "relative w-full overflow-hidden rounded-2xl border-0 bg-transparent lg:flex lg:flex-col lg:h-full";
-
-  const bodyClassName =
-    variant === "floating"
-      ? "max-h-[78vh] overflow-y-auto px-4 py-4 sm:px-5"
-      : "relative px-0 py-0 sm:px-0 lg:flex-1 lg:overflow-y-auto lg:px-0 lg:py-0";
 
   const resetFeedback = () => {
     setError("");
@@ -193,55 +186,6 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
       handleAuthSuccess(response.data.redirectTo || AUTH_REDIRECTS[role]);
     } catch (err: any) {
       setError(err.response?.data?.error || "Unable to sign you in right now.");
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
-  const handleSignup = async (e: React.FormEvent) => {
-    e.preventDefault();
-    resetFeedback();
-
-    if (signupForm.password !== signupForm.confirmPassword) {
-      setError("Passwords do not match.");
-      return;
-    }
-
-    setSubmitting(true);
-
-    try {
-      const payload: Record<string, string | string[]> = {
-        role,
-        name: signupForm.name,
-        email: signupForm.email,
-        password: signupForm.password,
-      };
-
-      if (role === "student") {
-        payload.rollNumber = signupForm.rollNumber;
-        payload.className = signupForm.className;
-        payload.parentEmail = signupForm.parentEmail;
-        payload.phone = signupForm.phone;
-      }
-
-      if (role === "parent") {
-        payload.phone = signupForm.phone;
-        payload.childrenNames = signupForm.childrenNames;
-      }
-
-      if (role === "faculty") {
-        payload.designation = signupForm.designation;
-        payload.subject = signupForm.subject;
-        payload.qualification = signupForm.qualification;
-        payload.experience = signupForm.experience;
-        payload.bio = signupForm.bio;
-        payload.imageUrl = signupForm.imageUrl;
-      }
-
-      const response = await axios.post("/api/auth/signup", payload);
-      handleAuthSuccess(response.data.redirectTo || AUTH_REDIRECTS[role]);
-    } catch (err: any) {
-      setError(err.response?.data?.error || "Unable to create your account right now.");
     } finally {
       setSubmitting(false);
     }
@@ -298,38 +242,32 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
 
   const handleGoogleContinue = () => {
     resetFeedback();
-    const intent = mode === "signup" ? "signup" : "login";
-    window.location.href = `/api/auth/google?role=${role}&intent=${intent}`;
+    window.location.href = `/api/auth/google?role=${role}&intent=login`;
   };
 
-  const fieldShell = isPage
-    ? "flex items-center gap-3 rounded-[18px] border border-[#d9e3f0] bg-[#f6f9fc] px-4 py-3 shadow-[0_10px_28px_rgba(15,97,229,0.04)] transition-all duration-200 focus-within:border-[#42A5F5] focus-within:bg-white focus-within:shadow-[0_16px_34px_rgba(21,101,192,0.14)]"
-    : "flex items-center gap-3 rounded-2xl border-2 border-blue-400 bg-white/15 px-4 py-3 shadow-[0_8px_24px_rgba(0,0,0,0.1)] backdrop-blur-md transition-all focus-within:border-cyan-300 focus-within:bg-white/25";
-  const textInputClass = isPage
-    ? "w-full bg-transparent text-sm font-medium text-[#0a2540] outline-none placeholder:text-[#9aa9bf]"
-    : "w-full bg-transparent text-sm font-medium text-black outline-none placeholder:text-gray-400";
-  const plainInputClass = isPage
-    ? "w-full rounded-[18px] border border-[#d9e3f0] bg-[#f6f9fc] px-4 py-3 text-sm font-medium text-[#0a2540] shadow-[0_10px_28px_rgba(15,97,229,0.04)] outline-none transition-all duration-200 placeholder:text-[#9aa9bf] focus:border-[#42A5F5] focus:bg-white focus:shadow-[0_16px_34px_rgba(21,101,192,0.14)]"
-    : "w-full rounded-2xl border-2 border-blue-400 bg-white/15 px-4 py-3 text-sm font-medium text-black shadow-[0_8px_24px_rgba(0,0,0,0.1)] outline-none transition-all placeholder:text-gray-400 focus:border-cyan-300 focus:bg-white/25 backdrop-blur-md";
-  const submitClass = isPage
-    ? "flex w-full items-center justify-center gap-3 rounded-[18px] px-5 py-3.5 text-sm font-semibold text-white shadow-[0_20px_40px_rgba(21,101,192,0.24)] transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-60 hover:-translate-y-0.5 hover:shadow-[0_24px_46px_rgba(21,101,192,0.28)]"
-    : "flex w-full items-center justify-center gap-3 rounded-2xl px-5 py-3.5 text-sm font-semibold text-blue-900 shadow-[0_14px_30px_rgba(0,189,255,0.35)] transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-60 hover:scale-105 hover:shadow-[0_20px_40px_rgba(0,189,255,0.4)]";
-  const labelClass = isPage
-    ? "mb-2 block text-[13px] font-semibold text-[#4f6480]"
-    : "mb-2 block text-sm font-semibold text-white/95 drop-shadow-sm";
+  const fieldShell =
+    "flex h-12 items-center gap-3 rounded-lg border border-[#d6e4f7] bg-white px-3.5 shadow-[0_8px_22px_rgba(43,84,145,0.05)] transition focus-within:border-[#1d4ed8] focus-within:bg-white focus-within:shadow-[0_14px_28px_rgba(29,78,216,0.14)]";
+  const textInputClass =
+    "w-full bg-transparent text-sm font-medium text-[#10213a] outline-none placeholder:text-[#91a0b8]";
+  const plainInputClass =
+    "h-12 w-full rounded-lg border border-[#d6e4f7] bg-white px-3.5 text-sm font-medium text-[#10213a] shadow-[0_8px_22px_rgba(43,84,145,0.05)] outline-none transition placeholder:text-[#91a0b8] focus:border-[#1d4ed8] focus:bg-white focus:shadow-[0_14px_28px_rgba(29,78,216,0.14)]";
+  const labelClass = "mb-1.5 block text-xs font-bold uppercase tracking-[0.08em] text-[#50627f]";
+  const submitClass =
+    "flex h-12 w-full items-center justify-center gap-2 rounded-lg px-4 text-sm font-bold text-white shadow-[0_16px_30px_rgba(21,101,192,0.24)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_36px_rgba(21,101,192,0.3)] disabled:cursor-not-allowed disabled:opacity-60";
 
   const renderLoginForm = () => (
-    <form onSubmit={handleLogin} className={isPage ? "space-y-3.5" : "space-y-4"}>
+    <form onSubmit={handleLogin} className="space-y-3">
       <label className="block">
         <span className={labelClass}>Email Address</span>
         <div className={fieldShell}>
-          <FaEnvelope className="shrink-0 text-blue-500" />
+          <FaEnvelope className="shrink-0 text-[#3f6fd2]" />
           <input
             type="email"
             value={loginEmail}
             onChange={(e) => setLoginEmail(e.target.value)}
             required
-            placeholder="Enter your registered email"
+            placeholder="Enter email id"
+            autoComplete="off"
             className={textInputClass}
           />
         </div>
@@ -338,19 +276,20 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
       <label className="block">
         <span className={labelClass}>Password</span>
         <div className={fieldShell}>
-          <FaLock className="shrink-0 text-blue-500" />
+          <FaLock className="shrink-0 text-[#3f6fd2]" />
           <input
             type={showLoginPassword ? "text" : "password"}
             value={loginPassword}
             onChange={(e) => setLoginPassword(e.target.value)}
             required
-            placeholder="Enter your password"
+            placeholder="Enter password"
+            autoComplete="new-password"
             className={textInputClass}
           />
           <button
             type="button"
             onClick={() => setShowLoginPassword((prev) => !prev)}
-            className="shrink-0 text-blue-600 transition-colors hover:text-blue-800"
+            className="shrink-0 text-[#61748f] transition hover:text-[#1d4ed8]"
             aria-label={showLoginPassword ? "Hide password" : "Show password"}
           >
             {showLoginPassword ? <FaEyeSlash /> : <FaEye />}
@@ -358,66 +297,56 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
         </div>
       </label>
 
-      <button
-        type="submit"
-        disabled={submitting}
-        className={submitClass}
-        style={{ backgroundColor: selectedRole.accent }}
-      >
+      <button type="submit" disabled={submitting} className={submitClass} style={{ backgroundColor: selectedRole.accent }}>
         {submitting ? "Signing in..." : `Continue as ${selectedRole.label}`}
-        <FaArrowRightLong className="text-sm" />
+        <FaArrowRightLong className="text-xs" />
       </button>
     </form>
   );
 
   const renderForgotForm = () => (
-    <form onSubmit={handleForgot} className={isPage ? "space-y-3.5" : "space-y-4"}>
+    <form onSubmit={handleForgot} className="space-y-3">
       <label className="block">
         <span className={labelClass}>Registered Email</span>
         <div className={fieldShell}>
-          <FaEnvelope className="shrink-0 text-[#0f61e5]" />
+          <FaEnvelope className="shrink-0 text-[#3f6fd2]" />
           <input
             type="email"
             value={forgotEmail}
             onChange={(e) => setForgotEmail(e.target.value)}
             required
-            placeholder="Enter your registered email"
+            placeholder="registered email"
             className={textInputClass}
           />
         </div>
       </label>
 
-      <button
-        type="submit"
-        disabled={submitting}
-        className={submitClass}
-        style={{ backgroundColor: selectedRole.accent }}
-      >
+      <button type="submit" disabled={submitting} className={submitClass} style={{ backgroundColor: selectedRole.accent }}>
         {submitting ? "Sending link..." : "Send Reset Link"}
-        <FaArrowRightLong className="text-sm" />
+        <FaArrowRightLong className="text-xs" />
       </button>
     </form>
   );
 
   const renderResetForm = () => (
-    <form onSubmit={handleReset} className={isPage ? "space-y-3.5" : "space-y-4"}>
+    <form onSubmit={handleReset} className="space-y-3">
       <label className="block">
         <span className={labelClass}>New Password</span>
         <div className={fieldShell}>
-          <FaLock className="shrink-0 text-[#0f61e5]" />
+          <FaLock className="shrink-0 text-[#3f6fd2]" />
           <input
             type={showResetPassword ? "text" : "password"}
             value={resetPassword}
             onChange={(e) => setResetPassword(e.target.value)}
             required
             minLength={8}
-            placeholder="Enter a new password"
+            placeholder="new password"
             className={textInputClass}
           />
           <button
             type="button"
             onClick={() => setShowResetPassword((prev) => !prev)}
-            className="shrink-0 text-[#6d84a4] transition-colors hover:text-[#0f61e5]"
+            className="shrink-0 text-[#61748f] transition hover:text-[#1d4ed8]"
             aria-label={showResetPassword ? "Hide password" : "Show password"}
           >
             {showResetPassword ? <FaEyeSlash /> : <FaEye />}
@@ -428,20 +357,20 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
       <label className="block">
         <span className={labelClass}>Confirm New Password</span>
         <div className={fieldShell}>
-          <FaLock className="shrink-0 text-[#0f61e5]" />
+          <FaLock className="shrink-0 text-[#3f6fd2]" />
           <input
             type={showResetConfirmPassword ? "text" : "password"}
             value={resetConfirmPassword}
             onChange={(e) => setResetConfirmPassword(e.target.value)}
             required
             minLength={8}
-            placeholder="Repeat your new password"
+            placeholder="repeat password"
             className={textInputClass}
           />
           <button
             type="button"
             onClick={() => setShowResetConfirmPassword((prev) => !prev)}
-            className="shrink-0 text-[#6d84a4] transition-colors hover:text-[#0f61e5]"
+            className="shrink-0 text-[#61748f] transition hover:text-[#1d4ed8]"
             aria-label={showResetConfirmPassword ? "Hide password" : "Show password"}
           >
             {showResetConfirmPassword ? <FaEyeSlash /> : <FaEye />}
@@ -449,31 +378,26 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
         </div>
       </label>
 
-      <button
-        type="submit"
-        disabled={submitting}
-        className={submitClass}
-        style={{ backgroundColor: selectedRole.accent }}
-      >
-        {submitting ? "Updating password..." : "Update Password"}
-        <FaArrowRightLong className="text-sm" />
+      <button type="submit" disabled={submitting} className={submitClass} style={{ backgroundColor: selectedRole.accent }}>
+        {submitting ? "Updating..." : "Update Password"}
+        <FaArrowRightLong className="text-xs" />
       </button>
     </form>
   );
 
   const renderSignupForm = () => (
-    <form onSubmit={handleSignup} className={isPage ? "space-y-3.5" : "space-y-4"}>
-      <div className={`grid sm:grid-cols-2 ${isPage ? "gap-3" : "gap-4"}`}>
+    <form onSubmit={(e) => e.preventDefault()} className="space-y-3">
+      <div className="grid gap-3 sm:grid-cols-2">
         <label className="block sm:col-span-2">
           <span className={labelClass}>Full Name</span>
           <div className={fieldShell}>
-            <FaUser className="shrink-0 text-[#0f61e5]" />
+            <FaUser className="shrink-0 text-[#3f6fd2]" />
             <input
               type="text"
               value={signupForm.name}
               onChange={(e) => updateSignupField("name", e.target.value)}
               required
-              placeholder="Enter your full name"
+              placeholder="full name"
               className={textInputClass}
             />
           </div>
@@ -482,13 +406,13 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
         <label className="block sm:col-span-2">
           <span className={labelClass}>Email Address</span>
           <div className={fieldShell}>
-            <FaEnvelope className="shrink-0 text-[#0f61e5]" />
+            <FaEnvelope className="shrink-0 text-[#3f6fd2]" />
             <input
               type="email"
               value={signupForm.email}
               onChange={(e) => updateSignupField("email", e.target.value)}
               required
-              placeholder="Enter your email"
+              placeholder="email"
               className={textInputClass}
             />
           </div>
@@ -497,20 +421,20 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
         <label className="block">
           <span className={labelClass}>Password</span>
           <div className={fieldShell}>
-            <FaLock className="shrink-0 text-[#0f61e5]" />
+            <FaLock className="shrink-0 text-[#3f6fd2]" />
             <input
               type={showSignupPassword ? "text" : "password"}
               value={signupForm.password}
               onChange={(e) => updateSignupField("password", e.target.value)}
               required
               minLength={8}
-              placeholder="Minimum 8 characters"
+              placeholder="8+ characters"
               className={textInputClass}
             />
             <button
               type="button"
               onClick={() => setShowSignupPassword((prev) => !prev)}
-              className="shrink-0 text-[#6d84a4] transition-colors hover:text-[#0f61e5]"
+              className="shrink-0 text-[#61748f] transition hover:text-[#1d4ed8]"
               aria-label={showSignupPassword ? "Hide password" : "Show password"}
             >
               {showSignupPassword ? <FaEyeSlash /> : <FaEye />}
@@ -521,20 +445,20 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
         <label className="block">
           <span className={labelClass}>Confirm Password</span>
           <div className={fieldShell}>
-            <FaLock className="shrink-0 text-[#0f61e5]" />
+            <FaLock className="shrink-0 text-[#3f6fd2]" />
             <input
               type={showSignupConfirmPassword ? "text" : "password"}
               value={signupForm.confirmPassword}
               onChange={(e) => updateSignupField("confirmPassword", e.target.value)}
               required
               minLength={8}
-              placeholder="Repeat your password"
+              placeholder="repeat"
               className={textInputClass}
             />
             <button
               type="button"
               onClick={() => setShowSignupConfirmPassword((prev) => !prev)}
-              className="shrink-0 text-[#6d84a4] transition-colors hover:text-[#0f61e5]"
+              className="shrink-0 text-[#61748f] transition hover:text-[#1d4ed8]"
               aria-label={showSignupConfirmPassword ? "Hide password" : "Show password"}
             >
               {showSignupConfirmPassword ? <FaEyeSlash /> : <FaEye />}
@@ -574,7 +498,7 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
                 type="email"
                 value={signupForm.parentEmail}
                 onChange={(e) => updateSignupField("parentEmail", e.target.value)}
-                placeholder="Optional parent email"
+                placeholder="optional"
                 className={plainInputClass}
               />
             </label>
@@ -582,12 +506,12 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
             <label className="block">
               <span className={labelClass}>Phone</span>
               <div className={fieldShell}>
-                <FaPhone className="shrink-0 text-[#0f61e5]" />
+                <FaPhone className="shrink-0 text-[#3f6fd2]" />
                 <input
                   type="tel"
                   value={signupForm.phone}
                   onChange={(e) => updateSignupField("phone", e.target.value)}
-                  placeholder="Optional contact number"
+                  placeholder="optional"
                   className={textInputClass}
                 />
               </div>
@@ -600,25 +524,25 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
             <label className="block">
               <span className={labelClass}>Phone Number</span>
               <div className={fieldShell}>
-                <FaPhone className="shrink-0 text-[#0f61e5]" />
+                <FaPhone className="shrink-0 text-[#3f6fd2]" />
                 <input
                   type="tel"
                   value={signupForm.phone}
                   onChange={(e) => updateSignupField("phone", e.target.value)}
                   required
-                  placeholder="Enter your phone number"
+                  placeholder="phone number"
                   className={textInputClass}
                 />
               </div>
             </label>
 
-            <label className="block sm:col-span-2">
+            <label className="block">
               <span className={labelClass}>Children Names</span>
               <input
                 type="text"
                 value={signupForm.childrenNames}
                 onChange={(e) => updateSignupField("childrenNames", e.target.value)}
-                placeholder="Separate names with commas"
+                placeholder="comma separated"
                 className={plainInputClass}
               />
             </label>
@@ -634,7 +558,7 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
                 value={signupForm.designation}
                 onChange={(e) => updateSignupField("designation", e.target.value)}
                 required
-                placeholder="e.g. Senior Teacher"
+                placeholder="Senior Teacher"
                 className={plainInputClass}
               />
             </label>
@@ -646,7 +570,7 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
                 value={signupForm.subject}
                 onChange={(e) => updateSignupField("subject", e.target.value)}
                 required
-                placeholder="e.g. Mathematics"
+                placeholder="Mathematics"
                 className={plainInputClass}
               />
             </label>
@@ -658,7 +582,7 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
                 value={signupForm.qualification}
                 onChange={(e) => updateSignupField("qualification", e.target.value)}
                 required
-                placeholder="e.g. M.Sc, B.Ed"
+                placeholder="M.Sc, B.Ed"
                 className={plainInputClass}
               />
             </label>
@@ -670,18 +594,7 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
                 value={signupForm.experience}
                 onChange={(e) => updateSignupField("experience", e.target.value)}
                 required
-                placeholder="e.g. 10 years"
-                className={plainInputClass}
-              />
-            </label>
-
-            <label className="block sm:col-span-2">
-              <span className={labelClass}>Bio</span>
-              <textarea
-                value={signupForm.bio}
-                onChange={(e) => updateSignupField("bio", e.target.value)}
-                rows={3}
-                placeholder="Short faculty introduction"
+                placeholder="10 years"
                 className={plainInputClass}
               />
             </label>
@@ -689,742 +602,232 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
         ) : null}
       </div>
 
-      <button
-        type="submit"
-        disabled={submitting}
-        className={submitClass}
-        style={{ backgroundColor: selectedRole.accent }}
-      >
+      <button type="submit" disabled={submitting} className={submitClass} style={{ backgroundColor: selectedRole.accent }}>
         {submitting ? "Creating account..." : `Create ${selectedRole.label} Account`}
-        <FaArrowRightLong className="text-sm" />
+        <FaArrowRightLong className="text-xs" />
       </button>
     </form>
   );
 
-  const pagePanelCopy: Record<AuthMode, { title: string; description: string }> = {
-    login: {
-      title: "Welcome back to your portal",
-      description: `Sign in and continue with your ${selectedRole.label.toLowerCase()} dashboard in one calm, focused view.`,
-    },
-    signup: {
-      title: "Let's get you set up",
-      description: `It should only take a couple of minutes to activate your ${selectedRole.label.toLowerCase()} access with MNRS.`,
-    },
-    forgot: {
-      title: "Recover your access safely",
-      description: "We will send a secure reset link to the email address connected to your school account.",
-    },
-    reset: {
-      title: "Create a fresh password",
-      description: "Use a strong password so you can get back into the portal without friction.",
-    },
-  };
+  return (
+    <div
+      className={`w-full overflow-hidden rounded-lg border border-white/70 bg-white shadow-[0_30px_90px_rgba(2,20,54,0.34)] ${
+        isFloating ? "max-w-[24rem]" : "max-w-[28rem] lg:max-w-[62rem]"
+      }`}
+    >
+      <div className="lg:grid lg:grid-cols-[22rem_1fr]">
+        <div className="relative overflow-hidden bg-[linear-gradient(145deg,#0b2a5b_0%,#0f61e5_62%,#38bdf8_130%)] px-5 pb-5 pt-5 text-white lg:flex lg:min-h-[37rem] lg:flex-col lg:p-7">
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,transparent_31%,rgba(255,255,255,0.16)_31%,rgba(255,255,255,0.16)_39%,transparent_39%,transparent_58%,rgba(255,255,255,0.12)_58%,rgba(255,255,255,0.12)_67%,transparent_67%)]" />
+          <div className="absolute -left-24 top-16 h-64 w-64 rotate-45 rounded-lg border border-white/20 bg-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.16)]" />
+          <div className="absolute -right-28 bottom-10 h-72 w-72 -rotate-12 rounded-lg border border-white/15 bg-white/10" />
 
-  const pageFormCopy: Record<AuthMode, string> = {
-    login: `Use your registered ${selectedRole.label.toLowerCase()} account details to continue.`,
-    signup: `Fill in the required details below to create your ${selectedRole.label.toLowerCase()} profile.`,
-    forgot: "Tell us the registered email and we will send the next step there.",
-    reset: "Set your new password below and then return straight to login.",
-  };
+          <div className="relative z-10 flex items-start justify-between gap-3">
+            <Link href="/" className="rounded-lg border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-bold text-white shadow-sm transition hover:bg-white/15">
+              Back
+            </Link>
+            <span className="rounded-lg bg-white px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-blue-700">
+              MNRS
+            </span>
+          </div>
 
-  if (isPage) {
-    return (
-      <>
-      <div className="lg:hidden">
-        <div className="relative mx-auto min-h-[42rem] overflow-hidden rounded-[1.85rem] bg-white shadow-[0_28px_80px_rgba(33,71,135,0.22)]">
-          <div className="relative h-[16.25rem] overflow-hidden bg-[linear-gradient(145deg,#5f7fd0_0%,#7f9de9_54%,#d8e8ff_100%)] px-5 pt-5 text-white">
-            <div className="absolute -left-8 -top-8 h-28 w-28 rounded-full bg-[radial-gradient(circle_at_30%_30%,#385ed0_0%,#172e69_72%)] shadow-[0_18px_40px_rgba(16,38,89,0.35)]" />
-            <div className="absolute -right-4 -top-8 h-36 w-36 rounded-full bg-[radial-gradient(circle_at_25%_20%,#ffffff_0%,#e9f2ff_42%,rgba(255,255,255,0)_70%)]" />
-            <div className="absolute right-12 top-14 h-28 w-28 rounded-full bg-[radial-gradient(circle_at_32%_28%,#9bc4ff_0%,#5d8ee8_56%,#4568d7_100%)] opacity-95" />
-            <div className="absolute right-20 top-[7.5rem] h-16 w-16 rounded-full bg-[radial-gradient(circle_at_35%_30%,#ffffff_0%,#9dc4ff_42%,#5a86de_100%)] shadow-[0_14px_30px_rgba(40,80,160,0.28)]" />
-            <div className="absolute -bottom-14 -left-12 h-64 w-64 rounded-[44%] bg-[linear-gradient(145deg,rgba(21,63,160,0.82),rgba(9,24,62,0.96))]" />
-            <div className="absolute bottom-[-3rem] left-16 h-72 w-56 rotate-[-22deg] rounded-[48%] bg-white/22" />
-            <div className="absolute bottom-4 left-5 h-14 w-14 rounded-full bg-[radial-gradient(circle_at_35%_30%,#ffffff_0%,#9dc4ff_52%,#3468ce_100%)] shadow-[0_14px_28px_rgba(13,36,86,0.22)]" />
-            <div className="absolute bottom-[-1.8rem] left-[8.5rem] h-28 w-28 rounded-full bg-[radial-gradient(circle_at_38%_28%,#2f64d9_0%,#12285d_82%)] shadow-[0_22px_44px_rgba(10,26,65,0.35)]" />
-
-            <div className="relative z-10 flex items-center justify-between">
-              <Link href="/" className="inline-flex items-center gap-2 rounded-full bg-black/10 px-3 py-2 text-xs font-semibold text-white backdrop-blur-md">
-                <span aria-hidden="true">‹</span>
-                Back
-              </Link>
-              <span className="rounded-full bg-white/18 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.22em] text-white/85 backdrop-blur-md">
-                MNRS
-              </span>
-            </div>
-
-            <div className="relative z-10 mt-16 max-w-[15rem]">
-              <h2 className="text-[2rem] font-bold leading-tight tracking-normal text-white">
-                {mode === "signup" ? "Get Started" : "Welcome back"}
-              </h2>
-              <p className="mt-2 text-sm font-medium leading-5 text-white/88">
-                {mode === "signup"
-                  ? `Create your ${selectedRole.label.toLowerCase()} portal access.`
-                  : `Sign in to your ${selectedRole.label.toLowerCase()} portal.`}
+          <div className="relative z-10 mt-7 flex items-center gap-3 lg:mt-12">
+            <motion.div
+              key={role}
+              initial={{ rotate: -8, scale: 0.86, opacity: 0 }}
+              animate={{ rotate: 0, scale: 1, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+              className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-white text-blue-700 shadow-[0_18px_34px_rgba(0,0,0,0.22)]"
+            >
+              <SelectedIcon className="text-xl" />
+            </motion.div>
+            <div className="min-w-0">
+              <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-blue-100">
+                {selectedRole.eyebrow}
               </p>
+              <h2 className="mt-1 text-3xl font-black leading-tight text-white">
+                {MODE_LABELS[mode]}
+              </h2>
             </div>
           </div>
 
-          <div className="relative z-20 -mt-8 rounded-t-[2rem] bg-white px-5 pb-7 pt-7">
-            <div className="mx-auto max-w-sm">
-              <div className="grid grid-cols-3 gap-2 rounded-2xl bg-[#eef4ff] p-1.5">
-                {ROLE_OPTIONS.map((option) => {
-                  const Icon = option.icon;
-                  const active = option.id === role;
+          <motion.p
+            key={`${role}-description`}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.22 }}
+            className="relative z-10 mt-5 max-w-[18rem] text-sm font-medium leading-6 text-blue-50"
+          >
+            {selectedRole.description}
+          </motion.p>
 
-                  return (
-                    <button
-                      key={`${option.id}-mobile-role`}
-                      type="button"
-                      onClick={() => {
-                        setRole(option.id);
-                        resetFeedback();
-                      }}
-                      className={`flex h-10 items-center justify-center gap-1.5 rounded-xl text-xs font-bold transition-all ${
-                        active ? "bg-white text-[#3268d6] shadow-sm" : "text-[#6a7c9f]"
-                      }`}
-                    >
-                      <Icon className="text-[13px]" />
-                      {option.label.slice(0, 3)}
-                    </button>
-                  );
-                })}
-              </div>
-
-              <div className="mt-5 flex items-center justify-between">
-                <div className="inline-flex rounded-full bg-[#f1f5fb] p-1">
-                  <button
-                    type="button"
-                    onClick={() => switchMode("login")}
-                    className={`rounded-full px-4 py-2 text-xs font-bold transition-colors ${
-                      mode === "login" ? "bg-[#3f6fd2] text-white" : "text-[#64748b]"
-                    }`}
-                  >
-                    Sign in
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => switchMode("signup")}
-                    className={`rounded-full px-4 py-2 text-xs font-bold transition-colors ${
-                      mode === "signup" ? "bg-[#3f6fd2] text-white" : "text-[#64748b]"
-                    }`}
-                  >
-                    Sign up
-                  </button>
-                </div>
-
-                {mode !== "forgot" && mode !== "reset" ? (
-                  <button
-                    type="button"
-                    onClick={() => switchMode("forgot")}
-                    className="text-xs font-bold text-[#3268d6]"
-                  >
-                    Forgot?
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => switchMode("login")}
-                    className="text-xs font-bold text-[#3268d6]"
-                  >
-                    Back
-                  </button>
-                )}
-              </div>
-
-              <div className="mt-6 text-center">
-                <h3 className="text-[1.75rem] font-bold leading-tight tracking-normal text-[#3268d6]">
-                  {mode === "signup" ? "Get Started" : mode === "login" ? "Welcome back" : MODE_LABELS[mode]}
-                </h3>
-                <p className="mx-auto mt-2 max-w-[17rem] text-xs leading-5 text-[#6d7c93]">
-                  {mode === "signup"
-                    ? `Use an approved email to create your ${selectedRole.label.toLowerCase()} profile.`
-                    : pageFormCopy[mode]}
+          <div className="relative z-10 mt-6 hidden rounded-2xl border border-white/20 bg-white/10 p-4 shadow-[0_18px_44px_rgba(0,0,0,0.16)] backdrop-blur lg:block">
+            <div className="flex items-center gap-4">
+              <img
+                src="/residential-program-login-logo.png"
+                alt="Residential program logo"
+                className="h-20 w-20 shrink-0 rounded-xl border border-white/20 object-cover shadow-[0_14px_30px_rgba(0,0,0,0.18)]"
+              />
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-[0.22em] text-blue-100">
+                  Residential Program
+                </p>
+                <p className="mt-1 text-sm font-bold leading-5 text-white">
+                  A caring campus home for focused learning and growth.
                 </p>
               </div>
-
-              <AnimatePresence initial={false}>
-                {error ? (
-                  <motion.div
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    className="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
-                  >
-                    {error}
-                  </motion.div>
-                ) : null}
-              </AnimatePresence>
-
-              <AnimatePresence initial={false}>
-                {success ? (
-                  <motion.div
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    className="mt-4 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700"
-                  >
-                    {success}
-                  </motion.div>
-                ) : null}
-              </AnimatePresence>
-
-              {providerHint ? (
-                <div className="mt-4 rounded-2xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-700">
-                  {providerHint}
-                </div>
-              ) : null}
-
-              <motion.div
-                key={`mobile-${mode}-${role}`}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.22 }}
-                className="mt-5"
-              >
-                {mode === "login" && renderLoginForm()}
-                {mode === "signup" && renderSignupForm()}
-                {mode === "forgot" && renderForgotForm()}
-                {mode === "reset" && renderResetForm()}
-              </motion.div>
-
-              {(mode === "login" || mode === "signup") ? (
-                <>
-                  <div className="my-5 flex items-center gap-3">
-                    <div className="h-px flex-1 bg-[#e7edf7]" />
-                    <span className="text-[11px] font-semibold text-[#9aa8bd]">Sign in with</span>
-                    <div className="h-px flex-1 bg-[#e7edf7]" />
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={handleGoogleContinue}
-                    className="flex w-full items-center justify-center gap-3 rounded-[18px] border border-[#dbe5f4] bg-white px-4 py-3.5 text-sm font-bold text-[#22314a] shadow-[0_10px_28px_rgba(38,86,168,0.08)] transition-colors hover:border-[#3268d6] hover:text-[#3268d6]"
-                  >
-                    <FcGoogle className="text-xl" />
-                    Continue with Google
-                  </button>
-
-                  <p className="mt-4 text-center text-xs leading-5 text-[#7b8798]">
-                    {mode === "signup" ? "Already have an account? " : "Don't have an account? "}
-                    <button
-                      type="button"
-                      onClick={() => switchMode(mode === "signup" ? "login" : "signup")}
-                      className="font-bold text-[#3268d6]"
-                    >
-                      {mode === "signup" ? "Sign in" : "Sign up"}
-                    </button>
-                  </p>
-                </>
-              ) : null}
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="hidden bg-white lg:grid lg:min-h-[640px] lg:grid-cols-[0.9fr_1.22fr]">
-        <div className="relative overflow-hidden bg-[linear-gradient(180deg,#38BDF8_0%,#1976D2_42%,#0D47A1_100%)] px-6 py-7 text-white sm:px-8 sm:py-8 lg:flex lg:flex-col lg:justify-between lg:px-10 lg:py-10">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.28),transparent_34%)]" />
-          <div className="absolute right-[-2.5rem] top-10 h-36 w-36 rounded-full bg-white/14 blur-2xl" />
-          <div className="absolute bottom-[-3rem] left-[-2rem] h-44 w-44 rounded-full bg-[#0A2540]/20 blur-3xl" />
-          <div className="absolute inset-y-10 right-7 w-px bg-white/18" />
-
-          <div className="relative z-10">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.34em] text-white/78">
-              MNRS Portal
+          <div className="relative z-10 mt-5 lg:mt-8">
+            <p className="mb-2 hidden text-xs font-bold uppercase tracking-[0.18em] text-blue-100 lg:block">
+              Account type
             </p>
-            <div className="mt-4 inline-flex items-center rounded-full border border-white/20 bg-white/12 px-4 py-2 text-[11px] font-medium text-white/88 backdrop-blur-md">
-              Secure access for students, parents, and faculty
-            </div>
-          </div>
-
-          <div className="relative z-10 mt-8 flex flex-col items-center text-center lg:mt-0">
-            <div className="relative flex h-40 w-40 items-center justify-center rounded-full bg-white/18 shadow-[0_24px_60px_rgba(7,24,41,0.2)] sm:h-44 sm:w-44">
-              <div className="absolute inset-4 rounded-full border border-white/18" />
-              <div className="absolute inset-10 rounded-full bg-white/10" />
-              <div className="flex h-28 w-28 items-center justify-center rounded-full bg-[linear-gradient(180deg,#ffffff_0%,#ddecff_100%)] text-[#0A2540] shadow-[0_16px_30px_rgba(7,24,41,0.18)] sm:h-32 sm:w-32">
-                <SelectedIcon className="text-[3rem]" />
-              </div>
-            </div>
-
-            <div className="mt-8 max-w-sm">
-              <h2 className="font-serif text-[2rem] font-bold leading-tight sm:text-[2.3rem]">
-                {pagePanelCopy[mode].title}
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-white/88 sm:text-[15px]">
-                {pagePanelCopy[mode].description}
-              </p>
-            </div>
-
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+            <div className="grid grid-cols-3 gap-1.5 rounded-lg bg-white/10 p-1.5 backdrop-blur lg:grid-cols-1 lg:gap-2">
               {ROLE_OPTIONS.map((option) => {
                 const Icon = option.icon;
+                const active = option.id === role;
 
                 return (
-                  <span
-                    key={`${option.id}-page-side`}
-                    className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold backdrop-blur-md ${
-                      option.id === role
-                        ? "border-white/45 bg-white/24 text-white"
-                        : "border-white/18 bg-white/10 text-white/74"
+                  <button
+                    key={option.id}
+                    type="button"
+                    onClick={() => {
+                      setRole(option.id);
+                      setLoginEmail("");
+                      setLoginPassword("");
+                      resetFeedback();
+                    }}
+                    className={`relative flex h-11 items-center justify-center gap-1.5 rounded-lg text-xs font-bold transition lg:justify-start lg:px-3 ${
+                      active ? "text-blue-700" : "text-white/80 hover:bg-white/10 hover:text-white"
                     }`}
                   >
-                    <Icon className="text-[11px]" />
-                    {option.label}
-                  </span>
+                    {active ? (
+                      <motion.span
+                        layoutId="active-role-pill"
+                        className="absolute inset-0 rounded-lg bg-white shadow-[0_10px_24px_rgba(0,0,0,0.14)]"
+                        transition={{ type: "spring", stiffness: 420, damping: 32 }}
+                      />
+                    ) : null}
+                    <Icon className="relative z-10 text-[13px]" />
+                    <span className="relative z-10 hidden min-[380px]:inline">{option.label}</span>
+                    <span className="relative z-10 min-[380px]:hidden">{option.label.slice(0, 3)}</span>
+                  </button>
                 );
               })}
             </div>
           </div>
 
-          {/* Quick switch removed */}
-        </div>
-
-        <div className="bg-white">
-          <div className="flex h-full flex-col">
-            <div className="border-b border-[#edf2f8] px-5 py-5 sm:px-7 lg:px-10 lg:py-7">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#8a9ab0]">
-                    Portal Form
-                  </p>
-                  <h3 className="mt-2 font-serif text-[1.9rem] font-bold leading-tight text-[#071829]">
-                    {MODE_LABELS[mode]}
-                  </h3>
-                  <p className="mt-2 max-w-xl text-sm leading-6 text-[#61748f]">
-                    {pageFormCopy[mode]}
-                  </p>
-                </div>
-
-                <Link
-                  href="/contact"
-                  className="text-sm font-semibold text-[#1976D2] transition-colors hover:text-[#0D47A1]"
-                >
-                  Need help?
-                </Link>
-              </div>
-            </div>
-
-            <div className="px-5 py-5 sm:px-7 lg:px-10 lg:py-8">
-              <div className="mx-auto max-w-[40rem]">
-                <div className="rounded-[26px] border border-[#edf2f8] bg-[#fbfdff] p-2 shadow-[0_18px_40px_rgba(10,37,64,0.06)]">
-                  <div className="grid grid-cols-3 gap-2">
-                    {ROLE_OPTIONS.map((option) => {
-                      const Icon = option.icon;
-                      const active = option.id === role;
-
-                      return (
-                        <button
-                          key={option.id}
-                          type="button"
-                          onClick={() => {
-                            setRole(option.id);
-                            resetFeedback();
-                          }}
-                          className={`flex items-center justify-center gap-2 rounded-[20px] px-3 py-3 text-sm font-semibold transition-all duration-300 ${
-                            active
-                              ? "text-white shadow-[0_14px_28px_rgba(21,101,192,0.22)]"
-                              : "text-[#58708d] hover:bg-white hover:text-[#0D47A1]"
-                          }`}
-                          style={{ backgroundColor: active ? option.accent : "transparent" }}
-                        >
-                          <Icon className="text-sm" />
-                          <span className="hidden sm:inline">{option.label}</span>
-                          <span className="sm:hidden">{option.label.slice(0, 3)}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="inline-flex rounded-full border border-[#d8e3ef] bg-[#f7fafd] p-1 shadow-[0_10px_24px_rgba(10,37,64,0.05)]">
-                    <button
-                      type="button"
-                      onClick={() => switchMode("login")}
-                      className={`rounded-full px-5 py-2 text-sm font-semibold transition-colors ${
-                        mode === "login"
-                          ? "bg-[#1565C0] text-white"
-                          : "text-[#61748f] hover:text-[#0D47A1]"
-                      }`}
-                    >
-                      Login
-                    </button>
-                  </div>
-
-                  {mode !== "forgot" && mode !== "reset" ? (
-                    <button
-                      type="button"
-                      onClick={() => switchMode("forgot")}
-                      className="text-sm font-semibold text-[#1976D2] transition-colors hover:text-[#0D47A1]"
-                    >
-                      Forgot password?
-                    </button>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => switchMode("login")}
-                      className="text-sm font-semibold text-[#1976D2] transition-colors hover:text-[#0D47A1]"
-                    >
-                      Back to login
-                    </button>
-                  )}
-                </div>
-
-                <div className="mt-6 rounded-[30px] border border-[#edf2f8] bg-white p-5 shadow-[0_22px_48px_rgba(10,37,64,0.08)] sm:p-6">
-                  <div className="flex items-start gap-4">
-                    <div
-                      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[18px]"
-                      style={{ backgroundColor: selectedRole.softAccent, color: selectedRole.accent }}
-                    >
-                      <SelectedIcon className="text-lg" />
-                    </div>
-                    <div>
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#8a9ab0]">
-                        {selectedRole.eyebrow}
-                      </p>
-                      <h4 className="mt-1 font-serif text-[1.65rem] font-bold leading-tight text-[#071829]">
-                        {MODE_LABELS[mode]}
-                      </h4>
-                      <p className="mt-2 text-sm leading-6 text-[#61748f]">
-                        {selectedRole.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  <AnimatePresence initial={false}>
-                    {error ? (
-                      <motion.div
-                        initial={{ opacity: 0, y: -8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -8 }}
-                        className="mt-5 rounded-[18px] border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
-                      >
-                        {error}
-                      </motion.div>
-                    ) : null}
-                  </AnimatePresence>
-
-                  <AnimatePresence initial={false}>
-                    {success ? (
-                      <motion.div
-                        initial={{ opacity: 0, y: -8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -8 }}
-                        className="mt-5 rounded-[18px] border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700"
-                      >
-                        {success}
-                      </motion.div>
-                    ) : null}
-                  </AnimatePresence>
-
-                  {providerHint ? (
-                    <div className="mt-5 rounded-[18px] border border-sky-200 bg-sky-50 px-4 py-3 text-sm text-sky-700">
-                      {providerHint}
-                    </div>
-                  ) : null}
-
-                  <motion.div
-                    key={`${mode}-${role}`}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.22 }}
-                    className="mt-5"
-                  >
-                    {mode === "login" && renderLoginForm()}
-                    {mode === "signup" && renderSignupForm()}
-                    {mode === "forgot" && renderForgotForm()}
-                    {mode === "reset" && renderResetForm()}
-                  </motion.div>
-
-                  {mode === "login" || mode === "signup" ? (
-                    <>
-                      <div className="my-5 flex items-center gap-3">
-                        <div className="h-px flex-1 bg-[#e3ebf5]" />
-                        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a9ab0]">
-                          or continue with
-                        </span>
-                        <div className="h-px flex-1 bg-[#e3ebf5]" />
-                      </div>
-
-                      <button
-                        type="button"
-                        onClick={handleGoogleContinue}
-                        className="flex w-full items-center justify-center gap-3 rounded-[18px] border border-[#d7e3f4] bg-[#f8fbff] px-4 py-3.5 text-sm font-semibold text-[#22314a] shadow-[0_12px_28px_rgba(15,97,229,0.05)] transition-all duration-300 hover:border-[#1565C0] hover:bg-white hover:text-[#1565C0]"
-                      >
-                        <FcGoogle className="text-xl" />
-                        {mode === "signup"
-                          ? `Start ${selectedRole.label} signup with Google`
-                          : `Continue as ${selectedRole.label} with Google`}
-                      </button>
-
-                      <p className="mt-3 text-center text-xs leading-5 text-[#7a8ca5]">
-                        Google can speed things up, but your school-specific profile details still stay inside the portal.
-                      </p>
-                    </>
-                  ) : null}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      </>
-    );
-  }
-
-  return (
-    <div className={shellClassName}>
-      {isPage ? null : (
-      <div
-        className={`relative overflow-hidden bg-[linear-gradient(155deg,#0b3f91_0%,#0f61e5_58%,#72b7ff_100%)] text-white ${
-          "px-5 py-5 sm:px-6"
-        }`}
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.28),transparent_35%)]" />
-        <div className="absolute left-[-3rem] top-5 h-24 w-24 rounded-full bg-white/10 blur-sm" />
-        <div className="absolute right-[-1rem] bottom-[-1rem] h-28 w-28 rounded-full bg-white/10 blur-sm" />
-        <div className="absolute inset-y-0 right-6 w-28 bg-[linear-gradient(rgba(255,255,255,0.14)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.14)_1px,transparent_1px)] bg-[size:18px_18px] opacity-35" />
-        <div className="absolute bottom-[-0.6rem] left-1/2 h-5 w-5 -translate-x-1/2 rotate-45 rounded-[4px] bg-white" />
-
-        <div className="relative z-10 flex items-start gap-3">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[18px] bg-white/18 shadow-[0_10px_24px_rgba(4,28,77,0.22)]">
-            <SelectedIcon className="text-xl text-white" />
-          </div>
-          <div className="min-w-0">
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-white/72">
-              MNRS Portal
+          <div className="relative z-10 mt-4 flex items-center justify-between gap-3 lg:mt-6 lg:block">
+            <p className="mb-2 hidden text-xs font-bold uppercase tracking-[0.18em] text-blue-100 lg:block">
+              Form type
             </p>
-            <h2 className={`mt-1 font-serif font-bold leading-snug text-[1.9rem]`}>
-              {variant === "floating"
-                ? "Smooth access from the bottom corner."
-                : "Portal access that stays compact, clear, and calm."}
-            </h2>
-            <p className={`max-w-md text-blue-50/92 ${isPage ? "mt-1 text-xs leading-4" : "mt-3 text-sm leading-6"}`}>
-              {isPage
-                ? `${selectedRole.eyebrow} for ${selectedRole.label.toLowerCase()} accounts in a shorter, better-balanced layout.`
-                : `${selectedRole.eyebrow} for ${selectedRole.label.toLowerCase()} accounts with a short, friendly path to continue.`}
-            </p>
-          </div>
-        </div>
-      </div>
-      )}
-
-      <div className={bodyClassName}>
-        <div className={`rounded-2xl ${isPage ? "border-2 border-blue-400 bg-white/15 backdrop-blur-md p-1.5 shadow-md" : "border border-[#dfe8f5] bg-[#f8fbff] p-1.5 shadow-[0_12px_30px_rgba(15,97,229,0.08)]"}`}>
-          <div className="grid grid-cols-3 gap-2">
-            {ROLE_OPTIONS.map((option) => {
-              const Icon = option.icon;
-              const active = option.id === role;
-
-              return (
-                <button
-                  key={option.id}
-                  type="button"
-                  onClick={() => {
-                    setRole(option.id);
-                    resetFeedback();
-                  }}
-                  className={`flex items-center justify-center gap-1.5 rounded-2xl px-2 py-2.5 text-[13px] font-semibold transition-all duration-300 sm:px-3 ${
-                    isPage
-                      ? active
-                        ? "text-blue-900 shadow-md"
-                        : "text-white/70 hover:bg-white/20 hover:text-white"
-                      : active
-                      ? "text-white shadow-md"
-                      : "text-[#4b5c78] hover:bg-[#edf4ff] hover:text-[#0f61e5]"
-                  }`}
-                  style={{ backgroundColor: active ? (isPage ? "#00bdff" : selectedRole.accent) : "transparent" }}
-                >
-                  <Icon className="text-sm" />
-                  <span className="hidden sm:inline">{option.label}</span>
-                  <span className="sm:hidden">{option.label.slice(0, 3)}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className={`flex items-center justify-between gap-3 ${isPage ? "mt-3" : "mt-4"}`}>
-          <div className={`inline-flex rounded-full border-2 p-1 text-sm ${isPage ? "border-blue-400 bg-white/15 backdrop-blur-md shadow-md" : "border-[#d9e7fb] bg-white shadow-[0_8px_24px_rgba(15,97,229,0.06)]"}`}>
-            <button
-              type="button"
-              onClick={() => switchMode("login")}
-              className={`rounded-full font-semibold transition-colors ${isPage ? "px-4 py-1.5" : "px-4 py-2"} ${
-                mode === "login" 
-                  ? isPage ? "bg-blue-500 text-white" : "bg-[#0f61e5] text-white"
-                  : isPage ? "text-white/70 hover:text-white" : "text-[#5e708d]"
-              }`}
-            >
-              Login
-            </button>
-          </div>
-
-          {mode !== "forgot" && mode !== "reset" ? (
-            <button
-              type="button"
-              onClick={() => switchMode("forgot")}
-              className={`text-sm font-semibold transition-colors ${isPage ? "text-cyan-300 hover:text-white" : "text-[#0f61e5] hover:text-[#084db8]"}`}
-            >
-              Forgot?
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={() => switchMode("login")}
-              className="text-sm font-semibold text-[#0f61e5] transition-colors hover:text-[#084db8]"
-            >
-              Back to login
-            </button>
-          )}
-        </div>
-
-        <div className={`relative rounded-[28px] border border-[#e2ebf7] bg-white shadow-[0_18px_40px_rgba(15,97,229,0.08)] ${isPage ? "mt-4 p-4 lg:p-4" : "mt-5 p-4 sm:p-5"}`}>
-          <div className="absolute right-4 top-4 h-24 w-24 rounded-full bg-[#edf4ff] opacity-80 blur-2xl" />
-          <div className="absolute inset-x-6 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(15,97,229,0.18),transparent)]" />
-
-          <div className="relative z-10">
-            <div className="flex items-start gap-3">
-              <div
-                className={`flex shrink-0 items-center justify-center rounded-[18px] ${isPage ? "h-11 w-11" : "h-12 w-12"}`}
-                style={{ backgroundColor: selectedRole.softAccent, color: selectedRole.accent }}
-              >
-                <SelectedIcon className={isPage ? "text-base" : "text-lg"} />
-              </div>
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#7a8ca5]">
-                  {selectedRole.eyebrow}
-                </p>
-                <h3 className={`mt-1 font-serif font-bold leading-tight text-[#0d1b2a] ${isPage ? "text-[1.55rem]" : "text-[1.8rem]"}`}>
-                  {MODE_LABELS[mode]}
-                </h3>
-                <p className={`text-[#5c6d86] ${isPage ? "mt-1.5 text-[13px] leading-5" : "mt-2 text-sm leading-6"}`}>
-                  {selectedRole.description}
-                </p>
-              </div>
-            </div>
-
-            {isPage ? (
-              <div className="mt-3 flex flex-wrap gap-2">
-                {ROLE_OPTIONS.map((option) => {
-                  const Icon = option.icon;
-                  const active = option.id === role;
-
-                  return (
-                    <span
-                      key={`${option.id}-chip`}
-                      className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold ${
-                        active
-                          ? "border-[#b9d1fb] bg-[#edf4ff] text-[#0f61e5]"
-                          : "border-[#e0e8f5] bg-[#f9fbff] text-[#61748f]"
-                      }`}
-                    >
-                      <Icon className="text-[11px]" />
-                      {option.label}
-                    </span>
-                  );
-                })}
-              </div>
-            ) : null}
-          </div>
-
-          <AnimatePresence initial={false}>
-            {error ? (
-              <motion.div
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                className={`rounded-2xl border px-4 py-3 text-sm ${
-                  isPage
-                    ? "border-red-400/50 bg-red-500/20 text-red-100"
-                    : "border-red-200 bg-red-50 text-red-600"
-                } ${isPage ? "mt-3" : "mt-4"}`}
-              >
-                {error}
-              </motion.div>
-            ) : null}
-          </AnimatePresence>
-
-          <AnimatePresence initial={false}>
-            {success ? (
-              <motion.div
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                className={`rounded-2xl border px-4 py-3 text-sm ${
-                  isPage
-                    ? "border-emerald-400/50 bg-emerald-500/20 text-emerald-100"
-                    : "border-emerald-200 bg-emerald-50 text-emerald-700"
-                } ${isPage ? "mt-3" : "mt-4"}`}
-              >
-                {success}
-              </motion.div>
-            ) : null}
-          </AnimatePresence>
-
-          {providerHint ? (
-            <div className={`rounded-2xl border px-4 py-3 text-sm ${
-              isPage
-                ? "border-cyan-400/50 bg-cyan-500/20 text-cyan-100"
-                : "border-blue-200 bg-blue-50 text-blue-700"
-            } ${isPage ? "mt-3" : "mt-4"}`}>
-              {providerHint}
-            </div>
-          ) : null}
-
-          <motion.div
-            key={`${mode}-${role}`}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.22 }}
-            className={isPage ? "mt-3.5" : "mt-5"}
-          >
-            {mode === "login" && renderLoginForm()}
-            {mode === "signup" && renderSignupForm()}
-            {mode === "forgot" && renderForgotForm()}
-            {mode === "reset" && renderResetForm()}
-          </motion.div>
-
-          {(mode === "login" || mode === "signup") ? (
-            <>
-              <div className={`flex items-center gap-3 ${isPage ? "my-3.5" : "my-5"}`}>
-                <div className={`h-px flex-1 ${isPage ? "bg-blue-400/50" : "bg-[#e3ebf8]"}`} />
-                <span className={`text-xs font-semibold uppercase tracking-[0.2em] ${isPage ? "text-white/80" : "text-[#8aa0bc]"}`}>
-                  or continue with
-                </span>
-                <div className={`h-px flex-1 ${isPage ? "bg-blue-400/50" : "bg-[#e3ebf8]"}`} />
-              </div>
-
+            <div className="inline-flex rounded-lg bg-white/10 p-1 lg:grid lg:w-full lg:grid-cols-1 lg:gap-2 lg:p-1.5">
               <button
                 type="button"
-                onClick={handleGoogleContinue}
-                className={`flex w-full items-center justify-center gap-3 rounded-2xl border-2 px-4 py-3.5 text-sm font-semibold transition-all duration-300 ${
-                  isPage
-                    ? "border-blue-400 bg-white/15 backdrop-blur-md text-black hover:bg-white/25 hover:border-blue-300"
-                    : "border-[#d7e3f4] bg-white text-[#22314a] shadow-[0_10px_24px_rgba(15,97,229,0.05)] hover:border-[#0f61e5] hover:text-[#0f61e5]"
+                onClick={() => switchMode("login")}
+                className={`rounded-lg px-4 py-2 text-xs font-bold transition ${
+                  mode === "login" ? "bg-white text-blue-700" : "text-white/80 hover:bg-white/10"
                 }`}
               >
-                <FcGoogle className="text-xl" />
-                {mode === "signup"
-                  ? `Start ${selectedRole.label} signup with Google`
-                  : `Continue as ${selectedRole.label} with Google`}
+                Sign in
               </button>
-
-              {!isPage ? (
-                <p className="mt-3 text-center text-xs leading-5 text-[#7a8ca5]">
-                  Google can speed things up, but role-specific school details still stay in your portal profile.
-                </p>
-              ) : null}
-            </>
-          ) : null}
-
-          {!isPage ? (
-            <div className="mt-5 border-t border-[#e3ebf8] pt-4 text-[13px] leading-6 text-[#677a95]">
-              Protected access for {selectedRole.label.toLowerCase()} accounts. Need personal help?{" "}
-              <Link href="/contact" className="font-semibold text-[#0f61e5] transition-colors hover:text-[#084db8]">
-                Contact support
-              </Link>
             </div>
-          ) : null}
+
+            {mode !== "forgot" && mode !== "reset" ? (
+              <button type="button" onClick={() => switchMode("forgot")} className="text-xs font-bold text-blue-50 underline-offset-4 hover:underline lg:mt-4 lg:w-full lg:text-left">
+                Forgot password?
+              </button>
+            ) : (
+              <button type="button" onClick={() => switchMode("login")} className="text-xs font-bold text-blue-50 underline-offset-4 hover:underline lg:mt-4 lg:w-full lg:text-left">
+                Back to sign in
+              </button>
+            )}
+          </div>
+        </div>
+
+        <div className="bg-[#f8fbff] px-5 pb-5 pt-4 lg:flex lg:min-h-[37rem] lg:items-center lg:px-10 lg:py-8">
+          <div className="w-full">
+            <div className="mb-5 text-center">
+              <motion.div
+                key={`${role}-${mode}-badge`}
+                initial={{ y: 8, opacity: 0, scale: 0.94 }}
+                animate={{ y: 0, opacity: 1, scale: 1 }}
+                transition={{ type: "spring", stiffness: 260, damping: 22 }}
+                className="mx-auto flex h-16 w-16 items-center justify-center rounded-lg bg-white text-blue-700 shadow-[0_16px_34px_rgba(29,78,216,0.18)]"
+              >
+                <SelectedIcon className="text-2xl" />
+              </motion.div>
+              <h1 className="mt-3 text-2xl font-black uppercase tracking-[0.08em] text-[#15345f]">
+                {mode === "forgot" ? "Recover Login" : mode === "reset" ? "Reset Login" : "Login"}
+              </h1>
+              <p className="mt-1 text-sm font-semibold text-slate-500">
+                {selectedRole.label} access for MNRS academic portal
+              </p>
+            </div>
+
+            <AnimatePresence initial={false}>
+              {error ? (
+                <motion.div
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+                >
+                  {error}
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
+
+            <AnimatePresence initial={false}>
+              {success ? (
+                <motion.div
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  className="mb-4 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700"
+                >
+                  {success}
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
+
+            {providerHint ? (
+              <div className="mb-4 rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-700">
+                {providerHint}
+              </div>
+            ) : null}
+
+            <motion.div
+              key={`${mode}-${role}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.22 }}
+              className=""
+            >
+              {mode === "login" && renderLoginForm()}
+              {mode === "forgot" && renderForgotForm()}
+              {mode === "reset" && renderResetForm()}
+            </motion.div>
+
+            {mode === "login" ? (
+              <>
+                <div className="my-4 flex items-center gap-3">
+                  <div className="h-px flex-1 bg-[#e4ebf6]" />
+                  <span className="text-[11px] font-bold text-[#8a9ab0]">or</span>
+                  <div className="h-px flex-1 bg-[#e4ebf6]" />
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleGoogleContinue}
+                  className="flex h-12 w-full items-center justify-center gap-3 rounded-lg border border-[#dbe5f4] bg-white px-4 text-sm font-bold text-[#22314a] shadow-[0_10px_28px_rgba(38,86,168,0.08)] transition hover:border-[#3268d6] hover:text-[#3268d6]"
+                >
+                  <FcGoogle className="text-xl" />
+                  Continue with Google
+                </button>
+              </>
+            ) : null}
+          </div>
         </div>
       </div>
     </div>

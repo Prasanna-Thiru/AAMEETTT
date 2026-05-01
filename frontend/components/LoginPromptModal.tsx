@@ -6,7 +6,7 @@ import axios from "axios";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { IoClose } from "react-icons/io5";
-import { FaArrowRightToBracket, FaUserPlus } from "react-icons/fa6";
+import { FaArrowRightToBracket } from "react-icons/fa6";
 
 const HIDDEN_PATH_PREFIXES = ["/login", "/admin", "/student", "/parent", "/faculty"];
 
@@ -69,7 +69,7 @@ export default function LoginPromptModal() {
                 Portal Access
               </p>
               <p className="mt-1 text-sm font-semibold text-[#0d1b2a]">
-                Login or create account
+                Login with school credentials
               </p>
             </div>
 
@@ -88,21 +88,13 @@ export default function LoginPromptModal() {
               Quick access without covering the page.
             </p>
 
-            <div className="mt-3 grid grid-cols-2 gap-2">
+            <div className="mt-3 grid grid-cols-1 gap-2">
               <Link
                 href="/login?mode=login"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#0f61e5] px-3 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#084db8]"
               >
                 <FaArrowRightToBracket className="text-sm" />
                 Login
-              </Link>
-
-              <Link
-                href="/login?mode=signup"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#cfe0f6] bg-white px-3 py-2.5 text-sm font-semibold text-[#0f61e5] transition-colors hover:border-[#0f61e5] hover:bg-[#f5f9ff]"
-              >
-                <FaUserPlus className="text-sm" />
-                Sign Up
               </Link>
             </div>
           </div>

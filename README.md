@@ -104,6 +104,8 @@ MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/mnrs?retryWr
 # Auth
 JWT_SECRET=your-super-secret-jwt-key-min-32-characters
 JWT_EXPIRES_IN=7d
+GOOGLE_CLIENT_ID=your-google-oauth-client-id.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=your-google-oauth-client-secret
 
 # Admin (for seeding initial admin user)
 ADMIN_EMAIL=admin@mnrs.edu.in
@@ -123,6 +125,18 @@ NEXT_PUBLIC_ADDRESS=AMET Knowledge Park, ECR – Thenpattinam
 
 # Google Maps
 NEXT_PUBLIC_MAPS_EMBED_URL=<your-google-maps-embed-url>
+\`\`\`
+
+For Google sign-in, create an OAuth 2.0 Web Client in Google Cloud Console and add this authorized redirect URI:
+
+\`\`\`text
+http://localhost:3000/api/auth/google/callback
+\`\`\`
+
+On production, also add:
+
+\`\`\`text
+https://your-domain.com/api/auth/google/callback
 \`\`\`
 
 ### **4. Run Development Server**

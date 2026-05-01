@@ -34,7 +34,6 @@ export default function EnhancedPromotionalModal({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -66,29 +65,15 @@ export default function EnhancedPromotionalModal({
     setLoading(true);
 
     try {
-      if (isLogin) {
-        const response = await axios.post("/api/auth/student/login", {
-          email,
-          password,
-        });
-        setSuccess("Login successful! Redirecting...");
-        setTimeout(() => {
-          onSuccess?.();
-          handleClose();
-        }, 1500);
-      } else {
-        const response = await axios.post("/api/auth/signup", {
-          role: "student",
-          name: email.split("@")[0],
-          email,
-          password,
-        });
-        setSuccess("Signup successful! Redirecting...");
-        setTimeout(() => {
-          onSuccess?.();
-          handleClose();
-        }, 1500);
-      }
+      await axios.post("/api/auth/student/login", {
+        email,
+        password,
+      });
+      setSuccess("Login successful! Redirecting...");
+      setTimeout(() => {
+        onSuccess?.();
+        handleClose();
+      }, 1500);
     } catch (err: any) {
       setError(err.response?.data?.error || "An error occurred. Please try again.");
     } finally {
@@ -291,21 +276,8 @@ export default function EnhancedPromotionalModal({
                       </button>
                     </form>
 
-                    {/* Toggle Auth Mode */}
-                    <p className="text-center text-xs sm:text-sm text-gray-600 mt-4">
-                      {isLogin ? "Don't have an account? " : "Already have an account? "}
-                      <button
-                        onClick={() => {
-                          setIsLogin(!isLogin);
-                          setError("");
-                          setSuccess("");
-                          setPassword("");
-                        }}
-                        disabled={loading}
-                        className="text-blue-600 hover:text-blue-700 font-semibold transition-colors disabled:text-gray-400"
-                      >
-                        {isLogin ? "Sign Up" : "Sign In"}
-                      </button>
+                    <p className="mt-4 text-center text-xs text-gray-600">
+                      Need access? Contact the school admin for your login email and temporary password.
                     </p>
                   </div>
 

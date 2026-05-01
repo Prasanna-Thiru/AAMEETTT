@@ -20,11 +20,17 @@ export default function ParentDashboardLayout({
     const checkAuth = async () => {
       try {
         const response = await axios.get("/api/auth/me");
-        if (response.data.success) {
+        if (response.data.success && response.data.data?.role === "parent") {
           setUser(response.data.data);
+        } else if (response.data.data?.role === "student") {
+          router.replace("/student/dashboard");
+        } else if (response.data.data?.role === "faculty") {
+          router.replace("/faculty/dashboard");
+        } else {
+          router.replace("/login?mode=login");
         }
       } catch (err) {
-        router.push("/login");
+        router.replace("/login?mode=login");
       } finally {
         setLoading(false);
       }
@@ -36,7 +42,7 @@ export default function ParentDashboardLayout({
   const handleLogout = async () => {
     try {
       await axios.post("/api/auth/logout");
-      router.push("/");
+      router.replace("/login?mode=login");
     } catch (err) {
       console.error("Logout failed:", err);
     }

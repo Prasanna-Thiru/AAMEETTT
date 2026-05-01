@@ -25,11 +25,29 @@ async function connectDB() {
     if (cached.conn) return cached.conn;
     if (!cached.promise) {
         cached.promise = __TURBOPACK__commonjs__external__mongoose__["default"].connect(MONGODB_URI, {
-            bufferCommands: false
+            bufferCommands: false,
+            maxPoolSize: 10,
+            serverSelectionTimeoutMS: 5000,
+            socketTimeoutMS: 45000
+        }).catch((error)=>{
+            console.error("❌ MongoDB connection failed:", {
+                message: error.message,
+                code: error.code,
+                name: error.name
+            });
+            cached.promise = null; // Reset promise to allow retry
+            throw new Error(`Database connection failed: ${error.message}`);
         });
     }
-    cached.conn = await cached.promise;
-    return cached.conn;
+    try {
+        cached.conn = await cached.promise;
+        console.log("✅ Connected to MongoDB");
+        return cached.conn;
+    } catch (error) {
+        console.error("❌ Failed to connect to MongoDB:", error.message);
+        cached.promise = null;
+        throw error;
+    }
 }
 
 })()),
@@ -152,9 +170,12 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$database$2f$models$2f$AdminU
 ;
 ;
 async function POST(req) {
+    let email = "";
     try {
         await (0, __TURBOPACK__imported__module__$5b$project$5d2f$database$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["connectDB"])();
-        const { email, password } = await req.json();
+        const body = await req.json();
+        email = String(body.email || "").toLowerCase().trim();
+        const password = String(body.password || "");
         if (!email || !password) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 success: false,
@@ -196,6 +217,11 @@ async function POST(req) {
         });
         return res;
     } catch (err) {
+        console.error("❌ Admin login error:", {
+            message: err.message || err,
+            email,
+            timestamp: new Date().toISOString()
+        });
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             success: false,
             error: "Server error."

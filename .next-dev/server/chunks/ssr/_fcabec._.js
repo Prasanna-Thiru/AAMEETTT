@@ -197,7 +197,7 @@ const metadata = {
     openGraph: {
         type: "website",
         locale: "en_IN",
-        url: ("TURBOPACK compile-time value", "https://mnrs.edu.in"),
+        url: ("TURBOPACK compile-time value", "http://localhost:3000"),
         siteName: "MNRS – Maharishi Vidya Mandir National Residential School",
         title: "MNRS – Maharishi Vidya Mandir National Residential School",
         description: "Admissions open 2027–2028 for LKG to Grade 7. CBSE curriculum, AI & Robotics Lab, world-class sports, and Consciousness-Based Education."

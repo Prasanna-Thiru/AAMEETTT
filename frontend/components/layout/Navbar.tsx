@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import type { IconType } from "react-icons";
 import { HiMenu, HiX } from "react-icons/hi";
-import { FaArrowRightToBracket, FaGraduationCap, FaPhone, FaUserPlus } from "react-icons/fa6";
+import { FaArrowRightToBracket, FaGraduationCap, FaPhone } from "react-icons/fa6";
 import {
   FaAddressBook,
   FaBookOpen,
@@ -24,6 +24,12 @@ type NavLink = {
   icon: IconType;
 };
 
+type PortalRole = "student" | "parent" | "faculty";
+
+type NavUser = {
+  role?: string;
+};
+
 const NAV_LINKS: NavLink[] = [
   { label: "Home", href: "/", icon: FaHome },
   { label: "About", href: "/about", icon: FaInfoCircle },
@@ -37,25 +43,49 @@ const NAV_LINKS: NavLink[] = [
 
 const HEADER_SCROLL_SHADOW = "0 2px 10px rgba(0, 0, 0, 0.08)";
 const PREFETCH_ROUTES = [...NAV_LINKS.map((link) => link.href), "/login"];
+const DASHBOARD_BY_ROLE: Record<PortalRole, string> = {
+  student: "/student/dashboard",
+  parent: "/parent/dashboard",
+  faculty: "/faculty/dashboard",
+};
+
+function getDashboardHref(user: NavUser | null) {
+  if (user?.role === "student" || user?.role === "parent" || user?.role === "faculty") {
+    return DASHBOARD_BY_ROLE[user.role];
+  }
+
+  return "/login";
+}
+
+function isPortalUser(user: NavUser | null) {
+  return user?.role === "student" || user?.role === "parent" || user?.role === "faculty";
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<NavUser | null>(null);
   const pathname = usePathname();
   const router = useRouter();
-
-  if (pathname?.startsWith("/admin")) return null;
+  const hidePublicChrome =
+    pathname?.startsWith("/admin") ||
+    pathname?.startsWith("/student/dashboard") ||
+    pathname?.startsWith("/parent/dashboard") ||
+    pathname?.startsWith("/faculty/dashboard");
+  const dashboardHref = getDashboardHref(user);
+  const showDashboardLink = isPortalUser(user);
 
   useEffect(() => {
     const checkAuth = async () => {
+      setUser(null);
+
       try {
         const res = await axios.get("/api/auth/me");
         if (res.data?.success) {
           setUser(res.data.data);
         }
       } catch (err) {
-        // user not logged in
+        setUser(null);
       }
     };
     checkAuth();
@@ -99,6 +129,10 @@ export default function Navbar() {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
+
+  if (hidePublicChrome) {
+    return null;
+  }
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -157,9 +191,9 @@ export default function Navbar() {
               Call Us
             </a>
 
-            {user ? (
+            {showDashboardLink ? (
               <Link
-                href="/parent/dashboard"
+                href={dashboardHref}
                 className="hidden items-center justify-center rounded-xl border border-brand-green/20 bg-white px-5 py-2.5 text-sm font-semibold text-brand-green transition-all duration-300 ease-in-out hover:border-brand-green hover:bg-brand-green hover:text-white lg:inline-flex"
               >
                 Dashboard
@@ -235,9 +269,9 @@ export default function Navbar() {
           </p>
 
           <div className="mt-4 grid grid-cols-2 gap-2">
-            {user ? (
+            {showDashboardLink ? (
               <Link
-                href="/parent/dashboard"
+                href={dashboardHref}
                 onClick={() => setMenuOpen(false)}
                 className="col-span-2 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-brand-gold px-3 py-2.5 text-[13px] font-semibold text-brand-dark transition-colors duration-200 hover:bg-brand-gold-light"
               >
@@ -253,14 +287,6 @@ export default function Navbar() {
                 >
                   <FaArrowRightToBracket className="text-xs" />
                   Login
-                </Link>
-                <Link
-                  href="/login?mode=signup"
-                  onClick={() => setMenuOpen(false)}
-                  className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-white/20 bg-white/10 px-3 py-2.5 text-[13px] font-semibold text-white transition-colors duration-200 hover:bg-white/15"
-                >
-                  <FaUserPlus className="text-xs" />
-                  Sign Up
                 </Link>
               </>
             )}

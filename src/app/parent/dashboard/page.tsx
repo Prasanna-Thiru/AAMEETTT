@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import ChangePasswordCard from "@/frontend/components/auth/ChangePasswordCard";
 
 export const metadata: Metadata = {
   title: "Parent Dashboard - Amet School",
@@ -48,6 +49,10 @@ export default function ParentDashboard() {
           Fees & Payments
         </h3>
         <p className="text-slate-600 text-sm">View fee status and payments</p>
+      </div>
+
+      <div className="lg:col-span-3">
+        <ChangePasswordCard />
       </div>
     </div>
   );

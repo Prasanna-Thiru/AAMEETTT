@@ -5,19 +5,16 @@ import Student from "@/database/models/Student";
 import Parent from "@/database/models/Parent";
 import FacultyLogin from "@/database/models/FacultyLogin";
 import { isStudentEmailAllowed } from "@/backend/lib/studentAccess";
+import { getAppBaseUrl, getGoogleRedirectUri } from "@/backend/lib/google-oauth";
 
 type UserRole = "student" | "parent" | "faculty";
-type GoogleIntent = "login" | "signup";
+type GoogleIntent = "login";
 
 const REDIRECT_MAP: Record<UserRole, string> = {
   student: "/student/dashboard",
   parent: "/parent/dashboard",
   faculty: "/faculty/dashboard",
 };
-
-function getBaseUrl(req: NextRequest) {
-  return process.env.NEXT_PUBLIC_SITE_URL || req.nextUrl.origin;
-}
 
 function setLoginCookies(res: NextResponse, token: string) {
   res.cookies.set("auth_token", token, {
@@ -37,7 +34,13 @@ function setLoginCookies(res: NextResponse, token: string) {
   });
 }
 
-function decodeState(state: string | null): { role: UserRole; intent: GoogleIntent } | null {
+function redirectWithClearedState(url: URL) {
+  const res = NextResponse.redirect(url);
+  res.cookies.delete("google_oauth_state");
+  return res;
+}
+
+function decodeState(state: string | null): { role: UserRole; intent: GoogleIntent; nonce: string } | null {
   if (!state) return null;
 
   try {
@@ -45,7 +48,9 @@ function decodeState(state: string | null): { role: UserRole; intent: GoogleInte
 
     if (
       ["student", "parent", "faculty"].includes(parsed.role) &&
-      ["login", "signup"].includes(parsed.intent)
+      parsed.intent === "login" &&
+      typeof parsed.nonce === "string" &&
+      parsed.nonce.length > 0
     ) {
       return parsed;
     }
@@ -72,7 +77,7 @@ async function findUser(role: UserRole, email: string) {
 export async function GET(req: NextRequest) {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
-  const baseUrl = getBaseUrl(req);
+  const baseUrl = getAppBaseUrl(req);
 
   if (!clientId || !clientSecret) {
     return NextResponse.redirect(new URL("/login?error=google-config", baseUrl));
@@ -85,8 +90,14 @@ export async function GET(req: NextRequest) {
     return NextResponse.redirect(new URL("/login?error=google-callback", baseUrl));
   }
 
+  if (req.cookies.get("google_oauth_state")?.value !== decodedState.nonce) {
+    const res = NextResponse.redirect(new URL("/login?error=google-state", baseUrl));
+    res.cookies.delete("google_oauth_state");
+    return res;
+  }
+
   try {
-    const redirectUri = `${baseUrl}/api/auth/google/callback`;
+    const redirectUri = getGoogleRedirectUri(req);
     const tokenResponse = await fetch("https://oauth2.googleapis.com/token", {
       method: "POST",
       headers: {
@@ -102,70 +113,74 @@ export async function GET(req: NextRequest) {
       cache: "no-store",
     });
 
-    if (!tokenResponse.ok) {
-      return NextResponse.redirect(new URL("/login?error=google-token", baseUrl));
-    }
+    if (!tokenResponse.ok) return redirectWithClearedState(new URL("/login?error=google-token", baseUrl));
 
     const tokenData = await tokenResponse.json();
     const accessToken = tokenData.access_token as string | undefined;
 
-    if (!accessToken) {
-      return NextResponse.redirect(new URL("/login?error=google-token", baseUrl));
-    }
+    if (!accessToken) return redirectWithClearedState(new URL("/login?error=google-token", baseUrl));
 
     const profileResponse = await fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
       headers: { Authorization: `Bearer ${accessToken}` },
       cache: "no-store",
     });
 
-    if (!profileResponse.ok) {
-      return NextResponse.redirect(new URL("/login?error=google-profile", baseUrl));
-    }
+    if (!profileResponse.ok) return redirectWithClearedState(new URL("/login?error=google-profile", baseUrl));
 
     const profile = await profileResponse.json();
     const email = String(profile.email || "").toLowerCase().trim();
     const name = String(profile.name || "").trim();
 
-    if (!email) {
-      return NextResponse.redirect(new URL("/login?error=google-profile", baseUrl));
-    }
+    if (!email) return redirectWithClearedState(new URL("/login?error=google-profile", baseUrl));
 
-    await connectDB();
+    try {
+      await connectDB();
+    } catch (err: any) {
+      console.error("Google OAuth database connection failed:", err?.message || err);
+      return redirectWithClearedState(new URL("/login?error=google-database", baseUrl));
+    }
 
     if (decodedState.role === "student" && !(await isStudentEmailAllowed(email))) {
       const deniedUrl = new URL("/login", baseUrl);
       deniedUrl.searchParams.set("role", "student");
       deniedUrl.searchParams.set("error", "student-not-approved");
-      return NextResponse.redirect(deniedUrl);
+      return redirectWithClearedState(deniedUrl);
     }
 
     const user = await findUser(decodedState.role, email);
 
     if (user) {
-      const token = signToken({
-        id: user._id.toString(),
-        email,
-        role: decodedState.role,
-      });
+      let token: string;
+
+      try {
+        token = signToken({
+          id: user._id.toString(),
+          email,
+          role: decodedState.role,
+        });
+      } catch (err) {
+        console.error("Google OAuth session creation failed:", err);
+        return redirectWithClearedState(new URL("/login?error=google-session", baseUrl));
+      }
 
       const res = NextResponse.redirect(new URL(REDIRECT_MAP[decodedState.role], baseUrl));
+      res.cookies.delete("google_oauth_state");
       setLoginCookies(res, token);
       return res;
     }
 
-    const signupUrl = new URL("/login", baseUrl);
-    signupUrl.searchParams.set("mode", "signup");
-    signupUrl.searchParams.set("role", decodedState.role);
-    signupUrl.searchParams.set("provider", "google");
-    signupUrl.searchParams.set("email", email);
-    signupUrl.searchParams.set("name", name);
-    signupUrl.searchParams.set(
-      "notice",
-      decodedState.intent === "login" ? "google-no-account" : "google-prefill"
-    );
+    const noAccountUrl = new URL("/login", baseUrl);
+    noAccountUrl.searchParams.set("mode", "login");
+    noAccountUrl.searchParams.set("role", decodedState.role);
+    noAccountUrl.searchParams.set("error", "google-no-account");
 
-    return NextResponse.redirect(signupUrl);
-  } catch {
-    return NextResponse.redirect(new URL("/login?error=google-unavailable", baseUrl));
+    return redirectWithClearedState(noAccountUrl);
+  } catch (err) {
+    console.error("❌ Google OAuth callback failed:", {
+      message: err instanceof Error ? err.message : err,
+      code: (err as any)?.code,
+      timestamp: new Date().toISOString(),
+    });
+    return redirectWithClearedState(new URL("/login?error=google-unavailable", baseUrl));
   }
 }

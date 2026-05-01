@@ -70,7 +70,7 @@ export default function CreateUserPage() {
 
     try {
       await axios.post("/api/admin/student-access", accessForm);
-      setAccessMessage({ type: "success", text: "Student email approved for signup and login." });
+      setAccessMessage({ type: "success", text: "Student email approved for portal login." });
       setAccessForm({ email: "", note: "" });
       await loadStudentAccess();
     } catch (err: any) {
@@ -139,7 +139,7 @@ export default function CreateUserPage() {
             <h2 className="font-serif text-2xl font-bold">Student Login Access</h2>
           </div>
           <p className="mt-2 text-sm text-blue-50">
-            Approve student email addresses before they can sign up, use Google login, or access the student portal.
+            Approve student email addresses before they can use Google login or access the student portal.
           </p>
         </div>
 
@@ -198,7 +198,7 @@ export default function CreateUserPage() {
                     <p className="mt-1 text-xs text-gray-500">
                       {item.student
                         ? `${item.student.name} · ${item.student.rollNumber} · ${item.student.class}`
-                        : item.note || "Waiting for student signup"}
+                        : item.note || "Waiting for admin-created student account"}
                     </p>
                   </div>
                   <div className="flex items-center gap-3">

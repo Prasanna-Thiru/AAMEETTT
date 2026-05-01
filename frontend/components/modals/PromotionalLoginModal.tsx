@@ -19,7 +19,6 @@ export default function PromotionalLoginModal({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -51,29 +50,15 @@ export default function PromotionalLoginModal({
     setLoading(true);
 
     try {
-      if (isLogin) {
-        const response = await axios.post("/api/auth/student/login", {
-          email,
-          password,
-        });
-        setSuccess("Login successful! Redirecting...");
-        setTimeout(() => {
-          onSuccess?.();
-          handleClose();
-        }, 1500);
-      } else {
-        const response = await axios.post("/api/auth/signup", {
-          role: "student",
-          name: email.split("@")[0],
-          email,
-          password,
-        });
-        setSuccess("Signup successful! Redirecting...");
-        setTimeout(() => {
-          onSuccess?.();
-          handleClose();
-        }, 1500);
-      }
+      await axios.post("/api/auth/student/login", {
+        email,
+        password,
+      });
+      setSuccess("Login successful! Redirecting...");
+      setTimeout(() => {
+        onSuccess?.();
+        handleClose();
+      }, 1500);
     } catch (err: any) {
       setError(err.response?.data?.error || "An error occurred. Please try again.");
     } finally {
@@ -188,12 +173,10 @@ export default function PromotionalLoginModal({
                     {/* Heading */}
                     <div className="mb-4 sm:mb-6">
                       <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
-                        {isLogin ? "Welcome Back" : "Start Your Journey"}
+                        Welcome Back
                       </h2>
                       <p className="text-sm sm:text-base text-gray-600">
-                        {isLogin
-                          ? "Access your academic dashboard and continue learning"
-                          : "Join thousands of students learning with us today"}
+                        Access your academic dashboard with school-issued credentials.
                       </p>
                     </div>
 
@@ -277,7 +260,7 @@ export default function PromotionalLoginModal({
                         ) : (
                           <>
                             <span className="text-sm sm:text-base">
-                              {isLogin ? "Sign In to Dashboard" : "Create Your Account"}
+                              Sign In to Dashboard
                             </span>
                             <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                           </>
@@ -285,21 +268,8 @@ export default function PromotionalLoginModal({
                       </button>
                     </form>
 
-                    {/* Toggle Auth Mode */}
-                    <p className="text-center text-xs sm:text-sm text-gray-600 mt-4">
-                      {isLogin ? "Don't have an account? " : "Already have an account? "}
-                      <button
-                        onClick={() => {
-                          setIsLogin(!isLogin);
-                          setError("");
-                          setSuccess("");
-                          setPassword("");
-                        }}
-                        disabled={loading}
-                        className="text-blue-600 hover:text-blue-700 font-semibold transition-colors disabled:text-gray-400"
-                      >
-                        {isLogin ? "Sign Up" : "Sign In"}
-                      </button>
+                    <p className="mt-4 text-center text-xs text-gray-600">
+                      Need access? Contact the school admin for your login email and temporary password.
                     </p>
                   </div>
 
