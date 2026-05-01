@@ -1,0 +1,32 @@
+{
+  "pages": {
+    "/admin/admissions/page": [
+      "static/chunks/_f9e616._.js",
+      "static/chunks/node_modules_next_f67183._.js",
+      "static/chunks/node_modules_axios_lib_999991._.js",
+      "static/chunks/node_modules_react-icons_hi_index_esm_f90da2.js",
+      "static/chunks/node_modules_react-icons_fa6_index_esm_c0ad93.js",
+      "static/chunks/node_modules_react-icons_fa_index_esm_cf819b.js",
+      "static/chunks/node_modules_react-icons_io5_index_esm_de12ef.js",
+      "static/chunks/node_modules_react-icons_lib_esm_440277._.js",
+      "static/chunks/node_modules_framer-motion_dist_es_f23ff9._.js",
+      "static/chunks/node_modules_802891._.js",
+      "static/chunks/frontend_styles_globals_02858d.css",
+      "static/chunks/src_app_layout_tsx_7c78a2._.js",
+      "static/chunks/src_app_admin_layout_tsx_09df4f._.js",
+      "static/chunks/src_app_admin_layout_tsx_6f8c7b._.js",
+      "static/chunks/_109bee._.js",
+      "static/chunks/src_app_admin_admissions_page_tsx_b37f84._.js",
+      "static/chunks/node_modules_next_dist_compiled_react_a1d82d._.js",
+      "static/chunks/node_modules_next_dist_compiled_react-dom_cjs_react-dom_development_c9a189.js",
+      "static/chunks/node_modules_next_dist_compiled_react-dom_87a050._.js",
+      "static/chunks/node_modules_next_dist_compiled_e13b54._.js",
+      "static/chunks/node_modules_next_dist_client_90f538._.js",
+      "static/chunks/node_modules_next_dist_091837._.js",
+      "static/chunks/node_modules_@swc_helpers_cjs_00636a._.js",
+      "static/chunks/[turbopack]_dev_client_hmr-client_ts_679dd5._.js",
+      "static/chunks/node_modules_next_dist_esm_build_templates_app-page_ab6506.js",
+      "static/chunks/node_modules_next_dist_esm_build_templates_app-page_8f7f4e.js"
+    ]
+  }
+}

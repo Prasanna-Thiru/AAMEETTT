@@ -1,0 +1,214 @@
+module.exports = {
+
+"[project]/database/lib/db.ts [app-route] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__ }) => (() => {
+"use strict";
+
+__turbopack_esm__({
+    "connectDB": ()=>connectDB
+});
+var __TURBOPACK__commonjs__external__mongoose__ = __turbopack_external_require__("mongoose", true);
+"__TURBOPACK__ecmascript__hoisting__location__";
+;
+const MONGODB_URI = process.env.MONGODB_URI;
+if (!MONGODB_URI) {
+    throw new Error("Please define MONGODB_URI in .env.local");
+}
+// Cached connection to avoid re-connecting on every hot reload in dev
+let cached = global.mongoose;
+if (!cached) {
+    cached = global.mongoose = {
+        conn: null,
+        promise: null
+    };
+}
+async function connectDB() {
+    if (cached.conn) return cached.conn;
+    if (!cached.promise) {
+        cached.promise = __TURBOPACK__commonjs__external__mongoose__["default"].connect(MONGODB_URI, {
+            bufferCommands: false
+        });
+    }
+    cached.conn = await cached.promise;
+    return cached.conn;
+}
+
+})()),
+"[project]/backend/lib/auth.ts [app-route] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__ }) => (() => {
+"use strict";
+
+__turbopack_esm__({
+    "getAdminTokenFromRequest": ()=>getAdminTokenFromRequest,
+    "getAnyTokenFromRequest": ()=>getAnyTokenFromRequest,
+    "getUserTokenFromRequest": ()=>getUserTokenFromRequest,
+    "requireAdminAuth": ()=>requireAdminAuth,
+    "signToken": ()=>signToken,
+    "verifyToken": ()=>verifyToken
+});
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jsonwebtoken$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/jsonwebtoken/index.js [app-route] (ecmascript)");
+"__TURBOPACK__ecmascript__hoisting__location__";
+;
+const JWT_SECRET = process.env.JWT_SECRET;
+function signToken(payload) {
+    return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jsonwebtoken$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].sign(payload, JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRES_IN || "7d"
+    });
+}
+function verifyToken(token) {
+    return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jsonwebtoken$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].verify(token, JWT_SECRET);
+}
+function getAdminTokenFromRequest(req) {
+    const authHeader = req.headers.get("authorization");
+    if (authHeader?.startsWith("Bearer ")) return authHeader.slice(7);
+    return req.cookies.get("admin_token")?.value ?? null;
+}
+function getUserTokenFromRequest(req) {
+    const authHeader = req.headers.get("authorization");
+    if (authHeader?.startsWith("Bearer ")) return authHeader.slice(7);
+    return req.cookies.get("auth_token")?.value ?? null;
+}
+function getAnyTokenFromRequest(req) {
+    return getUserTokenFromRequest(req) ?? getAdminTokenFromRequest(req);
+}
+function requireAdminAuth(req) {
+    const token = getAdminTokenFromRequest(req);
+    if (!token) throw new Error("Unauthorized: No token provided");
+    const payload = verifyToken(token);
+    if (![
+        "superadmin",
+        "editor"
+    ].includes(payload.role)) {
+        throw new Error("Unauthorized: Admin access required");
+    }
+    return payload;
+}
+
+})()),
+"[project]/database/models/GalleryItem.ts [app-route] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__ }) => (() => {
+"use strict";
+
+__turbopack_esm__({
+    "default": ()=>__TURBOPACK__default__export__
+});
+var __TURBOPACK__commonjs__external__mongoose__ = __turbopack_external_require__("mongoose", true);
+"__TURBOPACK__ecmascript__hoisting__location__";
+;
+const GallerySchema = new __TURBOPACK__commonjs__external__mongoose__["Schema"]({
+    title: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    category: {
+        type: String,
+        enum: [
+            "Campus",
+            "Classrooms",
+            "Sports",
+            "Events",
+            "Residential"
+        ],
+        required: true
+    },
+    mediaType: {
+        type: String,
+        enum: [
+            "image",
+            "video"
+        ],
+        required: true
+    },
+    url: {
+        type: String,
+        required: true
+    },
+    thumbnailUrl: {
+        type: String
+    },
+    description: {
+        type: String,
+        trim: true
+    }
+}, {
+    timestamps: true
+});
+const GalleryItem = __TURBOPACK__commonjs__external__mongoose__["default"].models.GalleryItem || __TURBOPACK__commonjs__external__mongoose__["default"].model("GalleryItem", GallerySchema);
+const __TURBOPACK__default__export__ = GalleryItem;
+
+})()),
+"[project]/backend/api/gallery/[id]/route.ts [app-route] (ecmascript)": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__ }) => (() => {
+"use strict";
+
+__turbopack_esm__({
+    "DELETE": ()=>DELETE
+});
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/server.js [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$database$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/database/lib/db.ts [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$lib$2f$auth$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/backend/lib/auth.ts [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$database$2f$models$2f$GalleryItem$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/database/models/GalleryItem.ts [app-route] (ecmascript)");
+"__TURBOPACK__ecmascript__hoisting__location__";
+;
+;
+;
+;
+async function DELETE(req, { params }) {
+    try {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$lib$2f$auth$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["requireAdminAuth"])(req);
+        await (0, __TURBOPACK__imported__module__$5b$project$5d2f$database$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["connectDB"])();
+        await __TURBOPACK__imported__module__$5b$project$5d2f$database$2f$models$2f$GalleryItem$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].findByIdAndDelete(params.id);
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+            success: true,
+            message: "Deleted."
+        });
+    } catch (err) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+            success: false,
+            error: err.message
+        }, {
+            status: err.message?.includes("Unauthorized") ? 401 : 500
+        });
+    }
+}
+
+})()),
+"[project]/src/app/api/gallery/[id]/route.ts [app-route] (ecmascript) <locals>": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__ }) => (() => {
+"use strict";
+
+__turbopack_esm__({});
+;
+
+})()),
+"[project]/src/app/api/gallery/[id]/route.ts [app-route] (ecmascript) <module evaluation>": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__ }) => (() => {
+"use strict";
+
+__turbopack_esm__({});
+var __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$api$2f$gallery$2f5b$id$5d2f$route$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/backend/api/gallery/[id]/route.ts [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$api$2f$gallery$2f5b$id$5d2f$route$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_import__("[project]/src/app/api/gallery/[id]/route.ts [app-route] (ecmascript) <locals>");
+"__TURBOPACK__ecmascript__hoisting__location__";
+
+})()),
+"[project]/src/app/api/gallery/[id]/route.ts [app-route] (ecmascript) <exports>": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__ }) => (() => {
+"use strict";
+
+__turbopack_esm__({
+    "DELETE": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$api$2f$gallery$2f5b$id$5d2f$route$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["DELETE"]
+});
+var __TURBOPACK__imported__module__$5b$project$5d2f$backend$2f$api$2f$gallery$2f5b$id$5d2f$route$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/backend/api/gallery/[id]/route.ts [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$api$2f$gallery$2f5b$id$5d2f$route$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_import__("[project]/src/app/api/gallery/[id]/route.ts [app-route] (ecmascript) <locals>");
+"__TURBOPACK__ecmascript__hoisting__location__";
+
+})()),
+"[project]/src/app/api/gallery/[id]/route.ts [app-route] (ecmascript) <facade>": (({ r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__ }) => (() => {
+"use strict";
+
+__turbopack_esm__({
+    "DELETE": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$api$2f$gallery$2f5b$id$5d2f$route$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$exports$3e$__["DELETE"]
+});
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$api$2f$gallery$2f5b$id$5d2f$route$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$module__evaluation$3e$__ = __turbopack_import__("[project]/src/app/api/gallery/[id]/route.ts [app-route] (ecmascript) <module evaluation>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$api$2f$gallery$2f5b$id$5d2f$route$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$exports$3e$__ = __turbopack_import__("[project]/src/app/api/gallery/[id]/route.ts [app-route] (ecmascript) <exports>");
+"__TURBOPACK__ecmascript__hoisting__location__";
+
+})()),
+
+};
+
+//# sourceMappingURL=_fa0f34._.js.map

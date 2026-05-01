@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 5, "column": 0}, "map": {"version":3,"sources":["/turbopack/[project]/backend/api/auth/logout/route.ts"],"sourcesContent":["import { NextResponse } from \"next/server\";\n\nexport async function POST() {\n  const res = NextResponse.json({\n    success: true,\n    message: \"Logged out successfully\",\n  });\n\n  res.cookies.set(\"auth_token\", \"\", {\n    httpOnly: true,\n    secure: process.env.NODE_ENV === \"production\",\n    sameSite: \"lax\",\n    maxAge: 0,\n    path: \"/\",\n  });\n\n  res.cookies.set(\"admin_token\", \"\", { maxAge: 0, path: \"/\" });\n\n  return res;\n}\n"],"names":[],"mappings":";;;;;;AAEO,eAAe;IACpB,MAAM,MAAM,gIAAA,CAAA,eAAY,CAAC,IAAI,CAAC;QAC5B,SAAS;QACT,SAAS;IACX;IAEA,IAAI,OAAO,CAAC,GAAG,CAAC,cAAc,IAAI;QAChC,UAAU;QACV,QAAQ,oDAAyB;QACjC,UAAU;QACV,QAAQ;QACR,MAAM;IACR;IAEA,IAAI,OAAO,CAAC,GAAG,CAAC,eAAe,IAAI;QAAE,QAAQ;QAAG,MAAM;IAAI;IAE1D,OAAO;AACT"}},
+    {"offset": {"line": 29, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 34, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
+    {"offset": {"line": 36, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}
