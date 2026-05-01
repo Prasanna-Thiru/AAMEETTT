@@ -5,6 +5,7 @@ import Student from "@/database/models/Student";
 import Parent from "@/database/models/Parent";
 import Faculty from "@/database/models/Faculty";
 import FacultyLogin from "@/database/models/FacultyLogin";
+import StudentAccess from "@/database/models/StudentAccess";
 
 type UserRole = "student" | "parent" | "faculty";
 
@@ -66,6 +67,18 @@ export async function POST(req: NextRequest) {
       }
 
       const user = await Student.create({ email, password, name, rollNumber, class: className, parentEmail, phone });
+      await StudentAccess.updateOne(
+        { email },
+        {
+          $setOnInsert: {
+            createdBy: decodedAdmin.id,
+            createdByEmail: decodedAdmin.email,
+            note: "Approved while creating student account.",
+          },
+          $set: { usedAt: new Date() },
+        },
+        { upsert: true }
+      );
       return NextResponse.json({ success: true, data: { name: user.name, email: user.email, role } }, { status: 201 });
     }
 

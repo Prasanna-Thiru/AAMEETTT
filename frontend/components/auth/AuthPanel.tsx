@@ -76,6 +76,7 @@ const QUERY_MESSAGES: Record<string, string> = {
   "google-unavailable": "Google sign-in is temporarily unavailable. Please try again shortly.",
   "google-no-account": "We found your Google account, but not a matching portal account. Finish signup below.",
   "google-prefill": "Your Google details are ready. Complete the remaining fields to create your account.",
+  "student-not-approved": "This student email is not approved for portal access yet. Please contact the school office.",
 };
 
 function isUserRole(value: string | null): value is UserRole {
@@ -728,7 +729,199 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
 
   if (isPage) {
     return (
-      <div className="grid bg-white lg:min-h-[640px] lg:grid-cols-[0.9fr_1.22fr]">
+      <>
+      <div className="lg:hidden">
+        <div className="relative mx-auto min-h-[42rem] overflow-hidden rounded-[1.85rem] bg-white shadow-[0_28px_80px_rgba(33,71,135,0.22)]">
+          <div className="relative h-[16.25rem] overflow-hidden bg-[linear-gradient(145deg,#5f7fd0_0%,#7f9de9_54%,#d8e8ff_100%)] px-5 pt-5 text-white">
+            <div className="absolute -left-8 -top-8 h-28 w-28 rounded-full bg-[radial-gradient(circle_at_30%_30%,#385ed0_0%,#172e69_72%)] shadow-[0_18px_40px_rgba(16,38,89,0.35)]" />
+            <div className="absolute -right-4 -top-8 h-36 w-36 rounded-full bg-[radial-gradient(circle_at_25%_20%,#ffffff_0%,#e9f2ff_42%,rgba(255,255,255,0)_70%)]" />
+            <div className="absolute right-12 top-14 h-28 w-28 rounded-full bg-[radial-gradient(circle_at_32%_28%,#9bc4ff_0%,#5d8ee8_56%,#4568d7_100%)] opacity-95" />
+            <div className="absolute right-20 top-[7.5rem] h-16 w-16 rounded-full bg-[radial-gradient(circle_at_35%_30%,#ffffff_0%,#9dc4ff_42%,#5a86de_100%)] shadow-[0_14px_30px_rgba(40,80,160,0.28)]" />
+            <div className="absolute -bottom-14 -left-12 h-64 w-64 rounded-[44%] bg-[linear-gradient(145deg,rgba(21,63,160,0.82),rgba(9,24,62,0.96))]" />
+            <div className="absolute bottom-[-3rem] left-16 h-72 w-56 rotate-[-22deg] rounded-[48%] bg-white/22" />
+            <div className="absolute bottom-4 left-5 h-14 w-14 rounded-full bg-[radial-gradient(circle_at_35%_30%,#ffffff_0%,#9dc4ff_52%,#3468ce_100%)] shadow-[0_14px_28px_rgba(13,36,86,0.22)]" />
+            <div className="absolute bottom-[-1.8rem] left-[8.5rem] h-28 w-28 rounded-full bg-[radial-gradient(circle_at_38%_28%,#2f64d9_0%,#12285d_82%)] shadow-[0_22px_44px_rgba(10,26,65,0.35)]" />
+
+            <div className="relative z-10 flex items-center justify-between">
+              <Link href="/" className="inline-flex items-center gap-2 rounded-full bg-black/10 px-3 py-2 text-xs font-semibold text-white backdrop-blur-md">
+                <span aria-hidden="true">‹</span>
+                Back
+              </Link>
+              <span className="rounded-full bg-white/18 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.22em] text-white/85 backdrop-blur-md">
+                MNRS
+              </span>
+            </div>
+
+            <div className="relative z-10 mt-16 max-w-[15rem]">
+              <h2 className="text-[2rem] font-bold leading-tight tracking-normal text-white">
+                {mode === "signup" ? "Get Started" : "Welcome back"}
+              </h2>
+              <p className="mt-2 text-sm font-medium leading-5 text-white/88">
+                {mode === "signup"
+                  ? `Create your ${selectedRole.label.toLowerCase()} portal access.`
+                  : `Sign in to your ${selectedRole.label.toLowerCase()} portal.`}
+              </p>
+            </div>
+          </div>
+
+          <div className="relative z-20 -mt-8 rounded-t-[2rem] bg-white px-5 pb-7 pt-7">
+            <div className="mx-auto max-w-sm">
+              <div className="grid grid-cols-3 gap-2 rounded-2xl bg-[#eef4ff] p-1.5">
+                {ROLE_OPTIONS.map((option) => {
+                  const Icon = option.icon;
+                  const active = option.id === role;
+
+                  return (
+                    <button
+                      key={`${option.id}-mobile-role`}
+                      type="button"
+                      onClick={() => {
+                        setRole(option.id);
+                        resetFeedback();
+                      }}
+                      className={`flex h-10 items-center justify-center gap-1.5 rounded-xl text-xs font-bold transition-all ${
+                        active ? "bg-white text-[#3268d6] shadow-sm" : "text-[#6a7c9f]"
+                      }`}
+                    >
+                      <Icon className="text-[13px]" />
+                      {option.label.slice(0, 3)}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="mt-5 flex items-center justify-between">
+                <div className="inline-flex rounded-full bg-[#f1f5fb] p-1">
+                  <button
+                    type="button"
+                    onClick={() => switchMode("login")}
+                    className={`rounded-full px-4 py-2 text-xs font-bold transition-colors ${
+                      mode === "login" ? "bg-[#3f6fd2] text-white" : "text-[#64748b]"
+                    }`}
+                  >
+                    Sign in
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => switchMode("signup")}
+                    className={`rounded-full px-4 py-2 text-xs font-bold transition-colors ${
+                      mode === "signup" ? "bg-[#3f6fd2] text-white" : "text-[#64748b]"
+                    }`}
+                  >
+                    Sign up
+                  </button>
+                </div>
+
+                {mode !== "forgot" && mode !== "reset" ? (
+                  <button
+                    type="button"
+                    onClick={() => switchMode("forgot")}
+                    className="text-xs font-bold text-[#3268d6]"
+                  >
+                    Forgot?
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => switchMode("login")}
+                    className="text-xs font-bold text-[#3268d6]"
+                  >
+                    Back
+                  </button>
+                )}
+              </div>
+
+              <div className="mt-6 text-center">
+                <h3 className="text-[1.75rem] font-bold leading-tight tracking-normal text-[#3268d6]">
+                  {mode === "signup" ? "Get Started" : mode === "login" ? "Welcome back" : MODE_LABELS[mode]}
+                </h3>
+                <p className="mx-auto mt-2 max-w-[17rem] text-xs leading-5 text-[#6d7c93]">
+                  {mode === "signup"
+                    ? `Use an approved email to create your ${selectedRole.label.toLowerCase()} profile.`
+                    : pageFormCopy[mode]}
+                </p>
+              </div>
+
+              <AnimatePresence initial={false}>
+                {error ? (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    className="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+                  >
+                    {error}
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+
+              <AnimatePresence initial={false}>
+                {success ? (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    className="mt-4 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700"
+                  >
+                    {success}
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+
+              {providerHint ? (
+                <div className="mt-4 rounded-2xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-700">
+                  {providerHint}
+                </div>
+              ) : null}
+
+              <motion.div
+                key={`mobile-${mode}-${role}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.22 }}
+                className="mt-5"
+              >
+                {mode === "login" && renderLoginForm()}
+                {mode === "signup" && renderSignupForm()}
+                {mode === "forgot" && renderForgotForm()}
+                {mode === "reset" && renderResetForm()}
+              </motion.div>
+
+              {(mode === "login" || mode === "signup") ? (
+                <>
+                  <div className="my-5 flex items-center gap-3">
+                    <div className="h-px flex-1 bg-[#e7edf7]" />
+                    <span className="text-[11px] font-semibold text-[#9aa8bd]">Sign in with</span>
+                    <div className="h-px flex-1 bg-[#e7edf7]" />
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={handleGoogleContinue}
+                    className="flex w-full items-center justify-center gap-3 rounded-[18px] border border-[#dbe5f4] bg-white px-4 py-3.5 text-sm font-bold text-[#22314a] shadow-[0_10px_28px_rgba(38,86,168,0.08)] transition-colors hover:border-[#3268d6] hover:text-[#3268d6]"
+                  >
+                    <FcGoogle className="text-xl" />
+                    Continue with Google
+                  </button>
+
+                  <p className="mt-4 text-center text-xs leading-5 text-[#7b8798]">
+                    {mode === "signup" ? "Already have an account? " : "Don't have an account? "}
+                    <button
+                      type="button"
+                      onClick={() => switchMode(mode === "signup" ? "login" : "signup")}
+                      className="font-bold text-[#3268d6]"
+                    >
+                      {mode === "signup" ? "Sign in" : "Sign up"}
+                    </button>
+                  </p>
+                </>
+              ) : null}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="hidden bg-white lg:grid lg:min-h-[640px] lg:grid-cols-[0.9fr_1.22fr]">
         <div className="relative overflow-hidden bg-[linear-gradient(180deg,#38BDF8_0%,#1976D2_42%,#0D47A1_100%)] px-6 py-7 text-white sm:px-8 sm:py-8 lg:flex lg:flex-col lg:justify-between lg:px-10 lg:py-10">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.28),transparent_34%)]" />
           <div className="absolute right-[-2.5rem] top-10 h-36 w-36 rounded-full bg-white/14 blur-2xl" />
@@ -975,6 +1168,7 @@ export default function AuthPanel({ variant = "page", onSuccess }: AuthPanelProp
           </div>
         </div>
       </div>
+      </>
     );
   }
 

@@ -6,7 +6,7 @@ import AuthPanel from "./AuthPanel";
 
 export default function LoginForm() {
   return (
-    <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top,#dff4ff_0%,#eef6ff_38%,#f8fbff_100%)] pb-10 pt-24 sm:pt-28 lg:pt-32">
+    <section className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,#dfeaff_0%,#eef5ff_42%,#f8fbff_100%)] pb-8 pt-20 sm:pt-28 lg:pb-10 lg:pt-32">
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           animate={{ scale: [1, 1.12, 1], opacity: [0.28, 0.42, 0.28] }}
@@ -31,7 +31,7 @@ export default function LoginForm() {
           initial={{ opacity: 0, y: 24, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="w-full max-w-[1180px] overflow-hidden rounded-[34px] border border-white/80 bg-white shadow-[0_40px_140px_rgba(7,24,41,0.18)]"
+          className="w-full max-w-[27rem] overflow-visible border-0 bg-transparent shadow-none lg:max-w-[1180px] lg:overflow-hidden lg:rounded-[34px] lg:border lg:border-white/80 lg:bg-white lg:shadow-[0_40px_140px_rgba(7,24,41,0.18)]"
         >
           <Suspense fallback={null}>
             <AuthPanel variant="page" />

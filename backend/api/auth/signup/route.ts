@@ -5,6 +5,7 @@ import Student from "@/database/models/Student";
 import Parent from "@/database/models/Parent";
 import Faculty from "@/database/models/Faculty";
 import FacultyLogin from "@/database/models/FacultyLogin";
+import { isStudentEmailAllowed, markStudentEmailUsed } from "@/backend/lib/studentAccess";
 
 type UserRole = "student" | "parent" | "faculty";
 
@@ -74,6 +75,13 @@ export async function POST(req: NextRequest) {
       const parentEmail = body.parentEmail ? String(body.parentEmail).toLowerCase().trim() : "";
       const phone = body.phone ? String(body.phone).trim() : "";
 
+      if (!(await isStudentEmailAllowed(email))) {
+        return NextResponse.json(
+          { success: false, error: "This student email is not approved for portal access yet. Please contact the school office." },
+          { status: 403 }
+        );
+      }
+
       if (!rollNumber || !className) {
         return NextResponse.json(
           { success: false, error: "Roll number and class are required for student signup." },
@@ -101,6 +109,7 @@ export async function POST(req: NextRequest) {
         parentEmail,
         phone,
       });
+      await markStudentEmailUsed(email);
 
       const token = signToken({ id: user._id.toString(), email: user.email, role });
       const res = NextResponse.json(

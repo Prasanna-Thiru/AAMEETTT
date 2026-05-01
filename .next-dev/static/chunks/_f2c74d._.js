@@ -107,7 +107,8 @@ const QUERY_MESSAGES = {
     "google-profile": "We could not read your Google profile. Please try again.",
     "google-unavailable": "Google sign-in is temporarily unavailable. Please try again shortly.",
     "google-no-account": "We found your Google account, but not a matching portal account. Finish signup below.",
-    "google-prefill": "Your Google details are ready. Complete the remaining fields to create your account."
+    "google-prefill": "Your Google details are ready. Complete the remaining fields to create your account.",
+    "student-not-approved": "This student email is not approved for portal access yet. Please contact the school office."
 };
 function isUserRole(value) {
     return value === "student" || value === "parent" || value === "faculty";
@@ -318,7 +319,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                             children: "Email Address"
                         }, void 0, false, {
                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 323,
+                            lineNumber: 324,
                             columnNumber: 9
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -328,7 +329,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     className: "shrink-0 text-blue-500"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 325,
+                                    lineNumber: 326,
                                     columnNumber: 11
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -340,19 +341,19 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     className: textInputClass
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 326,
+                                    lineNumber: 327,
                                     columnNumber: 11
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 324,
+                            lineNumber: 325,
                             columnNumber: 9
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                    lineNumber: 322,
+                    lineNumber: 323,
                     columnNumber: 7
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -363,7 +364,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                             children: "Password"
                         }, void 0, false, {
                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 338,
+                            lineNumber: 339,
                             columnNumber: 9
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -373,7 +374,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     className: "shrink-0 text-blue-500"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 340,
+                                    lineNumber: 341,
                                     columnNumber: 11
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -385,7 +386,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     className: textInputClass
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 341,
+                                    lineNumber: 342,
                                     columnNumber: 11
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -395,28 +396,28 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     "aria-label": showLoginPassword ? "Hide password" : "Show password",
                                     children: showLoginPassword ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa6$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaEyeSlash"], {}, void 0, false, {
                                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                        lineNumber: 355,
+                                        lineNumber: 356,
                                         columnNumber: 34
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa6$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaEye"], {}, void 0, false, {
                                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                        lineNumber: 355,
+                                        lineNumber: 356,
                                         columnNumber: 51
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 349,
+                                    lineNumber: 350,
                                     columnNumber: 11
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 339,
+                            lineNumber: 340,
                             columnNumber: 9
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                    lineNumber: 337,
+                    lineNumber: 338,
                     columnNumber: 7
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -432,19 +433,19 @@ function AuthPanel({ variant = "page", onSuccess }) {
                             className: "text-sm"
                         }, void 0, false, {
                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 367,
+                            lineNumber: 368,
                             columnNumber: 9
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                    lineNumber: 360,
+                    lineNumber: 361,
                     columnNumber: 7
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-            lineNumber: 321,
+            lineNumber: 322,
             columnNumber: 5
         }, this);
     const renderForgotForm = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -459,7 +460,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                             children: "Registered Email"
                         }, void 0, false, {
                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 375,
+                            lineNumber: 376,
                             columnNumber: 9
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -469,7 +470,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     className: "shrink-0 text-[#0f61e5]"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 377,
+                                    lineNumber: 378,
                                     columnNumber: 11
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -481,19 +482,19 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     className: textInputClass
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 378,
+                                    lineNumber: 379,
                                     columnNumber: 11
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 376,
+                            lineNumber: 377,
                             columnNumber: 9
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                    lineNumber: 374,
+                    lineNumber: 375,
                     columnNumber: 7
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -509,19 +510,19 @@ function AuthPanel({ variant = "page", onSuccess }) {
                             className: "text-sm"
                         }, void 0, false, {
                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 396,
+                            lineNumber: 397,
                             columnNumber: 9
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                    lineNumber: 389,
+                    lineNumber: 390,
                     columnNumber: 7
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-            lineNumber: 373,
+            lineNumber: 374,
             columnNumber: 5
         }, this);
     const renderResetForm = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -536,7 +537,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                             children: "New Password"
                         }, void 0, false, {
                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 404,
+                            lineNumber: 405,
                             columnNumber: 9
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -546,7 +547,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     className: "shrink-0 text-[#0f61e5]"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 406,
+                                    lineNumber: 407,
                                     columnNumber: 11
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -559,7 +560,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     className: textInputClass
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 407,
+                                    lineNumber: 408,
                                     columnNumber: 11
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -569,28 +570,28 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     "aria-label": showResetPassword ? "Hide password" : "Show password",
                                     children: showResetPassword ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa6$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaEyeSlash"], {}, void 0, false, {
                                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                        lineNumber: 422,
+                                        lineNumber: 423,
                                         columnNumber: 34
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa6$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaEye"], {}, void 0, false, {
                                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                        lineNumber: 422,
+                                        lineNumber: 423,
                                         columnNumber: 51
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 416,
+                                    lineNumber: 417,
                                     columnNumber: 11
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 405,
+                            lineNumber: 406,
                             columnNumber: 9
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                    lineNumber: 403,
+                    lineNumber: 404,
                     columnNumber: 7
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -601,7 +602,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                             children: "Confirm New Password"
                         }, void 0, false, {
                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 428,
+                            lineNumber: 429,
                             columnNumber: 9
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -611,7 +612,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     className: "shrink-0 text-[#0f61e5]"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 430,
+                                    lineNumber: 431,
                                     columnNumber: 11
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -624,7 +625,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     className: textInputClass
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 431,
+                                    lineNumber: 432,
                                     columnNumber: 11
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -634,28 +635,28 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     "aria-label": showResetConfirmPassword ? "Hide password" : "Show password",
                                     children: showResetConfirmPassword ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa6$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaEyeSlash"], {}, void 0, false, {
                                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                        lineNumber: 446,
+                                        lineNumber: 447,
                                         columnNumber: 41
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa6$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaEye"], {}, void 0, false, {
                                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                        lineNumber: 446,
+                                        lineNumber: 447,
                                         columnNumber: 58
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 440,
+                                    lineNumber: 441,
                                     columnNumber: 11
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 429,
+                            lineNumber: 430,
                             columnNumber: 9
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                    lineNumber: 427,
+                    lineNumber: 428,
                     columnNumber: 7
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -671,19 +672,19 @@ function AuthPanel({ variant = "page", onSuccess }) {
                             className: "text-sm"
                         }, void 0, false, {
                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 458,
+                            lineNumber: 459,
                             columnNumber: 9
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                    lineNumber: 451,
+                    lineNumber: 452,
                     columnNumber: 7
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-            lineNumber: 402,
+            lineNumber: 403,
             columnNumber: 5
         }, this);
     const renderSignupForm = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -701,7 +702,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     children: "Full Name"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 467,
+                                    lineNumber: 468,
                                     columnNumber: 11
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -711,7 +712,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             className: "shrink-0 text-[#0f61e5]"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 469,
+                                            lineNumber: 470,
                                             columnNumber: 13
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -723,19 +724,19 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             className: textInputClass
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 470,
+                                            lineNumber: 471,
                                             columnNumber: 13
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 468,
+                                    lineNumber: 469,
                                     columnNumber: 11
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 466,
+                            lineNumber: 467,
                             columnNumber: 9
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -746,7 +747,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     children: "Email Address"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 482,
+                                    lineNumber: 483,
                                     columnNumber: 11
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -756,7 +757,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             className: "shrink-0 text-[#0f61e5]"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 484,
+                                            lineNumber: 485,
                                             columnNumber: 13
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -768,19 +769,19 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             className: textInputClass
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 485,
+                                            lineNumber: 486,
                                             columnNumber: 13
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 483,
+                                    lineNumber: 484,
                                     columnNumber: 11
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 481,
+                            lineNumber: 482,
                             columnNumber: 9
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -791,7 +792,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     children: "Password"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 497,
+                                    lineNumber: 498,
                                     columnNumber: 11
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -801,7 +802,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             className: "shrink-0 text-[#0f61e5]"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 499,
+                                            lineNumber: 500,
                                             columnNumber: 13
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -814,7 +815,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             className: textInputClass
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 500,
+                                            lineNumber: 501,
                                             columnNumber: 13
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -824,28 +825,28 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             "aria-label": showSignupPassword ? "Hide password" : "Show password",
                                             children: showSignupPassword ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa6$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaEyeSlash"], {}, void 0, false, {
                                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                lineNumber: 515,
+                                                lineNumber: 516,
                                                 columnNumber: 37
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa6$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaEye"], {}, void 0, false, {
                                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                lineNumber: 515,
+                                                lineNumber: 516,
                                                 columnNumber: 54
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 509,
+                                            lineNumber: 510,
                                             columnNumber: 13
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 498,
+                                    lineNumber: 499,
                                     columnNumber: 11
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 496,
+                            lineNumber: 497,
                             columnNumber: 9
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -856,7 +857,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     children: "Confirm Password"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 521,
+                                    lineNumber: 522,
                                     columnNumber: 11
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -866,7 +867,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             className: "shrink-0 text-[#0f61e5]"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 523,
+                                            lineNumber: 524,
                                             columnNumber: 13
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -879,7 +880,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             className: textInputClass
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 524,
+                                            lineNumber: 525,
                                             columnNumber: 13
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -889,28 +890,28 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             "aria-label": showSignupConfirmPassword ? "Hide password" : "Show password",
                                             children: showSignupConfirmPassword ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa6$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaEyeSlash"], {}, void 0, false, {
                                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                lineNumber: 539,
+                                                lineNumber: 540,
                                                 columnNumber: 44
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa6$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaEye"], {}, void 0, false, {
                                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                lineNumber: 539,
+                                                lineNumber: 540,
                                                 columnNumber: 61
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 533,
+                                            lineNumber: 534,
                                             columnNumber: 13
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 522,
+                                    lineNumber: 523,
                                     columnNumber: 11
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 520,
+                            lineNumber: 521,
                             columnNumber: 9
                         }, this),
                         role === "student" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -923,7 +924,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             children: "Roll Number"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 547,
+                                            lineNumber: 548,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -935,13 +936,13 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             className: plainInputClass
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 548,
+                                            lineNumber: 549,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 546,
+                                    lineNumber: 547,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -952,7 +953,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             children: "Class"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 559,
+                                            lineNumber: 560,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -964,13 +965,13 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             className: plainInputClass
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 560,
+                                            lineNumber: 561,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 558,
+                                    lineNumber: 559,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -981,7 +982,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             children: "Parent Email"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 571,
+                                            lineNumber: 572,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -992,13 +993,13 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             className: plainInputClass
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 572,
+                                            lineNumber: 573,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 570,
+                                    lineNumber: 571,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -1009,7 +1010,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             children: "Phone"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 582,
+                                            lineNumber: 583,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1019,7 +1020,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                                     className: "shrink-0 text-[#0f61e5]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                    lineNumber: 584,
+                                                    lineNumber: 585,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1030,19 +1031,19 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                                     className: textInputClass
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                    lineNumber: 585,
+                                                    lineNumber: 586,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 583,
+                                            lineNumber: 584,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 581,
+                                    lineNumber: 582,
                                     columnNumber: 13
                                 }, this)
                             ]
@@ -1057,7 +1058,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             children: "Phone Number"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 600,
+                                            lineNumber: 601,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1067,7 +1068,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                                     className: "shrink-0 text-[#0f61e5]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                    lineNumber: 602,
+                                                    lineNumber: 603,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1079,19 +1080,19 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                                     className: textInputClass
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                    lineNumber: 603,
+                                                    lineNumber: 604,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 601,
+                                            lineNumber: 602,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 599,
+                                    lineNumber: 600,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -1102,7 +1103,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             children: "Children Names"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 615,
+                                            lineNumber: 616,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1113,13 +1114,13 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             className: plainInputClass
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 616,
+                                            lineNumber: 617,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 614,
+                                    lineNumber: 615,
                                     columnNumber: 13
                                 }, this)
                             ]
@@ -1134,7 +1135,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             children: "Designation"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 630,
+                                            lineNumber: 631,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1146,13 +1147,13 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             className: plainInputClass
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 631,
+                                            lineNumber: 632,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 629,
+                                    lineNumber: 630,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -1163,7 +1164,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             children: "Subject"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 642,
+                                            lineNumber: 643,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1175,13 +1176,13 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             className: plainInputClass
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 643,
+                                            lineNumber: 644,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 641,
+                                    lineNumber: 642,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -1192,7 +1193,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             children: "Qualification"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 654,
+                                            lineNumber: 655,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1204,13 +1205,13 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             className: plainInputClass
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 655,
+                                            lineNumber: 656,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 653,
+                                    lineNumber: 654,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -1221,7 +1222,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             children: "Experience"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 666,
+                                            lineNumber: 667,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1233,13 +1234,13 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             className: plainInputClass
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 667,
+                                            lineNumber: 668,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 665,
+                                    lineNumber: 666,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -1250,7 +1251,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             children: "Bio"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 678,
+                                            lineNumber: 679,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -1261,13 +1262,13 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             className: plainInputClass
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 679,
+                                            lineNumber: 680,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 677,
+                                    lineNumber: 678,
                                     columnNumber: 13
                                 }, this)
                             ]
@@ -1275,7 +1276,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                    lineNumber: 465,
+                    lineNumber: 466,
                     columnNumber: 7
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1291,19 +1292,19 @@ function AuthPanel({ variant = "page", onSuccess }) {
                             className: "text-sm"
                         }, void 0, false, {
                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 698,
+                            lineNumber: 699,
                             columnNumber: 9
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                    lineNumber: 691,
+                    lineNumber: 692,
                     columnNumber: 7
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-            lineNumber: 464,
+            lineNumber: 465,
             columnNumber: 5
         }, this);
     const pagePanelCopy = {
@@ -1331,583 +1332,1020 @@ function AuthPanel({ variant = "page", onSuccess }) {
         reset: "Set your new password below and then return straight to login."
     };
     if (isPage) {
-        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "grid bg-white lg:min-h-[640px] lg:grid-cols-[0.9fr_1.22fr]",
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "relative overflow-hidden bg-[linear-gradient(180deg,#38BDF8_0%,#1976D2_42%,#0D47A1_100%)] px-6 py-7 text-white sm:px-8 sm:py-8 lg:flex lg:flex-col lg:justify-between lg:px-10 lg:py-10",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.28),transparent_34%)]"
-                        }, void 0, false, {
-                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 733,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "absolute right-[-2.5rem] top-10 h-36 w-36 rounded-full bg-white/14 blur-2xl"
-                        }, void 0, false, {
-                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 734,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "absolute bottom-[-3rem] left-[-2rem] h-44 w-44 rounded-full bg-[#0A2540]/20 blur-3xl"
-                        }, void 0, false, {
-                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 735,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "absolute inset-y-10 right-7 w-px bg-white/18"
-                        }, void 0, false, {
-                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 736,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "relative z-10",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-[11px] font-semibold uppercase tracking-[0.34em] text-white/78",
-                                    children: "MNRS Portal"
-                                }, void 0, false, {
-                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 739,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "mt-4 inline-flex items-center rounded-full border border-white/20 bg-white/12 px-4 py-2 text-[11px] font-medium text-white/88 backdrop-blur-md",
-                                    children: "Secure access for students, parents, and faculty"
-                                }, void 0, false, {
-                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 742,
-                                    columnNumber: 13
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 738,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "relative z-10 mt-8 flex flex-col items-center text-center lg:mt-0",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "relative flex h-40 w-40 items-center justify-center rounded-full bg-white/18 shadow-[0_24px_60px_rgba(7,24,41,0.2)] sm:h-44 sm:w-44",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute inset-4 rounded-full border border-white/18"
-                                        }, void 0, false, {
-                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 749,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute inset-10 rounded-full bg-white/10"
-                                        }, void 0, false, {
-                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 750,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "flex h-28 w-28 items-center justify-center rounded-full bg-[linear-gradient(180deg,#ffffff_0%,#ddecff_100%)] text-[#0A2540] shadow-[0_16px_30px_rgba(7,24,41,0.18)] sm:h-32 sm:w-32",
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SelectedIcon, {
-                                                className: "text-[3rem]"
-                                            }, void 0, false, {
-                                                fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                lineNumber: 752,
-                                                columnNumber: 17
-                                            }, this)
-                                        }, void 0, false, {
-                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 751,
-                                            columnNumber: 15
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 748,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "mt-8 max-w-sm",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                            className: "font-serif text-[2rem] font-bold leading-tight sm:text-[2.3rem]",
-                                            children: pagePanelCopy[mode].title
-                                        }, void 0, false, {
-                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 757,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "mt-3 text-sm leading-6 text-white/88 sm:text-[15px]",
-                                            children: pagePanelCopy[mode].description
-                                        }, void 0, false, {
-                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 760,
-                                            columnNumber: 15
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 756,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "mt-6 flex flex-wrap items-center justify-center gap-2",
-                                    children: __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$components$2f$auth$2f$auth$2d$config$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ROLE_OPTIONS"].map((option)=>{
-                                        const Icon = option.icon;
-                                        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: `inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold backdrop-blur-md ${option.id === role ? "border-white/45 bg-white/24 text-white" : "border-white/18 bg-white/10 text-white/74"}`,
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Icon, {
-                                                    className: "text-[11px]"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                    lineNumber: 778,
-                                                    columnNumber: 21
-                                                }, this),
-                                                option.label
-                                            ]
-                                        }, `${option.id}-page-side`, true, {
-                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 770,
-                                            columnNumber: 19
-                                        }, this);
-                                    })
-                                }, void 0, false, {
-                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 765,
-                                    columnNumber: 13
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 747,
-                            columnNumber: 11
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                    lineNumber: 732,
-                    columnNumber: 9
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "bg-white",
+                    className: "lg:hidden",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex h-full flex-col",
+                        className: "relative mx-auto min-h-[42rem] overflow-hidden rounded-[1.85rem] bg-white shadow-[0_28px_80px_rgba(33,71,135,0.22)]",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "border-b border-[#edf2f8] px-5 py-5 sm:px-7 lg:px-10 lg:py-7",
+                                className: "relative h-[16.25rem] overflow-hidden bg-[linear-gradient(145deg,#5f7fd0_0%,#7f9de9_54%,#d8e8ff_100%)] px-5 pt-5 text-white",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute -left-8 -top-8 h-28 w-28 rounded-full bg-[radial-gradient(circle_at_30%_30%,#385ed0_0%,#172e69_72%)] shadow-[0_18px_40px_rgba(16,38,89,0.35)]"
+                                    }, void 0, false, {
+                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                        lineNumber: 736,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute -right-4 -top-8 h-36 w-36 rounded-full bg-[radial-gradient(circle_at_25%_20%,#ffffff_0%,#e9f2ff_42%,rgba(255,255,255,0)_70%)]"
+                                    }, void 0, false, {
+                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                        lineNumber: 737,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute right-12 top-14 h-28 w-28 rounded-full bg-[radial-gradient(circle_at_32%_28%,#9bc4ff_0%,#5d8ee8_56%,#4568d7_100%)] opacity-95"
+                                    }, void 0, false, {
+                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                        lineNumber: 738,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute right-20 top-[7.5rem] h-16 w-16 rounded-full bg-[radial-gradient(circle_at_35%_30%,#ffffff_0%,#9dc4ff_42%,#5a86de_100%)] shadow-[0_14px_30px_rgba(40,80,160,0.28)]"
+                                    }, void 0, false, {
+                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                        lineNumber: 739,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute -bottom-14 -left-12 h-64 w-64 rounded-[44%] bg-[linear-gradient(145deg,rgba(21,63,160,0.82),rgba(9,24,62,0.96))]"
+                                    }, void 0, false, {
+                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                        lineNumber: 740,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute bottom-[-3rem] left-16 h-72 w-56 rotate-[-22deg] rounded-[48%] bg-white/22"
+                                    }, void 0, false, {
+                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                        lineNumber: 741,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute bottom-4 left-5 h-14 w-14 rounded-full bg-[radial-gradient(circle_at_35%_30%,#ffffff_0%,#9dc4ff_52%,#3468ce_100%)] shadow-[0_14px_28px_rgba(13,36,86,0.22)]"
+                                    }, void 0, false, {
+                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                        lineNumber: 742,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute bottom-[-1.8rem] left-[8.5rem] h-28 w-28 rounded-full bg-[radial-gradient(circle_at_38%_28%,#2f64d9_0%,#12285d_82%)] shadow-[0_22px_44px_rgba(10,26,65,0.35)]"
+                                    }, void 0, false, {
+                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                        lineNumber: 743,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "relative z-10 flex items-center justify-between",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                                href: "/",
+                                                className: "inline-flex items-center gap-2 rounded-full bg-black/10 px-3 py-2 text-xs font-semibold text-white backdrop-blur-md",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        "aria-hidden": "true",
+                                                        children: "‹"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                        lineNumber: 747,
+                                                        columnNumber: 17
+                                                    }, this),
+                                                    "Back"
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                lineNumber: 746,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "rounded-full bg-white/18 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.22em] text-white/85 backdrop-blur-md",
+                                                children: "MNRS"
+                                            }, void 0, false, {
+                                                fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                lineNumber: 750,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                        lineNumber: 745,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "relative z-10 mt-16 max-w-[15rem]",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                                className: "text-[2rem] font-bold leading-tight tracking-normal text-white",
+                                                children: mode === "signup" ? "Get Started" : "Welcome back"
+                                            }, void 0, false, {
+                                                fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                lineNumber: 756,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "mt-2 text-sm font-medium leading-5 text-white/88",
+                                                children: mode === "signup" ? `Create your ${selectedRole.label.toLowerCase()} portal access.` : `Sign in to your ${selectedRole.label.toLowerCase()} portal.`
+                                            }, void 0, false, {
+                                                fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                lineNumber: 759,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                        lineNumber: 755,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                lineNumber: 735,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "relative z-20 -mt-8 rounded-t-[2rem] bg-white px-5 pb-7 pt-7",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between",
+                                    className: "mx-auto max-w-sm",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "grid grid-cols-3 gap-2 rounded-2xl bg-[#eef4ff] p-1.5",
+                                            children: __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$components$2f$auth$2f$auth$2d$config$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ROLE_OPTIONS"].map((option)=>{
+                                                const Icon = option.icon;
+                                                const active = option.id === role;
+                                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                    type: "button",
+                                                    onClick: ()=>{
+                                                        setRole(option.id);
+                                                        resetFeedback();
+                                                    },
+                                                    className: `flex h-10 items-center justify-center gap-1.5 rounded-xl text-xs font-bold transition-all ${active ? "bg-white text-[#3268d6] shadow-sm" : "text-[#6a7c9f]"}`,
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Icon, {
+                                                            className: "text-[13px]"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                            lineNumber: 786,
+                                                            columnNumber: 23
+                                                        }, this),
+                                                        option.label.slice(0, 3)
+                                                    ]
+                                                }, `${option.id}-mobile-role`, true, {
+                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                    lineNumber: 775,
+                                                    columnNumber: 21
+                                                }, this);
+                                            })
+                                        }, void 0, false, {
+                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                            lineNumber: 769,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "mt-5 flex items-center justify-between",
                                             children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-[11px] font-semibold uppercase tracking-[0.28em] text-[#8a9ab0]",
-                                                    children: "Portal Form"
-                                                }, void 0, false, {
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "inline-flex rounded-full bg-[#f1f5fb] p-1",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                            type: "button",
+                                                            onClick: ()=>switchMode("login"),
+                                                            className: `rounded-full px-4 py-2 text-xs font-bold transition-colors ${mode === "login" ? "bg-[#3f6fd2] text-white" : "text-[#64748b]"}`,
+                                                            children: "Sign in"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                            lineNumber: 795,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                            type: "button",
+                                                            onClick: ()=>switchMode("signup"),
+                                                            className: `rounded-full px-4 py-2 text-xs font-bold transition-colors ${mode === "signup" ? "bg-[#3f6fd2] text-white" : "text-[#64748b]"}`,
+                                                            children: "Sign up"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                            lineNumber: 804,
+                                                            columnNumber: 19
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
                                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
                                                     lineNumber: 794,
-                                                    columnNumber: 19
+                                                    columnNumber: 17
                                                 }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                    className: "mt-2 font-serif text-[1.9rem] font-bold leading-tight text-[#071829]",
-                                                    children: MODE_LABELS[mode]
+                                                mode !== "forgot" && mode !== "reset" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                    type: "button",
+                                                    onClick: ()=>switchMode("forgot"),
+                                                    className: "text-xs font-bold text-[#3268d6]",
+                                                    children: "Forgot?"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                    lineNumber: 797,
+                                                    lineNumber: 816,
                                                     columnNumber: 19
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "mt-2 max-w-xl text-sm leading-6 text-[#61748f]",
-                                                    children: pageFormCopy[mode]
+                                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                    type: "button",
+                                                    onClick: ()=>switchMode("login"),
+                                                    className: "text-xs font-bold text-[#3268d6]",
+                                                    children: "Back"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                    lineNumber: 800,
+                                                    lineNumber: 824,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
                                             lineNumber: 793,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                            href: "/contact",
-                                            className: "text-sm font-semibold text-[#1976D2] transition-colors hover:text-[#0D47A1]",
-                                            children: "Need help?"
-                                        }, void 0, false, {
-                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 805,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 792,
-                                    columnNumber: 15
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                lineNumber: 791,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "px-5 py-5 sm:px-7 lg:px-10 lg:py-8",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "mx-auto max-w-[40rem]",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "rounded-[26px] border border-[#edf2f8] bg-[#fbfdff] p-2 shadow-[0_18px_40px_rgba(10,37,64,0.06)]",
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "grid grid-cols-3 gap-2",
-                                                children: __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$components$2f$auth$2f$auth$2d$config$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ROLE_OPTIONS"].map((option)=>{
-                                                    const Icon = option.icon;
-                                                    const active = option.id === role;
-                                                    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                        type: "button",
-                                                        onClick: ()=>{
-                                                            setRole(option.id);
-                                                            resetFeedback();
-                                                        },
-                                                        className: `flex items-center justify-center gap-2 rounded-[20px] px-3 py-3 text-sm font-semibold transition-all duration-300 ${active ? "text-white shadow-[0_14px_28px_rgba(21,101,192,0.22)]" : "text-[#58708d] hover:bg-white hover:text-[#0D47A1]"}`,
-                                                        style: {
-                                                            backgroundColor: active ? option.accent : "transparent"
-                                                        },
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Icon, {
-                                                                className: "text-sm"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                                lineNumber: 837,
-                                                                columnNumber: 27
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "hidden sm:inline",
-                                                                children: option.label
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                                lineNumber: 838,
-                                                                columnNumber: 27
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "sm:hidden",
-                                                                children: option.label.slice(0, 3)
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                                lineNumber: 839,
-                                                                columnNumber: 27
-                                                            }, this)
-                                                        ]
-                                                    }, option.id, true, {
-                                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                        lineNumber: 823,
-                                                        columnNumber: 25
-                                                    }, this);
-                                                })
-                                            }, void 0, false, {
-                                                fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                lineNumber: 817,
-                                                columnNumber: 19
-                                            }, this)
-                                        }, void 0, false, {
-                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 816,
-                                            columnNumber: 17
+                                            columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between",
+                                            className: "mt-6 text-center",
                                             children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "inline-flex rounded-full border border-[#d8e3ef] bg-[#f7fafd] p-1 shadow-[0_10px_24px_rgba(10,37,64,0.05)]",
-                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                        type: "button",
-                                                        onClick: ()=>switchMode("login"),
-                                                        className: `rounded-full px-5 py-2 text-sm font-semibold transition-colors ${mode === "login" ? "bg-[#1565C0] text-white" : "text-[#61748f] hover:text-[#0D47A1]"}`,
-                                                        children: "Login"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                        lineNumber: 848,
-                                                        columnNumber: 21
-                                                    }, this)
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                    className: "text-[1.75rem] font-bold leading-tight tracking-normal text-[#3268d6]",
+                                                    children: mode === "signup" ? "Get Started" : mode === "login" ? "Welcome back" : MODE_LABELS[mode]
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                    lineNumber: 847,
-                                                    columnNumber: 19
+                                                    lineNumber: 835,
+                                                    columnNumber: 17
                                                 }, this),
-                                                mode !== "forgot" && mode !== "reset" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                    type: "button",
-                                                    onClick: ()=>switchMode("forgot"),
-                                                    className: "text-sm font-semibold text-[#1976D2] transition-colors hover:text-[#0D47A1]",
-                                                    children: "Forgot password?"
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "mx-auto mt-2 max-w-[17rem] text-xs leading-5 text-[#6d7c93]",
+                                                    children: mode === "signup" ? `Use an approved email to create your ${selectedRole.label.toLowerCase()} profile.` : pageFormCopy[mode]
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                    lineNumber: 862,
-                                                    columnNumber: 21
-                                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                    type: "button",
-                                                    onClick: ()=>switchMode("login"),
-                                                    className: "text-sm font-semibold text-[#1976D2] transition-colors hover:text-[#0D47A1]",
-                                                    children: "Back to login"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                    lineNumber: 870,
-                                                    columnNumber: 21
+                                                    lineNumber: 838,
+                                                    columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 846,
-                                            columnNumber: 17
+                                            lineNumber: 834,
+                                            columnNumber: 15
                                         }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "mt-6 rounded-[30px] border border-[#edf2f8] bg-white p-5 shadow-[0_22px_48px_rgba(10,37,64,0.08)] sm:p-6",
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
+                                            initial: false,
+                                            children: error ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$dom$2f$motion$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                                initial: {
+                                                    opacity: 0,
+                                                    y: -8
+                                                },
+                                                animate: {
+                                                    opacity: 1,
+                                                    y: 0
+                                                },
+                                                exit: {
+                                                    opacity: 0,
+                                                    y: -8
+                                                },
+                                                className: "mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700",
+                                                children: error
+                                            }, void 0, false, {
+                                                fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                lineNumber: 847,
+                                                columnNumber: 19
+                                            }, this) : null
+                                        }, void 0, false, {
+                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                            lineNumber: 845,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
+                                            initial: false,
+                                            children: success ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$dom$2f$motion$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                                initial: {
+                                                    opacity: 0,
+                                                    y: -8
+                                                },
+                                                animate: {
+                                                    opacity: 1,
+                                                    y: 0
+                                                },
+                                                exit: {
+                                                    opacity: 0,
+                                                    y: -8
+                                                },
+                                                className: "mt-4 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700",
+                                                children: success
+                                            }, void 0, false, {
+                                                fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                lineNumber: 860,
+                                                columnNumber: 19
+                                            }, this) : null
+                                        }, void 0, false, {
+                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                            lineNumber: 858,
+                                            columnNumber: 15
+                                        }, this),
+                                        providerHint ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "mt-4 rounded-2xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-700",
+                                            children: providerHint
+                                        }, void 0, false, {
+                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                            lineNumber: 872,
+                                            columnNumber: 17
+                                        }, this) : null,
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$dom$2f$motion$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                            initial: {
+                                                opacity: 0,
+                                                y: 10
+                                            },
+                                            animate: {
+                                                opacity: 1,
+                                                y: 0
+                                            },
+                                            transition: {
+                                                duration: 0.22
+                                            },
+                                            className: "mt-5",
+                                            children: [
+                                                mode === "login" && renderLoginForm(),
+                                                mode === "signup" && renderSignupForm(),
+                                                mode === "forgot" && renderForgotForm(),
+                                                mode === "reset" && renderResetForm()
+                                            ]
+                                        }, `mobile-${mode}-${role}`, true, {
+                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                            lineNumber: 877,
+                                            columnNumber: 15
+                                        }, this),
+                                        mode === "login" || mode === "signup" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "flex items-start gap-4",
+                                                    className: "my-5 flex items-center gap-3",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "flex h-12 w-12 shrink-0 items-center justify-center rounded-[18px]",
-                                                            style: {
-                                                                backgroundColor: selectedRole.softAccent,
-                                                                color: selectedRole.accent
-                                                            },
-                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SelectedIcon, {
-                                                                className: "text-lg"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                                lineNumber: 886,
-                                                                columnNumber: 23
-                                                            }, this)
+                                                            className: "h-px flex-1 bg-[#e7edf7]"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                            lineNumber: 882,
+                                                            lineNumber: 893,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "text-[11px] font-semibold text-[#9aa8bd]",
+                                                            children: "Sign in with"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                            lineNumber: 894,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            children: [
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                    className: "text-[11px] font-semibold uppercase tracking-[0.24em] text-[#8a9ab0]",
-                                                                    children: selectedRole.eyebrow
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                                    lineNumber: 889,
-                                                                    columnNumber: 23
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                                                    className: "mt-1 font-serif text-[1.65rem] font-bold leading-tight text-[#071829]",
-                                                                    children: MODE_LABELS[mode]
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                                    lineNumber: 892,
-                                                                    columnNumber: 23
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                    className: "mt-2 text-sm leading-6 text-[#61748f]",
-                                                                    children: selectedRole.description
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                                    lineNumber: 895,
-                                                                    columnNumber: 23
-                                                                }, this)
-                                                            ]
-                                                        }, void 0, true, {
+                                                            className: "h-px flex-1 bg-[#e7edf7]"
+                                                        }, void 0, false, {
                                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                            lineNumber: 888,
+                                                            lineNumber: 895,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                    lineNumber: 881,
+                                                    lineNumber: 892,
                                                     columnNumber: 19
                                                 }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
-                                                    initial: false,
-                                                    children: error ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$dom$2f$motion$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                                        initial: {
-                                                            opacity: 0,
-                                                            y: -8
-                                                        },
-                                                        animate: {
-                                                            opacity: 1,
-                                                            y: 0
-                                                        },
-                                                        exit: {
-                                                            opacity: 0,
-                                                            y: -8
-                                                        },
-                                                        className: "mt-5 rounded-[18px] border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700",
-                                                        children: error
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                        lineNumber: 903,
-                                                        columnNumber: 23
-                                                    }, this) : null
-                                                }, void 0, false, {
-                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                    lineNumber: 901,
-                                                    columnNumber: 19
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
-                                                    initial: false,
-                                                    children: success ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$dom$2f$motion$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                                        initial: {
-                                                            opacity: 0,
-                                                            y: -8
-                                                        },
-                                                        animate: {
-                                                            opacity: 1,
-                                                            y: 0
-                                                        },
-                                                        exit: {
-                                                            opacity: 0,
-                                                            y: -8
-                                                        },
-                                                        className: "mt-5 rounded-[18px] border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700",
-                                                        children: success
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                        lineNumber: 916,
-                                                        columnNumber: 23
-                                                    }, this) : null
-                                                }, void 0, false, {
-                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                    lineNumber: 914,
-                                                    columnNumber: 19
-                                                }, this),
-                                                providerHint ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "mt-5 rounded-[18px] border border-sky-200 bg-sky-50 px-4 py-3 text-sm text-sky-700",
-                                                    children: providerHint
-                                                }, void 0, false, {
-                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                    lineNumber: 928,
-                                                    columnNumber: 21
-                                                }, this) : null,
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$dom$2f$motion$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                                    initial: {
-                                                        opacity: 0,
-                                                        y: 10
-                                                    },
-                                                    animate: {
-                                                        opacity: 1,
-                                                        y: 0
-                                                    },
-                                                    transition: {
-                                                        duration: 0.22
-                                                    },
-                                                    className: "mt-5",
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                    type: "button",
+                                                    onClick: handleGoogleContinue,
+                                                    className: "flex w-full items-center justify-center gap-3 rounded-[18px] border border-[#dbe5f4] bg-white px-4 py-3.5 text-sm font-bold text-[#22314a] shadow-[0_10px_28px_rgba(38,86,168,0.08)] transition-colors hover:border-[#3268d6] hover:text-[#3268d6]",
                                                     children: [
-                                                        mode === "login" && renderLoginForm(),
-                                                        mode === "signup" && renderSignupForm(),
-                                                        mode === "forgot" && renderForgotForm(),
-                                                        mode === "reset" && renderResetForm()
-                                                    ]
-                                                }, `${mode}-${role}`, true, {
-                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                    lineNumber: 933,
-                                                    columnNumber: 19
-                                                }, this),
-                                                mode === "login" || mode === "signup" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "my-5 flex items-center gap-3",
-                                                            children: [
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "h-px flex-1 bg-[#e3ebf5]"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                                    lineNumber: 949,
-                                                                    columnNumber: 25
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "text-xs font-semibold uppercase tracking-[0.2em] text-[#8a9ab0]",
-                                                                    children: "or continue with"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                                    lineNumber: 950,
-                                                                    columnNumber: 25
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "h-px flex-1 bg-[#e3ebf5]"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                                    lineNumber: 953,
-                                                                    columnNumber: 25
-                                                                }, this)
-                                                            ]
-                                                        }, void 0, true, {
-                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                            lineNumber: 948,
-                                                            columnNumber: 23
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                            type: "button",
-                                                            onClick: handleGoogleContinue,
-                                                            className: "flex w-full items-center justify-center gap-3 rounded-[18px] border border-[#d7e3f4] bg-[#f8fbff] px-4 py-3.5 text-sm font-semibold text-[#22314a] shadow-[0_12px_28px_rgba(15,97,229,0.05)] transition-all duration-300 hover:border-[#1565C0] hover:bg-white hover:text-[#1565C0]",
-                                                            children: [
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fc$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FcGoogle"], {
-                                                                    className: "text-xl"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                                    lineNumber: 961,
-                                                                    columnNumber: 25
-                                                                }, this),
-                                                                mode === "signup" ? `Start ${selectedRole.label} signup with Google` : `Continue as ${selectedRole.label} with Google`
-                                                            ]
-                                                        }, void 0, true, {
-                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                            lineNumber: 956,
-                                                            columnNumber: 23
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                            className: "mt-3 text-center text-xs leading-5 text-[#7a8ca5]",
-                                                            children: "Google can speed things up, but your school-specific profile details still stay inside the portal."
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fc$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FcGoogle"], {
+                                                            className: "text-xl"
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                            lineNumber: 967,
-                                                            columnNumber: 23
+                                                            lineNumber: 903,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        "Continue with Google"
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                    lineNumber: 898,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "mt-4 text-center text-xs leading-5 text-[#7b8798]",
+                                                    children: [
+                                                        mode === "signup" ? "Already have an account? " : "Don't have an account? ",
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                            type: "button",
+                                                            onClick: ()=>switchMode(mode === "signup" ? "login" : "signup"),
+                                                            className: "font-bold text-[#3268d6]",
+                                                            children: mode === "signup" ? "Sign in" : "Sign up"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                            lineNumber: 909,
+                                                            columnNumber: 21
                                                         }, this)
                                                     ]
-                                                }, void 0, true) : null
+                                                }, void 0, true, {
+                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                    lineNumber: 907,
+                                                    columnNumber: 19
+                                                }, this)
                                             ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 880,
-                                            columnNumber: 17
-                                        }, this)
+                                        }, void 0, true) : null
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 815,
-                                    columnNumber: 15
+                                    lineNumber: 768,
+                                    columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                lineNumber: 814,
-                                columnNumber: 13
+                                lineNumber: 767,
+                                columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                        lineNumber: 790,
-                        columnNumber: 11
+                        lineNumber: 734,
+                        columnNumber: 9
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                    lineNumber: 789,
-                    columnNumber: 9
+                    lineNumber: 733,
+                    columnNumber: 7
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "hidden bg-white lg:grid lg:min-h-[640px] lg:grid-cols-[0.9fr_1.22fr]",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "relative overflow-hidden bg-[linear-gradient(180deg,#38BDF8_0%,#1976D2_42%,#0D47A1_100%)] px-6 py-7 text-white sm:px-8 sm:py-8 lg:flex lg:flex-col lg:justify-between lg:px-10 lg:py-10",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.28),transparent_34%)]"
+                                }, void 0, false, {
+                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                    lineNumber: 926,
+                                    columnNumber: 11
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "absolute right-[-2.5rem] top-10 h-36 w-36 rounded-full bg-white/14 blur-2xl"
+                                }, void 0, false, {
+                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                    lineNumber: 927,
+                                    columnNumber: 11
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "absolute bottom-[-3rem] left-[-2rem] h-44 w-44 rounded-full bg-[#0A2540]/20 blur-3xl"
+                                }, void 0, false, {
+                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                    lineNumber: 928,
+                                    columnNumber: 11
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "absolute inset-y-10 right-7 w-px bg-white/18"
+                                }, void 0, false, {
+                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                    lineNumber: 929,
+                                    columnNumber: 11
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "relative z-10",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: "text-[11px] font-semibold uppercase tracking-[0.34em] text-white/78",
+                                            children: "MNRS Portal"
+                                        }, void 0, false, {
+                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                            lineNumber: 932,
+                                            columnNumber: 13
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "mt-4 inline-flex items-center rounded-full border border-white/20 bg-white/12 px-4 py-2 text-[11px] font-medium text-white/88 backdrop-blur-md",
+                                            children: "Secure access for students, parents, and faculty"
+                                        }, void 0, false, {
+                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                            lineNumber: 935,
+                                            columnNumber: 13
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                    lineNumber: 931,
+                                    columnNumber: 11
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "relative z-10 mt-8 flex flex-col items-center text-center lg:mt-0",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "relative flex h-40 w-40 items-center justify-center rounded-full bg-white/18 shadow-[0_24px_60px_rgba(7,24,41,0.2)] sm:h-44 sm:w-44",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "absolute inset-4 rounded-full border border-white/18"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                    lineNumber: 942,
+                                                    columnNumber: 15
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "absolute inset-10 rounded-full bg-white/10"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                    lineNumber: 943,
+                                                    columnNumber: 15
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "flex h-28 w-28 items-center justify-center rounded-full bg-[linear-gradient(180deg,#ffffff_0%,#ddecff_100%)] text-[#0A2540] shadow-[0_16px_30px_rgba(7,24,41,0.18)] sm:h-32 sm:w-32",
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SelectedIcon, {
+                                                        className: "text-[3rem]"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                        lineNumber: 945,
+                                                        columnNumber: 17
+                                                    }, this)
+                                                }, void 0, false, {
+                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                    lineNumber: 944,
+                                                    columnNumber: 15
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                            lineNumber: 941,
+                                            columnNumber: 13
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "mt-8 max-w-sm",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                                    className: "font-serif text-[2rem] font-bold leading-tight sm:text-[2.3rem]",
+                                                    children: pagePanelCopy[mode].title
+                                                }, void 0, false, {
+                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                    lineNumber: 950,
+                                                    columnNumber: 15
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "mt-3 text-sm leading-6 text-white/88 sm:text-[15px]",
+                                                    children: pagePanelCopy[mode].description
+                                                }, void 0, false, {
+                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                    lineNumber: 953,
+                                                    columnNumber: 15
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                            lineNumber: 949,
+                                            columnNumber: 13
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "mt-6 flex flex-wrap items-center justify-center gap-2",
+                                            children: __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$components$2f$auth$2f$auth$2d$config$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ROLE_OPTIONS"].map((option)=>{
+                                                const Icon = option.icon;
+                                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: `inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold backdrop-blur-md ${option.id === role ? "border-white/45 bg-white/24 text-white" : "border-white/18 bg-white/10 text-white/74"}`,
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Icon, {
+                                                            className: "text-[11px]"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                            lineNumber: 971,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        option.label
+                                                    ]
+                                                }, `${option.id}-page-side`, true, {
+                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                    lineNumber: 963,
+                                                    columnNumber: 19
+                                                }, this);
+                                            })
+                                        }, void 0, false, {
+                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                            lineNumber: 958,
+                                            columnNumber: 13
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                    lineNumber: 940,
+                                    columnNumber: 11
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                            lineNumber: 925,
+                            columnNumber: 9
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "bg-white",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex h-full flex-col",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "border-b border-[#edf2f8] px-5 py-5 sm:px-7 lg:px-10 lg:py-7",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                            className: "text-[11px] font-semibold uppercase tracking-[0.28em] text-[#8a9ab0]",
+                                                            children: "Portal Form"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                            lineNumber: 987,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                            className: "mt-2 font-serif text-[1.9rem] font-bold leading-tight text-[#071829]",
+                                                            children: MODE_LABELS[mode]
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                            lineNumber: 990,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                            className: "mt-2 max-w-xl text-sm leading-6 text-[#61748f]",
+                                                            children: pageFormCopy[mode]
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                            lineNumber: 993,
+                                                            columnNumber: 19
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                    lineNumber: 986,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                                    href: "/contact",
+                                                    className: "text-sm font-semibold text-[#1976D2] transition-colors hover:text-[#0D47A1]",
+                                                    children: "Need help?"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                    lineNumber: 998,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                            lineNumber: 985,
+                                            columnNumber: 15
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                        lineNumber: 984,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "px-5 py-5 sm:px-7 lg:px-10 lg:py-8",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "mx-auto max-w-[40rem]",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "rounded-[26px] border border-[#edf2f8] bg-[#fbfdff] p-2 shadow-[0_18px_40px_rgba(10,37,64,0.06)]",
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "grid grid-cols-3 gap-2",
+                                                        children: __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$components$2f$auth$2f$auth$2d$config$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ROLE_OPTIONS"].map((option)=>{
+                                                            const Icon = option.icon;
+                                                            const active = option.id === role;
+                                                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                type: "button",
+                                                                onClick: ()=>{
+                                                                    setRole(option.id);
+                                                                    resetFeedback();
+                                                                },
+                                                                className: `flex items-center justify-center gap-2 rounded-[20px] px-3 py-3 text-sm font-semibold transition-all duration-300 ${active ? "text-white shadow-[0_14px_28px_rgba(21,101,192,0.22)]" : "text-[#58708d] hover:bg-white hover:text-[#0D47A1]"}`,
+                                                                style: {
+                                                                    backgroundColor: active ? option.accent : "transparent"
+                                                                },
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Icon, {
+                                                                        className: "text-sm"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                        lineNumber: 1030,
+                                                                        columnNumber: 27
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: "hidden sm:inline",
+                                                                        children: option.label
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                        lineNumber: 1031,
+                                                                        columnNumber: 27
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: "sm:hidden",
+                                                                        children: option.label.slice(0, 3)
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                        lineNumber: 1032,
+                                                                        columnNumber: 27
+                                                                    }, this)
+                                                                ]
+                                                            }, option.id, true, {
+                                                                fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                lineNumber: 1016,
+                                                                columnNumber: 25
+                                                            }, this);
+                                                        })
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                        lineNumber: 1010,
+                                                        columnNumber: 19
+                                                    }, this)
+                                                }, void 0, false, {
+                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                    lineNumber: 1009,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "inline-flex rounded-full border border-[#d8e3ef] bg-[#f7fafd] p-1 shadow-[0_10px_24px_rgba(10,37,64,0.05)]",
+                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                type: "button",
+                                                                onClick: ()=>switchMode("login"),
+                                                                className: `rounded-full px-5 py-2 text-sm font-semibold transition-colors ${mode === "login" ? "bg-[#1565C0] text-white" : "text-[#61748f] hover:text-[#0D47A1]"}`,
+                                                                children: "Login"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                lineNumber: 1041,
+                                                                columnNumber: 21
+                                                            }, this)
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                            lineNumber: 1040,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        mode !== "forgot" && mode !== "reset" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                            type: "button",
+                                                            onClick: ()=>switchMode("forgot"),
+                                                            className: "text-sm font-semibold text-[#1976D2] transition-colors hover:text-[#0D47A1]",
+                                                            children: "Forgot password?"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                            lineNumber: 1055,
+                                                            columnNumber: 21
+                                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                            type: "button",
+                                                            onClick: ()=>switchMode("login"),
+                                                            className: "text-sm font-semibold text-[#1976D2] transition-colors hover:text-[#0D47A1]",
+                                                            children: "Back to login"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                            lineNumber: 1063,
+                                                            columnNumber: 21
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                    lineNumber: 1039,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "mt-6 rounded-[30px] border border-[#edf2f8] bg-white p-5 shadow-[0_22px_48px_rgba(10,37,64,0.08)] sm:p-6",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "flex items-start gap-4",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "flex h-12 w-12 shrink-0 items-center justify-center rounded-[18px]",
+                                                                    style: {
+                                                                        backgroundColor: selectedRole.softAccent,
+                                                                        color: selectedRole.accent
+                                                                    },
+                                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SelectedIcon, {
+                                                                        className: "text-lg"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                        lineNumber: 1079,
+                                                                        columnNumber: 23
+                                                                    }, this)
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                    lineNumber: 1075,
+                                                                    columnNumber: 21
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                            className: "text-[11px] font-semibold uppercase tracking-[0.24em] text-[#8a9ab0]",
+                                                                            children: selectedRole.eyebrow
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                            lineNumber: 1082,
+                                                                            columnNumber: 23
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
+                                                                            className: "mt-1 font-serif text-[1.65rem] font-bold leading-tight text-[#071829]",
+                                                                            children: MODE_LABELS[mode]
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                            lineNumber: 1085,
+                                                                            columnNumber: 23
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                            className: "mt-2 text-sm leading-6 text-[#61748f]",
+                                                                            children: selectedRole.description
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                            lineNumber: 1088,
+                                                                            columnNumber: 23
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                    lineNumber: 1081,
+                                                                    columnNumber: 21
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                            lineNumber: 1074,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
+                                                            initial: false,
+                                                            children: error ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$dom$2f$motion$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                                                initial: {
+                                                                    opacity: 0,
+                                                                    y: -8
+                                                                },
+                                                                animate: {
+                                                                    opacity: 1,
+                                                                    y: 0
+                                                                },
+                                                                exit: {
+                                                                    opacity: 0,
+                                                                    y: -8
+                                                                },
+                                                                className: "mt-5 rounded-[18px] border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700",
+                                                                children: error
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                lineNumber: 1096,
+                                                                columnNumber: 23
+                                                            }, this) : null
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                            lineNumber: 1094,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
+                                                            initial: false,
+                                                            children: success ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$dom$2f$motion$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                                                initial: {
+                                                                    opacity: 0,
+                                                                    y: -8
+                                                                },
+                                                                animate: {
+                                                                    opacity: 1,
+                                                                    y: 0
+                                                                },
+                                                                exit: {
+                                                                    opacity: 0,
+                                                                    y: -8
+                                                                },
+                                                                className: "mt-5 rounded-[18px] border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700",
+                                                                children: success
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                lineNumber: 1109,
+                                                                columnNumber: 23
+                                                            }, this) : null
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                            lineNumber: 1107,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        providerHint ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "mt-5 rounded-[18px] border border-sky-200 bg-sky-50 px-4 py-3 text-sm text-sky-700",
+                                                            children: providerHint
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                            lineNumber: 1121,
+                                                            columnNumber: 21
+                                                        }, this) : null,
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$dom$2f$motion$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                                            initial: {
+                                                                opacity: 0,
+                                                                y: 10
+                                                            },
+                                                            animate: {
+                                                                opacity: 1,
+                                                                y: 0
+                                                            },
+                                                            transition: {
+                                                                duration: 0.22
+                                                            },
+                                                            className: "mt-5",
+                                                            children: [
+                                                                mode === "login" && renderLoginForm(),
+                                                                mode === "signup" && renderSignupForm(),
+                                                                mode === "forgot" && renderForgotForm(),
+                                                                mode === "reset" && renderResetForm()
+                                                            ]
+                                                        }, `${mode}-${role}`, true, {
+                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                            lineNumber: 1126,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        mode === "login" || mode === "signup" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "my-5 flex items-center gap-3",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                            className: "h-px flex-1 bg-[#e3ebf5]"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                            lineNumber: 1142,
+                                                                            columnNumber: 25
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                            className: "text-xs font-semibold uppercase tracking-[0.2em] text-[#8a9ab0]",
+                                                                            children: "or continue with"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                            lineNumber: 1143,
+                                                                            columnNumber: 25
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                            className: "h-px flex-1 bg-[#e3ebf5]"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                            lineNumber: 1146,
+                                                                            columnNumber: 25
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                    lineNumber: 1141,
+                                                                    columnNumber: 23
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                    type: "button",
+                                                                    onClick: handleGoogleContinue,
+                                                                    className: "flex w-full items-center justify-center gap-3 rounded-[18px] border border-[#d7e3f4] bg-[#f8fbff] px-4 py-3.5 text-sm font-semibold text-[#22314a] shadow-[0_12px_28px_rgba(15,97,229,0.05)] transition-all duration-300 hover:border-[#1565C0] hover:bg-white hover:text-[#1565C0]",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fc$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FcGoogle"], {
+                                                                            className: "text-xl"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                            lineNumber: 1154,
+                                                                            columnNumber: 25
+                                                                        }, this),
+                                                                        mode === "signup" ? `Start ${selectedRole.label} signup with Google` : `Continue as ${selectedRole.label} with Google`
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                    lineNumber: 1149,
+                                                                    columnNumber: 23
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                    className: "mt-3 text-center text-xs leading-5 text-[#7a8ca5]",
+                                                                    children: "Google can speed things up, but your school-specific profile details still stay inside the portal."
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                                    lineNumber: 1160,
+                                                                    columnNumber: 23
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true) : null
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                                    lineNumber: 1073,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                            lineNumber: 1008,
+                                            columnNumber: 15
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                        lineNumber: 1007,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                                lineNumber: 983,
+                                columnNumber: 11
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                            lineNumber: 982,
+                            columnNumber: 9
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
+                    lineNumber: 924,
+                    columnNumber: 7
                 }, this)
             ]
-        }, void 0, true, {
-            fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-            lineNumber: 731,
-            columnNumber: 7
-        }, this);
+        }, void 0, true);
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: shellClassName,
@@ -1919,35 +2357,35 @@ function AuthPanel({ variant = "page", onSuccess }) {
                         className: "absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.28),transparent_35%)]"
                     }, void 0, false, {
                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                        lineNumber: 989,
+                        lineNumber: 1183,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute left-[-3rem] top-5 h-24 w-24 rounded-full bg-white/10 blur-sm"
                     }, void 0, false, {
                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                        lineNumber: 990,
+                        lineNumber: 1184,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute right-[-1rem] bottom-[-1rem] h-28 w-28 rounded-full bg-white/10 blur-sm"
                     }, void 0, false, {
                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                        lineNumber: 991,
+                        lineNumber: 1185,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute inset-y-0 right-6 w-28 bg-[linear-gradient(rgba(255,255,255,0.14)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.14)_1px,transparent_1px)] bg-[size:18px_18px] opacity-35"
                     }, void 0, false, {
                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                        lineNumber: 992,
+                        lineNumber: 1186,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute bottom-[-0.6rem] left-1/2 h-5 w-5 -translate-x-1/2 rotate-45 rounded-[4px] bg-white"
                     }, void 0, false, {
                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                        lineNumber: 993,
+                        lineNumber: 1187,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1959,12 +2397,12 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     className: "text-xl text-white"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 997,
+                                    lineNumber: 1191,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                lineNumber: 996,
+                                lineNumber: 1190,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1975,7 +2413,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                         children: "MNRS Portal"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                        lineNumber: 1000,
+                                        lineNumber: 1194,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -1983,7 +2421,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                         children: variant === "floating" ? "Smooth access from the bottom corner." : "Portal access that stays compact, clear, and calm."
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                        lineNumber: 1003,
+                                        lineNumber: 1197,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1991,25 +2429,25 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                         children: isPage ? `${selectedRole.eyebrow} for ${selectedRole.label.toLowerCase()} accounts in a shorter, better-balanced layout.` : `${selectedRole.eyebrow} for ${selectedRole.label.toLowerCase()} accounts with a short, friendly path to continue.`
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                        lineNumber: 1008,
+                                        lineNumber: 1202,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                lineNumber: 999,
+                                lineNumber: 1193,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                        lineNumber: 995,
+                        lineNumber: 1189,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                lineNumber: 984,
+                lineNumber: 1178,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2037,7 +2475,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             className: "text-sm"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 1044,
+                                            lineNumber: 1238,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2045,7 +2483,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             children: option.label
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 1045,
+                                            lineNumber: 1239,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2053,24 +2491,24 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                             children: option.label.slice(0, 3)
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                            lineNumber: 1046,
+                                            lineNumber: 1240,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, option.id, true, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 1026,
+                                    lineNumber: 1220,
                                     columnNumber: 17
                                 }, this);
                             })
                         }, void 0, false, {
                             fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                            lineNumber: 1020,
+                            lineNumber: 1214,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                        lineNumber: 1019,
+                        lineNumber: 1213,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2085,12 +2523,12 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     children: "Login"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 1055,
+                                    lineNumber: 1249,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                lineNumber: 1054,
+                                lineNumber: 1248,
                                 columnNumber: 11
                             }, this),
                             mode !== "forgot" && mode !== "reset" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2100,7 +2538,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                 children: "Forgot?"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                lineNumber: 1069,
+                                lineNumber: 1263,
                                 columnNumber: 13
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 type: "button",
@@ -2109,13 +2547,13 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                 children: "Back to login"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                lineNumber: 1077,
+                                lineNumber: 1271,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                        lineNumber: 1053,
+                        lineNumber: 1247,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2125,14 +2563,14 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                 className: "absolute right-4 top-4 h-24 w-24 rounded-full bg-[#edf4ff] opacity-80 blur-2xl"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                lineNumber: 1088,
+                                lineNumber: 1282,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "absolute inset-x-6 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(15,97,229,0.18),transparent)]"
                             }, void 0, false, {
                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                lineNumber: 1089,
+                                lineNumber: 1283,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2151,12 +2589,12 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                                     className: isPage ? "text-base" : "text-lg"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                    lineNumber: 1097,
+                                                    lineNumber: 1291,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                lineNumber: 1093,
+                                                lineNumber: 1287,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2166,7 +2604,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                                         children: selectedRole.eyebrow
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                        lineNumber: 1100,
+                                                        lineNumber: 1294,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2174,7 +2612,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                                         children: MODE_LABELS[mode]
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                        lineNumber: 1103,
+                                                        lineNumber: 1297,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2182,19 +2620,19 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                                         children: selectedRole.description
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                        lineNumber: 1106,
+                                                        lineNumber: 1300,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                lineNumber: 1099,
+                                                lineNumber: 1293,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                        lineNumber: 1092,
+                                        lineNumber: 1286,
                                         columnNumber: 13
                                     }, this),
                                     isPage ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2209,26 +2647,26 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                                         className: "text-[11px]"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                        lineNumber: 1127,
+                                                        lineNumber: 1321,
                                                         columnNumber: 23
                                                     }, this),
                                                     option.label
                                                 ]
                                             }, `${option.id}-chip`, true, {
                                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                lineNumber: 1119,
+                                                lineNumber: 1313,
                                                 columnNumber: 21
                                             }, this);
                                         })
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                        lineNumber: 1113,
+                                        lineNumber: 1307,
                                         columnNumber: 15
                                     }, this) : null
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                lineNumber: 1091,
+                                lineNumber: 1285,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -2250,12 +2688,12 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     children: error
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 1138,
+                                    lineNumber: 1332,
                                     columnNumber: 15
                                 }, this) : null
                             }, void 0, false, {
                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                lineNumber: 1136,
+                                lineNumber: 1330,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -2277,12 +2715,12 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                     children: success
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                    lineNumber: 1155,
+                                    lineNumber: 1349,
                                     columnNumber: 15
                                 }, this) : null
                             }, void 0, false, {
                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                lineNumber: 1153,
+                                lineNumber: 1347,
                                 columnNumber: 11
                             }, this),
                             providerHint ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2290,7 +2728,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                 children: providerHint
                             }, void 0, false, {
                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                lineNumber: 1171,
+                                lineNumber: 1365,
                                 columnNumber: 13
                             }, this) : null,
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$dom$2f$motion$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -2314,7 +2752,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                 ]
                             }, `${mode}-${role}`, true, {
                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                lineNumber: 1180,
+                                lineNumber: 1374,
                                 columnNumber: 11
                             }, this),
                             mode === "login" || mode === "signup" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -2326,7 +2764,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                                 className: `h-px flex-1 ${isPage ? "bg-blue-400/50" : "bg-[#e3ebf8]"}`
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                lineNumber: 1196,
+                                                lineNumber: 1390,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2334,20 +2772,20 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                                 children: "or continue with"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                lineNumber: 1197,
+                                                lineNumber: 1391,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: `h-px flex-1 ${isPage ? "bg-blue-400/50" : "bg-[#e3ebf8]"}`
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                lineNumber: 1200,
+                                                lineNumber: 1394,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                        lineNumber: 1195,
+                                        lineNumber: 1389,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2359,14 +2797,14 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                                 className: "text-xl"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                                lineNumber: 1212,
+                                                lineNumber: 1406,
                                                 columnNumber: 17
                                             }, this),
                                             mode === "signup" ? `Start ${selectedRole.label} signup with Google` : `Continue as ${selectedRole.label} with Google`
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                        lineNumber: 1203,
+                                        lineNumber: 1397,
                                         columnNumber: 15
                                     }, this),
                                     !isPage ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2374,7 +2812,7 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                         children: "Google can speed things up, but role-specific school details still stay in your portal profile."
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                        lineNumber: 1219,
+                                        lineNumber: 1413,
                                         columnNumber: 17
                                     }, this) : null
                                 ]
@@ -2392,31 +2830,31 @@ function AuthPanel({ variant = "page", onSuccess }) {
                                         children: "Contact support"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                        lineNumber: 1229,
+                                        lineNumber: 1423,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                                lineNumber: 1227,
+                                lineNumber: 1421,
                                 columnNumber: 13
                             }, this) : null
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                        lineNumber: 1087,
+                        lineNumber: 1281,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-                lineNumber: 1018,
+                lineNumber: 1212,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/frontend/components/auth/AuthPanel.tsx",
-        lineNumber: 982,
+        lineNumber: 1176,
         columnNumber: 5
     }, this);
 }
@@ -2438,6 +2876,7 @@ __turbopack_esm__({
     "default": ()=>LoginForm
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$dom$2f$motion$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/framer-motion/dist/es/render/dom/motion.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$components$2f$auth$2f$AuthPanel$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/frontend/components/auth/AuthPanel.tsx [app-client] (ecmascript)");
 "__TURBOPACK__ecmascript__hoisting__location__";
@@ -2445,9 +2884,10 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$components$2f$au
 ;
 ;
 ;
+;
 function LoginForm() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "relative overflow-hidden bg-[radial-gradient(circle_at_top,#dff4ff_0%,#eef6ff_38%,#f8fbff_100%)] pb-10 pt-24 sm:pt-28 lg:pt-32",
+        className: "relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,#dfeaff_0%,#eef5ff_42%,#f8fbff_100%)] pb-8 pt-20 sm:pt-28 lg:pb-10 lg:pt-32",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute inset-0 overflow-hidden",
@@ -2472,7 +2912,7 @@ function LoginForm() {
                         className: "absolute -left-20 top-8 h-80 w-80 rounded-full bg-brand-gold/20 blur-3xl"
                     }, void 0, false, {
                         fileName: "[project]/frontend/components/auth/LoginForm.tsx",
-                        lineNumber: 10,
+                        lineNumber: 11,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$dom$2f$motion$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -2496,7 +2936,7 @@ function LoginForm() {
                         className: "absolute -right-28 top-14 h-96 w-96 rounded-full bg-brand-green/20 blur-[110px]"
                     }, void 0, false, {
                         fileName: "[project]/frontend/components/auth/LoginForm.tsx",
-                        lineNumber: 15,
+                        lineNumber: 16,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$dom$2f$motion$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -2520,20 +2960,20 @@ function LoginForm() {
                         className: "absolute -bottom-28 left-1/3 h-80 w-80 rounded-full bg-brand-blue-light/15 blur-[120px]"
                     }, void 0, false, {
                         fileName: "[project]/frontend/components/auth/LoginForm.tsx",
-                        lineNumber: 20,
+                        lineNumber: 21,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute inset-0 bg-[linear-gradient(rgba(21,101,192,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(21,101,192,0.05)_1px,transparent_1px)] bg-[size:74px_74px] opacity-50"
                     }, void 0, false, {
                         fileName: "[project]/frontend/components/auth/LoginForm.tsx",
-                        lineNumber: 25,
+                        lineNumber: 26,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/components/auth/LoginForm.tsx",
-                lineNumber: 9,
+                lineNumber: 10,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2553,28 +2993,35 @@ function LoginForm() {
                         duration: 0.7,
                         ease: "easeOut"
                     },
-                    className: "w-full max-w-[1180px] overflow-hidden rounded-[34px] border border-white/80 bg-white shadow-[0_40px_140px_rgba(7,24,41,0.18)]",
-                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$components$2f$auth$2f$AuthPanel$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                        variant: "page"
+                    className: "w-full max-w-[27rem] overflow-visible border-0 bg-transparent shadow-none lg:max-w-[1180px] lg:overflow-hidden lg:rounded-[34px] lg:border lg:border-white/80 lg:bg-white lg:shadow-[0_40px_140px_rgba(7,24,41,0.18)]",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Suspense"], {
+                        fallback: null,
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$components$2f$auth$2f$AuthPanel$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                            variant: "page"
+                        }, void 0, false, {
+                            fileName: "[project]/frontend/components/auth/LoginForm.tsx",
+                            lineNumber: 37,
+                            columnNumber: 13
+                        }, this)
                     }, void 0, false, {
                         fileName: "[project]/frontend/components/auth/LoginForm.tsx",
-                        lineNumber: 35,
+                        lineNumber: 36,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/frontend/components/auth/LoginForm.tsx",
-                    lineNumber: 29,
+                    lineNumber: 30,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/frontend/components/auth/LoginForm.tsx",
-                lineNumber: 28,
+                lineNumber: 29,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/frontend/components/auth/LoginForm.tsx",
-        lineNumber: 8,
+        lineNumber: 9,
         columnNumber: 5
     }, this);
 }

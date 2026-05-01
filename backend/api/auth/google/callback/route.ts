@@ -4,6 +4,7 @@ import { signToken } from "@/backend/lib/auth";
 import Student from "@/database/models/Student";
 import Parent from "@/database/models/Parent";
 import FacultyLogin from "@/database/models/FacultyLogin";
+import { isStudentEmailAllowed } from "@/backend/lib/studentAccess";
 
 type UserRole = "student" | "parent" | "faculty";
 type GoogleIntent = "login" | "signup";
@@ -130,6 +131,14 @@ export async function GET(req: NextRequest) {
     }
 
     await connectDB();
+
+    if (decodedState.role === "student" && !(await isStudentEmailAllowed(email))) {
+      const deniedUrl = new URL("/login", baseUrl);
+      deniedUrl.searchParams.set("role", "student");
+      deniedUrl.searchParams.set("error", "student-not-approved");
+      return NextResponse.redirect(deniedUrl);
+    }
+
     const user = await findUser(decodedState.role, email);
 
     if (user) {

@@ -2,16 +2,26 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/database/lib/db";
 import { signToken } from "@/backend/lib/auth";
 import Student from "@/database/models/Student";
+import { isStudentEmailAllowed } from "@/backend/lib/studentAccess";
 
 export async function POST(req: NextRequest) {
   try {
     await connectDB();
-    const { email, password } = await req.json();
+    const body = await req.json();
+    const email = String(body.email || "").toLowerCase().trim();
+    const password = String(body.password || "");
 
     if (!email || !password) {
       return NextResponse.json(
         { success: false, error: "Email and password are required." },
         { status: 400 }
+      );
+    }
+
+    if (!(await isStudentEmailAllowed(email))) {
+      return NextResponse.json(
+        { success: false, error: "This student email is not approved for portal access yet. Please contact the school office." },
+        { status: 403 }
       );
     }
 
